@@ -7,6 +7,7 @@ inherited dmClientes: TdmClientes
     SQL.Strings = (
       'select * from vi_clientes')
     AfterInsert = unqryTablaGAfterInsert
+    BeforeDelete = unqryTablaGBeforeDelete
     Left = 56
     Top = 32
   end
@@ -167,7 +168,7 @@ inherited dmClientes: TdmClientes
   end
   object dsFacturasClientes: TDataSource
     DataSet = unqryFacturasClientes
-    Left = 520
+    Left = 408
     Top = 32
   end
   object unqryFacturasClientes: TUniQuery
@@ -219,7 +220,7 @@ inherited dmClientes: TdmClientes
     MasterFields = 'CODIGO_CLIENTE'
     DetailFields = 'CODIGO_CLIENTE_FACTURA'
     ReadOnly = True
-    Left = 520
+    Left = 408
     Top = 96
     ParamData = <
       item
@@ -231,7 +232,7 @@ inherited dmClientes: TdmClientes
   end
   object dsFacturasLineasClientes: TDataSource
     DataSet = unqryFacturasLineasClientes
-    Left = 656
+    Left = 544
     Top = 32
   end
   object unqryFacturasLineasClientes: TUniQuery
@@ -288,7 +289,8 @@ inherited dmClientes: TdmClientes
     MasterFields = 'CODIGO_CLIENTE'
     DetailFields = 'CODIGO_CLIENTE_FACTURA'
     ReadOnly = True
-    Left = 656
+    Active = True
+    Left = 544
     Top = 96
     ParamData = <
       item
@@ -297,60 +299,5 @@ inherited dmClientes: TdmClientes
         ParamType = ptInput
         Value = 'AGRICULTOR'
       end>
-  end
-  object dsTiposIVA: TDataSource
-    DataSet = unqryTiposIVA
-    Left = 408
-    Top = 32
-  end
-  object unqryTiposIVA: TUniQuery
-    SQLInsert.Strings = (
-      'INSERT INTO fza_historia'
-      
-        '  (ID, CODIGO_ARTICULO, DESCRIPCION_ARTICULO, CODIGO_CLIENTE, PR' +
-        'ECIOVENTA_ARTICULO, FECHA, ZONA, DESCRIPCION_HISTORIA, NRO_FACTU' +
-        'RA, LINEA_LINEA, ODONTOLOGO, SERIE_FACTURA)'
-      'VALUES'
-      
-        '  (:ID, :CODIGO_ARTICULO, :DESCRIPCION_ARTICULO, :CODIGO_CLIENTE' +
-        ', :PRECIOVENTA_ARTICULO, :FECHA, :ZONA, :DESCRIPCION_HISTORIA, :' +
-        'NRO_FACTURA, :LINEA_LINEA, :ODONTOLOGO, :SERIE_FACTURA)')
-    SQLDelete.Strings = (
-      'DELETE FROM fza_historia'
-      'WHERE'
-      '  ID = :Old_ID')
-    SQLUpdate.Strings = (
-      'UPDATE fza_historia'
-      'SET'
-      
-        '  ID = :ID, CODIGO_ARTICULO = :CODIGO_ARTICULO, DESCRIPCION_ARTI' +
-        'CULO = :DESCRIPCION_ARTICULO, CODIGO_CLIENTE = :CODIGO_CLIENTE, ' +
-        'PRECIOVENTA_ARTICULO = :PRECIOVENTA_ARTICULO, FECHA = :FECHA, ZO' +
-        'NA = :ZONA, DESCRIPCION_HISTORIA = :DESCRIPCION_HISTORIA, NRO_FA' +
-        'CTURA = :NRO_FACTURA, LINEA_LINEA = :LINEA_LINEA, ODONTOLOGO = :' +
-        'ODONTOLOGO, SERIE_FACTURA = :SERIE_FACTURA'
-      'WHERE'
-      '  ID = :Old_ID')
-    SQLLock.Strings = (
-      'SELECT * FROM fza_historia'
-      'WHERE'
-      '  ID = :Old_ID'
-      'FOR UPDATE')
-    SQLRefresh.Strings = (
-      
-        'SELECT ID, CODIGO_ARTICULO, DESCRIPCION_ARTICULO, CODIGO_CLIENTE' +
-        ', PRECIOVENTA_ARTICULO, FECHA, ZONA, DESCRIPCION_HISTORIA, NRO_F' +
-        'ACTURA, LINEA_LINEA, ODONTOLOGO, SERIE_FACTURA FROM fza_historia'
-      'WHERE'
-      '  ID = :ID')
-    SQLRecCount.Strings = (
-      'SELECT COUNT(*) FROM fza_historia')
-    Connection = dmConn.conUni
-    SQL.Strings = (
-      'select * from fza_ivas_tipos'
-      '')
-    ReadOnly = True
-    Left = 408
-    Top = 96
   end
 end

@@ -13,25 +13,25 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
     Width = 792
     Height = 602
     TabOrder = 0
-    ExplicitWidth = 690
+    ExplicitWidth = 792
     ExplicitHeight = 602
     inherited pcPantalla: TcxPageControl
       Width = 790
       Height = 560
       TabOrder = 1
       Properties.ActivePage = tsFicha
-      ExplicitWidth = 688
+      ExplicitWidth = 790
       ExplicitHeight = 560
       ClientRectBottom = 560
       ClientRectRight = 790
       inherited tsLista: TcxTabSheet
         ExplicitTop = 30
-        ExplicitWidth = 688
+        ExplicitWidth = 790
         ExplicitHeight = 530
         inherited cxGrdPrincipal: TcxGrid
           Width = 790
           Height = 530
-          ExplicitWidth = 688
+          ExplicitWidth = 790
           ExplicitHeight = 530
           inherited cxGrdDBTabPrin: TcxGridDBTableView
             object cxgrdbclmnGrdDBTabPrinCODIGO_EMPRESA: TcxGridDBColumn
@@ -180,7 +180,7 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
       inherited tsFicha: TcxTabSheet
         OnEnter = tsFichaEnter
         ExplicitTop = 30
-        ExplicitWidth = 688
+        ExplicitWidth = 790
         ExplicitHeight = 530
         object pnl1: TPanel
           Left = 0
@@ -189,7 +189,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
           Height = 145
           Align = alTop
           TabOrder = 0
-          ExplicitWidth = 688
           object cxdbtxtdt1: TcxDBTextEdit
             Left = 104
             Top = 33
@@ -222,7 +221,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
             Height = 145
             Align = alTop
             TabOrder = 0
-            ExplicitWidth = 686
             object txtCODIGO_EMPRESA: TcxDBTextEdit
               Left = 103
               Top = 9
@@ -301,20 +299,21 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
               Transparent = True
               AnchorX = 289
             end
-            object cbbZONAIVA: TcxDBLookupComboBox
-              Left = 179
-              Top = 101
+            object cbbZonaIVA: TcxDBLookupComboBox
+              Left = 180
+              Top = 106
               DataBinding.DataField = 'GRUPO_ZONA_IVA_EMPRESA'
               DataBinding.DataSource = dsTablaG
               Properties.KeyFieldNames = 'GRUPO_ZONA_IVA'
               Properties.ListColumns = <
                 item
-                  Fixed = True
                   FieldName = 'DESCRIPCION_ZONA_IVA'
                 end>
               Properties.ListOptions.ShowHeader = False
+              Properties.ListSource = dmEmpresas.dsIvas
+              Properties.ValidateOnEnter = False
               TabOrder = 9
-              Width = 250
+              Width = 249
             end
           end
         end
@@ -325,7 +324,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
           Height = 377
           Align = alClient
           TabOrder = 1
-          ExplicitWidth = 688
           object pcPestana: TcxPageControl
             Left = 1
             Top = 1
@@ -335,14 +333,12 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
             TabOrder = 0
             Properties.ActivePage = tsHistoriaFacturacion
             Properties.CustomButtons.Buttons = <>
-            ExplicitWidth = 686
             ClientRectBottom = 375
             ClientRectRight = 788
             ClientRectTop = 30
             object tsMasDatos: TcxTabSheet
               Caption = '&1_M'#225's Datos'
               ImageIndex = 0
-              ExplicitWidth = 686
               object txtMOVIL_EMPRESA: TcxDBTextEdit
                 Left = 105
                 Top = 15
@@ -437,7 +433,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
             object tsRetenciones: TcxTabSheet
               Caption = '&2_Retenciones'
               ImageIndex = 2
-              ExplicitWidth = 686
               object pnl6: TPanel
                 Left = 678
                 Top = 0
@@ -445,7 +440,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
                 Height = 345
                 Align = alRight
                 TabOrder = 0
-                ExplicitLeft = 576
                 object btnAddIRPF: TcxButton
                   Left = 0
                   Top = 13
@@ -463,7 +457,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
                 Height = 345
                 Align = alClient
                 TabOrder = 1
-                ExplicitWidth = 594
                 object cxgrdRetenciones: TcxGrid
                   Left = 1
                   Top = 1
@@ -475,7 +468,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
                   Margins.Bottom = 4
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 592
                   object tvRetenciones: TcxGridDBTableView
                     OnDblClick = cxGrdDBTabPrinDblClick
                     Navigator.Buttons.ConfirmDelete = True
@@ -576,7 +568,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
             object tsHistoriaFacturacion: TcxTabSheet
               Caption = '&3_Hist'#243'rico Facturas'
               ImageIndex = 3
-              ExplicitWidth = 686
               object pnlFactura: TPanel
                 Left = 0
                 Top = 0
@@ -584,7 +575,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
                 Height = 345
                 Align = alClient
                 TabOrder = 0
-                ExplicitWidth = 686
                 object cxgrdEmpresasFacturas: TcxGrid
                   Left = 1
                   Top = 1
@@ -596,7 +586,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
                   Margins.Bottom = 4
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 567
                   object tvFacturacion: TcxGridDBTableView
                     Navigator.Buttons.ConfirmDelete = True
                     Navigator.Buttons.CustomButtons = <>
@@ -850,6 +839,7 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
                   object tvLineasFacturacion: TcxGridDBTableView
                     Navigator.Buttons.CustomButtons = <>
                     ScrollbarAnnotations.CustomAnnotations = <>
+                    DataController.DataSource = dmEmpresas.dsFacturasLineasEmpresas
                     DataController.DetailKeyFieldNames = 'NRO_FACTURA_LINEA; SERIE_FACTURA_LINEA'
                     DataController.KeyFieldNames = 'LINEA_FACTURA_LINEA'
                     DataController.MasterKeyFieldNames = 'NRO_FACTURA; SERIE_FACTURA'
@@ -904,15 +894,8 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
                       Properties.LargeIncrement = 1.000000000000000000
                       Properties.MaxValue = 100.000000000000000000
                     end
-                    object tvLineasFacturacionTIPOIVA_ARTICULO_FACTURA_LINEA: TcxGridDBColumn
-                      Caption = 'Tipo IVA'
-                      DataBinding.FieldName = 'TIPOIVA_ARTICULO_FACTURA_LINEA'
-                      PropertiesClassName = 'TcxLookupComboBoxProperties'
-                      Properties.KeyFieldNames = 'CODIGO_ABREVIATURA_TIPO_IVA'
-                      Properties.ListColumns = <
-                        item
-                          FieldName = 'NOMBRE_TIPO_IVA'
-                        end>
+                    object dbcLineasFacturacionNOMBRE_TIPO_IVA: TcxGridDBColumn
+                      DataBinding.FieldName = 'NOMBRE_TIPO_IVA'
                     end
                     object tvLineasFacturacionPRECIOVENTA_ARTICULO_LINEA: TcxGridDBColumn
                       Caption = 'Precio CIVA'
@@ -946,7 +929,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
                   Height = 343
                   Align = alRight
                   TabOrder = 1
-                  ExplicitLeft = 568
                   object btIraFactura: TcxButton
                     Left = 6
                     Top = 16
@@ -989,7 +971,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
             object tsSeries: TcxTabSheet
               Caption = '&4_Series'
               ImageIndex = 4
-              ExplicitWidth = 686
               object pnl: TPanel
                 Left = 670
                 Top = 0
@@ -997,7 +978,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
                 Height = 345
                 Align = alRight
                 TabOrder = 0
-                ExplicitLeft = 568
                 object btnAddSerie: TcxButton
                   Left = 6
                   Top = 13
@@ -1015,7 +995,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
                 Height = 345
                 Align = alClient
                 TabOrder = 1
-                ExplicitWidth = 568
                 object cxGrdSeries: TcxGrid
                   Left = 1
                   Top = 1
@@ -1027,7 +1006,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
                   Margins.Bottom = 4
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 566
                   object tvSeries: TcxGridDBTableView
                     OnDblClick = cxGrdDBTabPrinDblClick
                     Navigator.Buttons.ConfirmDelete = True
@@ -1124,7 +1102,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
             object tsOtros: TcxTabSheet
               Caption = '&5_Otros'
               ImageIndex = 3
-              ExplicitWidth = 686
               object pnl3: TPanel
                 Left = 0
                 Top = 266
@@ -1132,7 +1109,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
                 Height = 79
                 Align = alBottom
                 TabOrder = 2
-                ExplicitWidth = 686
                 object cxdbtxtdtDIRECCION1_CLIENTE: TcxDBTextEdit
                   Left = 17
                   Top = 37
@@ -1287,28 +1263,24 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
           HotZoneClassName = 'TcxMediaPlayer9Style'
           AlignSplitter = salTop
           Control = pnl1
-          ExplicitWidth = 688
         end
       end
       inherited tsPerfil: TcxTabSheet
-        ExplicitWidth = 688
+        ExplicitWidth = 790
         ExplicitHeight = 530
         inherited pnl4: TPanel
           Width = 790
-          ExplicitWidth = 688
-          inherited edtPerfilBusq: TcxTextEdit
-            ExplicitHeight = 27
-          end
+          ExplicitWidth = 790
         end
         inherited pnl5: TPanel
           Width = 790
           Height = 473
-          ExplicitWidth = 688
+          ExplicitWidth = 790
           ExplicitHeight = 473
           inherited cxgrdPerfil: TcxGrid
             Width = 788
             Height = 471
-            ExplicitWidth = 686
+            ExplicitWidth = 788
             ExplicitHeight = 471
           end
         end
@@ -1317,13 +1289,10 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
     inherited pnlTopPage: TPanel
       Width = 790
       TabOrder = 0
-      ExplicitWidth = 688
+      ExplicitWidth = 790
       inherited pnlTopGrid: TPanel
         Width = 788
-        ExplicitWidth = 686
-        inherited edtBusqGlobal: TcxTextEdit
-          ExplicitHeight = 27
-        end
+        ExplicitWidth = 788
       end
     end
   end
@@ -1331,7 +1300,7 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
     Left = 792
     Height = 602
     TabOrder = 1
-    ExplicitLeft = 690
+    ExplicitLeft = 792
     ExplicitHeight = 602
     inherited pButtonGen: TPanel
       Top = 403
@@ -1361,6 +1330,7 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
     PixelsPerInch = 96
   end
   inherited dsTablaG: TDataSource
+    DataSet = dmEmpresas.unqryTablaG
     Left = 628
     Top = 535
   end
@@ -1377,20 +1347,20 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
     Left = 504
     Top = 544
     StyleName = 'Platform Default'
-    object Action1: TAction
-      Caption = 'Action1'
+    object actClientes: TAction
+      Caption = 'Clientes'
       ShortCut = 16459
-      OnExecute = Action1Execute
+      OnExecute = actClientesExecute
     end
-    object Action2: TAction
-      Caption = 'Action2'
+    object actFacturas: TAction
+      Caption = 'Facturas'
       ShortCut = 16454
-      OnExecute = Action2Execute
+      OnExecute = actFacturasExecute
     end
-    object Action3: TAction
-      Caption = 'Action3'
+    object actArticulos: TAction
+      Caption = 'Articulos'
       ShortCut = 16466
-      OnExecute = Action3Execute
+      OnExecute = actArticulosExecute
     end
   end
 end

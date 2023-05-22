@@ -69,7 +69,9 @@ inherited dmEmpresas: TdmEmpresas
       'SELECT *  '
       '  FROM vi_empresas '
       ' ORDER BY orden_empresa')
+    Active = True
     AfterInsert = unqryTablaGAfterInsert
+    BeforeDelete = unqryTablaGBeforeDelete
     AfterDelete = unqryTablaGAfterDelete
   end
   inherited unqryPerfiles: TUniQuery
@@ -188,6 +190,7 @@ inherited dmEmpresas: TdmEmpresas
       'FROM VI_IVAS_GRUPOS'
       '')
     DetailFields = 'GRUPO_ZONA_IVA'
+    Active = True
     AfterInsert = unqryRetencionesAfterInsert
     BeforePost = unqryRetencionesBeforePost
     Left = 384
@@ -200,7 +203,7 @@ inherited dmEmpresas: TdmEmpresas
   end
   object dsFacturasEmpresas: TDataSource
     DataSet = unqryFacturasEmpresas
-    Left = 592
+    Left = 480
     Top = 80
   end
   object unqryFacturasEmpresas: TUniQuery
@@ -252,7 +255,7 @@ inherited dmEmpresas: TdmEmpresas
     MasterFields = 'CODIGO_EMPRESA'
     DetailFields = 'CODIGO_EMPRESA_FACTURA'
     ReadOnly = True
-    Left = 592
+    Left = 480
     Top = 24
     ParamData = <
       item
@@ -264,7 +267,7 @@ inherited dmEmpresas: TdmEmpresas
   end
   object dsFacturasLineasEmpresas: TDataSource
     DataSet = unqryFacturasLineasEmpresas
-    Left = 737
+    Left = 625
     Top = 80
   end
   object unqryFacturasLineasEmpresas: TUniQuery
@@ -321,7 +324,8 @@ inherited dmEmpresas: TdmEmpresas
     MasterFields = 'CODIGO_EMPRESA'
     DetailFields = 'CODIGO_EMPRESA_FACTURA'
     ReadOnly = True
-    Left = 737
+    Active = True
+    Left = 625
     Top = 24
     ParamData = <
       item
@@ -330,61 +334,6 @@ inherited dmEmpresas: TdmEmpresas
         ParamType = ptInput
         Value = '007'
       end>
-  end
-  object dsTiposIVA: TDataSource
-    DataSet = unqryTiposIVA
-    Left = 480
-    Top = 80
-  end
-  object unqryTiposIVA: TUniQuery
-    SQLInsert.Strings = (
-      'INSERT INTO fza_historia'
-      
-        '  (ID, CODIGO_ARTICULO, DESCRIPCION_ARTICULO, CODIGO_CLIENTE, PR' +
-        'ECIOVENTA_ARTICULO, FECHA, ZONA, DESCRIPCION_HISTORIA, NRO_FACTU' +
-        'RA, LINEA_LINEA, ODONTOLOGO, SERIE_FACTURA)'
-      'VALUES'
-      
-        '  (:ID, :CODIGO_ARTICULO, :DESCRIPCION_ARTICULO, :CODIGO_CLIENTE' +
-        ', :PRECIOVENTA_ARTICULO, :FECHA, :ZONA, :DESCRIPCION_HISTORIA, :' +
-        'NRO_FACTURA, :LINEA_LINEA, :ODONTOLOGO, :SERIE_FACTURA)')
-    SQLDelete.Strings = (
-      'DELETE FROM fza_historia'
-      'WHERE'
-      '  ID = :Old_ID')
-    SQLUpdate.Strings = (
-      'UPDATE fza_historia'
-      'SET'
-      
-        '  ID = :ID, CODIGO_ARTICULO = :CODIGO_ARTICULO, DESCRIPCION_ARTI' +
-        'CULO = :DESCRIPCION_ARTICULO, CODIGO_CLIENTE = :CODIGO_CLIENTE, ' +
-        'PRECIOVENTA_ARTICULO = :PRECIOVENTA_ARTICULO, FECHA = :FECHA, ZO' +
-        'NA = :ZONA, DESCRIPCION_HISTORIA = :DESCRIPCION_HISTORIA, NRO_FA' +
-        'CTURA = :NRO_FACTURA, LINEA_LINEA = :LINEA_LINEA, ODONTOLOGO = :' +
-        'ODONTOLOGO, SERIE_FACTURA = :SERIE_FACTURA'
-      'WHERE'
-      '  ID = :Old_ID')
-    SQLLock.Strings = (
-      'SELECT * FROM fza_historia'
-      'WHERE'
-      '  ID = :Old_ID'
-      'FOR UPDATE')
-    SQLRefresh.Strings = (
-      
-        'SELECT ID, CODIGO_ARTICULO, DESCRIPCION_ARTICULO, CODIGO_CLIENTE' +
-        ', PRECIOVENTA_ARTICULO, FECHA, ZONA, DESCRIPCION_HISTORIA, NRO_F' +
-        'ACTURA, LINEA_LINEA, ODONTOLOGO, SERIE_FACTURA FROM fza_historia'
-      'WHERE'
-      '  ID = :ID')
-    SQLRecCount.Strings = (
-      'SELECT COUNT(*) FROM fza_historia')
-    Connection = dmConn.conUni
-    SQL.Strings = (
-      'select * from fza_ivas_tipos'
-      '')
-    ReadOnly = True
-    Left = 480
-    Top = 24
   end
   object unqrySeries: TUniQuery
     SQLInsert.Strings = (

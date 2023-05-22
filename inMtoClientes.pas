@@ -164,7 +164,6 @@ type
     tvLineasFacturacionTIPO_CANTIDAD_ARTICULO_FACTURA_LINEA: TcxGridDBColumn;
     cxgrdbclmncxgrdbtblvwcxgrd1DBTableView1SUM_TOTAL_LINEA: TcxGridDBColumn;
     tvLineasFacturacionFECHA_ENTREGA_FACTURA_LINEA: TcxGridDBColumn;
-    tvLineasFacturacionTIPOIVA_ARTICULO_FACTURA_LINEA: TcxGridDBColumn;
     cxgrdClientesFacturasgrdlvlcxgrd1Level1: TcxGridLevel;
     cxgrdClientesFacturasgrdlvlcxgrd1Level2: TcxGridLevel;
     pnlFacturaOpts: TPanel;
@@ -240,23 +239,29 @@ type
     tvFacturacionTOTAL_REE_FACTURA: TcxGridDBColumn;
     tvFacturacionTOTAL_BASEI_IVAE_FACTURA: TcxGridDBColumn;
     ActionManager1: TActionManager;
-    Action1: TAction;
-    Action2: TAction;
+    actEmpresas: TAction;
+    actFacturas: TAction;
     cxdbtxtdtTARIFA_ARTICULO_CLIENTE: TcxDBTextEdit;
     cxspltr1: TcxSplitter;
     lblTextoLegal11: TcxLabel;
     cxdbspndtORDEN_CLIENTE: TcxDBSpinEdit;
+    btnIraArticulo: TcxButton;
+    actArticulos: TAction;
+    dbcLineasFacturacionNOMBRE_TIPO_IVA: TcxGridDBColumn;
     procedure btnGrabarClick(Sender: TObject);
     procedure btnNuevoClienteClick(Sender: TObject);
     procedure btIraFacturaClick(Sender: TObject);
     procedure btExportarClick(Sender: TObject);
     procedure btIraEmpresaClick(Sender: TObject);
-    procedure Action1Execute(Sender: TObject);
-    procedure Action2Execute(Sender: TObject);
+    procedure actEmpresasExecute(Sender: TObject);
+    procedure actFacturasExecute(Sender: TObject);
+    procedure btnIraArticuloClick(Sender: TObject);
+    procedure actArticulosExecute(Sender: TObject);
   private
     { Private declarations }
   public
     procedure CrearTablaPrincipal; override;
+
   end;
   procedure ShowMtoClientes(Owner       : TComponent); overload;
   procedure ShowMtoClientes(Owner       : TComponent;
@@ -271,7 +276,13 @@ var
 implementation
 
 uses
-  inLibWin, inLibUser, inMtoFacturas, inMtoEmpresas, inLibDir, inMtoPrincipal;
+  inLibWin,
+  inLibUser,
+  inMtoFacturas,
+  inMtoEmpresas,
+  inMtoArticulos,
+  inLibDir,
+  inMtoPrincipal;
 
 {$R *.dfm}
 
@@ -302,8 +313,10 @@ begin
   if (frmMtoClientes = nil) then
   begin
     frmMtoClientes := TfrmMtoClientes.Create(Owner);
-  end;
-  frmMtoClientes.BringToFront;
+    frmMtoClientes.edtBusqGlobal.SetFocus;
+  end
+  else
+    frmMtoClientes.BringToFront;
   if not (frmMtoClientes.tdmDataModule.unqryTablaG.Locate(pkFieldName,
                                                           sCodigoCliente, [])) then
     ShowMessage('Cliente no encontrado')
@@ -311,7 +324,18 @@ begin
     frmMtoClientes.pcPantalla.ActivePage := frmMtoClientes.tsFicha;
 end;
 
-procedure TfrmMtoClientes.Action1Execute(Sender: TObject);
+procedure TfrmMtoClientes.actArticulosExecute(Sender: TObject);
+begin
+  inherited;
+  //Control + R
+  if ((tvLineasFacturacion.Focused) and
+        (pcPestanas.ActivePage = tsHistoriaFacturacion)) then
+       btnIraArticuloClick(Sender)
+    else
+      ShowMtoArticulos(Self.Owner);
+end;
+
+procedure TfrmMtoClientes.actEmpresasExecute(Sender: TObject);
 begin        //control + E -> Empresas
   inherited;
     if ((tvFacturacion.Focused) and
@@ -321,7 +345,7 @@ begin        //control + E -> Empresas
       ShowMtoEmpresas(Self.Owner);
 end;
 
-procedure TfrmMtoClientes.Action2Execute(Sender: TObject);
+procedure TfrmMtoClientes.actFacturasExecute(Sender: TObject);
 begin
   inherited;
   if ((tvFacturacion.Focused) and
@@ -341,6 +365,9 @@ begin
   saveDialog.Filter := 'Archivo Excel|*.xlsx';
   saveDialog.DefaultExt := 'xlsx';
   saveDialog.FilterIndex := 1;
+  saveDialog.FileName := 'Historico_Facturas_Cliente_' +
+                        dsTablaG.Dataset.FieldByName('CODIGO_CLIENTE').AsString;
+
   if ( saveDialog.Execute ) then
     ExportGridToXLSX(saveDialog.FileName, cxgrdClientesFacturas);
   saveDialog.Free;
@@ -350,7 +377,8 @@ procedure TfrmMtoClientes.btIraEmpresaClick(Sender: TObject);
 begin
   inherited;
   ShowMtoEmpresas(Self.Owner,
-  tvFacturacion.DataController.DataSet.FieldByName('CODIGO_EMPRESA_FACTURA').AsString);
+  tvFacturacion.DataController.DataSet.FieldByName(
+                                            'CODIGO_EMPRESA_FACTURA').AsString);
 end;
 
 procedure TfrmMtoClientes.btIraFacturaClick(Sender: TObject);
@@ -358,8 +386,10 @@ var
   sNroFactura, sSerieFactura:String;
 begin
   inherited;
-  sNroFactura := tvFacturacion.DataController.DataSet.FieldByName('NRO_FACTURA').AsString;
-  sSerieFactura := tvFacturacion.DataController.DataSet.FieldByName('SERIE_FACTURA').AsString;
+  sNroFactura := tvFacturacion.DataController.DataSet.FieldByName(
+                                                        'NRO_FACTURA').AsString;
+  sSerieFactura := tvFacturacion.DataController.DataSet.FieldByName(
+                                                      'SERIE_FACTURA').AsString;
   ShowMtoFacturas(Self.Owner, sNroFactura, sSerieFactura);
 end;
 
@@ -370,6 +400,15 @@ begin
      ((dsTablaG.State = dsInsert) or
      (dsTablaG.State = dsEdit)) then
     dmmClientes.unqryTablaG.Post;
+end;
+
+procedure TfrmMtoClientes.btnIraArticuloClick(Sender: TObject);
+begin
+  inherited;
+  with tvLineasFacturacion.DataController.DataSet do
+    ShowMtoArticulos(Self.Owner,
+                         FieldByName('CODIGO_ARTICULO_FACTURA_LINEA').AsString);
+
 end;
 
 procedure TfrmMtoClientes.btnNuevoClienteClick(Sender: TObject);

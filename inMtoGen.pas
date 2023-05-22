@@ -384,7 +384,13 @@ begin
       if ((pcPantalla.ActivePage = tsFicha)) then
         pcPantalla.ActivePage := tsLista
       else
-        Close;
+        if ( (dsTablaG.State = dsBrowse) and
+             (pcPantalla.ActivePage = tsLista)
+           ) then
+          if ( Application.MessageBox( '¿Desea abandonar la ficha?',
+                                   'Mensaje Advertencia',
+                                   MB_YESNO ) = ID_YES ) then
+         Close;
   end;
   if Key = VK_PRIOR then
      nvNavegador.Buttons.Prior.Click;

@@ -13,7 +13,7 @@ interface
 uses
   System.SysUtils, System.Classes, UniDataGen, Data.DB, MemDS, DBAccess,
   Uni, inLibUser, inMtoPrincipal, UniDataConn, Datasnap.Provider,
-  Datasnap.DBClient;
+  Datasnap.DBClient, Forms, Windows;
 
 type
   TdmEmpresas = class(TdmBase)
@@ -26,8 +26,6 @@ type
     unqryFacturasEmpresas: TUniQuery;
     dsFacturasLineasEmpresas: TDataSource;
     unqryFacturasLineasEmpresas: TUniQuery;
-    dsTiposIVA: TDataSource;
-    unqryTiposIVA: TUniQuery;
     unqrySeries: TUniQuery;
     dsSeries: TDataSource;
     procedure unqryTablaGAfterInsert(DataSet: TDataSet);
@@ -39,6 +37,7 @@ type
     procedure unqrySeriesBeforePost(DataSet: TDataSet);
     procedure unqrySeriesAfterInsert(DataSet: TDataSet);
     procedure unqryTablaGAfterDelete(DataSet: TDataSet);
+    procedure unqryTablaGBeforeDelete(DataSet: TDataSet);
   private
 
     { Private declarations }
@@ -264,8 +263,8 @@ begin
   unqryIvas.Connection                   := oConn;
   unqryFacturasEmpresas.Connection       := oConn;
   unqryFacturasLineasEmpresas.Connection := oConn;
-  unqryTiposIVA.Connection               := oConn;
-  unqryTiposIVA.Open;
+  //unqryTiposIVA.Connection               := oConn;
+  //unqryTiposIVA.Open;
   unqryFacturasEmpresas.Open;
   unqryFacturasLineasEmpresas.Open;
   unqryIvas.Open;
@@ -306,6 +305,17 @@ begin
                                                   ParamByName('pcont').AsString;
     end;
   end;
+end;
+
+procedure TdmEmpresas.unqryTablaGBeforeDelete(DataSet: TDataSet);
+begin
+  inherited;
+    if (unqryFacturasEmpresas.RecordCount > 0) then
+      if not ( Application.MessageBox( 'La empresa tiene facturas emitidas, ' +
+                                   ' ¿Desea realmente borrar el registro?',
+                                   'Mensaje Advertencia',
+                                   MB_YESNO ) = ID_YES ) then
+        Abort;
 end;
 
 procedure TdmEmpresas.unqryTablaGBeforePost(DataSet: TDataSet);

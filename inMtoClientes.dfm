@@ -3,7 +3,6 @@ inherited frmMtoClientes: TfrmMtoClientes
   ClientHeight = 590
   ClientWidth = 958
   FormStyle = fsMDIChild
-  OnKeyUp = nil
   ExplicitWidth = 974
   ExplicitHeight = 629
   PixelsPerInch = 96
@@ -234,7 +233,7 @@ inherited frmMtoClientes: TfrmMtoClientes
             Margins.Bottom = 4
             DataBinding.DataField = 'CODIGO_CLIENTE'
             DataBinding.DataSource = dsTablaG
-            TabOrder = 2
+            TabOrder = 1
             Width = 149
           end
           object lblCodigoCliente: TcxLabel
@@ -310,7 +309,7 @@ inherited frmMtoClientes: TfrmMtoClientes
             Margins.Bottom = 4
             DataBinding.DataField = 'EMAIL_CLIENTE'
             DataBinding.DataSource = dsTablaG
-            TabOrder = 6
+            TabOrder = 5
             Width = 351
           end
           object lblNif: TcxLabel
@@ -332,7 +331,7 @@ inherited frmMtoClientes: TfrmMtoClientes
             Margins.Bottom = 4
             DataBinding.DataField = 'NIF_CLIENTE'
             DataBinding.DataSource = dsTablaG
-            TabOrder = 8
+            TabOrder = 6
             Width = 149
           end
           object txtMOVIL_CLIENTE: TcxDBTextEdit
@@ -344,7 +343,7 @@ inherited frmMtoClientes: TfrmMtoClientes
             Margins.Bottom = 4
             DataBinding.DataField = 'MOVIL_CLIENTE'
             DataBinding.DataSource = dsTablaG
-            TabOrder = 9
+            TabOrder = 7
             Width = 163
           end
           object chkActivo: TcxDBCheckBox
@@ -381,7 +380,7 @@ inherited frmMtoClientes: TfrmMtoClientes
             Margins.Bottom = 4
             Align = alClient
             TabOrder = 0
-            Properties.ActivePage = tsMasDatos
+            Properties.ActivePage = tsHistoriaFacturacion
             Properties.CustomButtons.Buttons = <>
             ClientRectBottom = 371
             ClientRectRight = 814
@@ -718,7 +717,7 @@ inherited frmMtoClientes: TfrmMtoClientes
                 Top = 101
                 DataBinding.DataField = 'OBSERVACIONES_CLIENTE'
                 DataBinding.DataSource = dsTablaG
-                TabOrder = 7
+                TabOrder = 6
                 Height = 68
                 Width = 537
               end
@@ -736,10 +735,9 @@ inherited frmMtoClientes: TfrmMtoClientes
                   item
                     FieldName = 'DESCRIPCION_FORMAPAGO'
                   end>
-                Properties.ListOptions.CaseInsensitive = True
                 Properties.ListOptions.ShowHeader = False
                 Properties.ListSource = dmClientes.dsFormasPago
-                TabOrder = 8
+                TabOrder = 7
                 Width = 263
               end
               object lblcxlbl18: TcxLabel
@@ -761,6 +759,7 @@ inherited frmMtoClientes: TfrmMtoClientes
                   item
                     FieldName = 'NOMBRE_TARIFA'
                   end>
+                Properties.ListOptions.ShowHeader = False
                 Properties.ListSource = dmClientes.dsTarifas
                 TabOrder = 12
                 Width = 263
@@ -802,7 +801,7 @@ inherited frmMtoClientes: TfrmMtoClientes
                 object cxgrdClientesFacturas: TcxGrid
                   Left = 1
                   Top = 1
-                  Width = 711
+                  Width = 695
                   Height = 339
                   Margins.Left = 4
                   Margins.Top = 4
@@ -1112,6 +1111,9 @@ inherited frmMtoClientes: TfrmMtoClientes
                     object tvLineasFacturacionPRECIOVENTA_SIVA_ARTICULO_FACTURA_LINEA: TcxGridDBColumn
                       DataBinding.FieldName = 'PRECIOVENTA_SIVA_ARTICULO_FACTURA_LINEA'
                     end
+                    object dbcLineasFacturacionNOMBRE_TIPO_IVA: TcxGridDBColumn
+                      DataBinding.FieldName = 'NOMBRE_TIPO_IVA'
+                    end
                     object tvLineasFacturacionPORCEN_IVA_FACTURA_LINEA: TcxGridDBColumn
                       Caption = 'Porcentaje IVA'
                       DataBinding.FieldName = 'PORCEN_IVA_FACTURA_LINEA'
@@ -1135,17 +1137,6 @@ inherited frmMtoClientes: TfrmMtoClientes
                       DataBinding.FieldName = 'FECHA_ENTREGA_FACTURA_LINEA'
                       PropertiesClassName = 'TcxDateEditProperties'
                     end
-                    object tvLineasFacturacionTIPOIVA_ARTICULO_FACTURA_LINEA: TcxGridDBColumn
-                      DataBinding.FieldName = 'TIPOIVA_ARTICULO_FACTURA_LINEA'
-                      PropertiesClassName = 'TcxLookupComboBoxProperties'
-                      Properties.KeyFieldNames = 'CODIGO_ABREVIATURA_TIPO_IVA'
-                      Properties.ListColumns = <
-                        item
-                          FieldName = 'NOMBRE_TIPO_IVA'
-                        end>
-                      Properties.ListSource = dmClientes.dsTiposIVA
-                      Properties.ReadOnly = True
-                    end
                   end
                   object cxgrdClientesFacturasgrdlvlcxgrd1Level1: TcxGridLevel
                     GridView = tvFacturacion
@@ -1155,16 +1146,16 @@ inherited frmMtoClientes: TfrmMtoClientes
                   end
                 end
                 object pnlFacturaOpts: TPanel
-                  Left = 712
+                  Left = 696
                   Top = 1
-                  Width = 101
+                  Width = 117
                   Height = 339
                   Align = alRight
                   TabOrder = 1
                   object btIraFactura: TcxButton
                     Left = 6
                     Top = 16
-                    Width = 91
+                    Width = 107
                     Height = 34
                     Caption = '&Ir a Factura'
                     TabOrder = 0
@@ -1173,7 +1164,7 @@ inherited frmMtoClientes: TfrmMtoClientes
                   object btIraEmpresa: TcxButton
                     Left = 7
                     Top = 56
-                    Width = 91
+                    Width = 106
                     Height = 34
                     Caption = '&Ir a Empresa'
                     TabOrder = 1
@@ -1181,12 +1172,21 @@ inherited frmMtoClientes: TfrmMtoClientes
                   end
                   object btExportar: TcxButton
                     Left = 6
-                    Top = 96
-                    Width = 91
+                    Top = 137
+                    Width = 107
                     Height = 34
                     Caption = '&Exp Excel'
                     TabOrder = 2
                     OnClick = btExportarClick
+                  end
+                  object btnIraArticulo: TcxButton
+                    Left = 7
+                    Top = 96
+                    Width = 105
+                    Height = 34
+                    Caption = 'I&r a Art'#237'culo'
+                    TabOrder = 3
+                    OnClick = btnIraArticuloClick
                   end
                 end
               end
@@ -1195,6 +1195,9 @@ inherited frmMtoClientes: TfrmMtoClientes
               Caption = 'Historia Presupuestos'
               ImageIndex = 4
               TabVisible = False
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object cxgrd3: TcxGrid
                 Left = 0
                 Top = 0
@@ -1394,7 +1397,7 @@ inherited frmMtoClientes: TfrmMtoClientes
                   DataBinding.DataField = 'USUARIOALTA'
                   DataBinding.DataSource = dsTablaG
                   Properties.ReadOnly = True
-                  TabOrder = 4
+                  TabOrder = 2
                   Width = 136
                 end
                 object lblUsuarioAlta: TcxLabel
@@ -1427,7 +1430,7 @@ inherited frmMtoClientes: TfrmMtoClientes
                   DataBinding.DataField = 'INSTANTEALTA'
                   DataBinding.DataSource = dsTablaG
                   Properties.ReadOnly = True
-                  TabOrder = 5
+                  TabOrder = 3
                   Width = 196
                 end
                 object txtINSTANTEMODIF: TcxDBTextEdit
@@ -1463,7 +1466,7 @@ inherited frmMtoClientes: TfrmMtoClientes
                   DataBinding.DataField = 'USUARIOMODIF'
                   DataBinding.DataSource = dsTablaG
                   Properties.ReadOnly = True
-                  TabOrder = 6
+                  TabOrder = 4
                   Width = 171
                 end
                 object lblUsuarioModif: TcxLabel
@@ -1482,7 +1485,7 @@ inherited frmMtoClientes: TfrmMtoClientes
                 Top = 46
                 DataBinding.DataField = 'TEXTO_LEGAL_FACTURA_CLIENTE'
                 DataBinding.DataSource = dsTablaG
-                TabOrder = 1
+                TabOrder = 0
                 Height = 113
                 Width = 684
               end
@@ -1515,7 +1518,7 @@ inherited frmMtoClientes: TfrmMtoClientes
                 Margins.Bottom = 4
                 DataBinding.DataField = 'SERIE_CONTADOR_CLIENTE'
                 DataBinding.DataSource = dsTablaG
-                TabOrder = 2
+                TabOrder = 1
                 Width = 109
               end
               object lblTextoLegal11: TcxLabel
@@ -1533,7 +1536,7 @@ inherited frmMtoClientes: TfrmMtoClientes
                 Top = 178
                 DataBinding.DataField = 'ORDEN_CLIENTE'
                 DataBinding.DataSource = dsTablaG
-                TabOrder = 3
+                TabOrder = 2
                 Width = 106
               end
             end
@@ -1555,9 +1558,6 @@ inherited frmMtoClientes: TfrmMtoClientes
         inherited pnl4: TPanel
           Width = 816
           ExplicitWidth = 816
-          inherited edtPerfilBusq: TcxTextEdit
-            ExplicitHeight = 27
-          end
         end
         inherited pnl5: TPanel
           Width = 816
@@ -1586,7 +1586,6 @@ inherited frmMtoClientes: TfrmMtoClientes
         end
         inherited edtBusqGlobal: TcxTextEdit
           TabOrder = 2
-          ExplicitHeight = 27
         end
         inherited nvNavegador: TcxDBNavigator
           Top = 5
@@ -1645,18 +1644,23 @@ inherited frmMtoClientes: TfrmMtoClientes
     Top = 480
   end
   object ActionManager1: TActionManager [7]
-    Left = 768
-    Top = 536
+    Left = 456
+    Top = 440
     StyleName = 'Platform Default'
-    object Action1: TAction
-      Caption = 'Action1'
+    object actEmpresas: TAction
+      Caption = 'Empresas'
       ShortCut = 16453
-      OnExecute = Action1Execute
+      OnExecute = actEmpresasExecute
     end
-    object Action2: TAction
-      Caption = 'Action2'
+    object actFacturas: TAction
+      Caption = 'Facturas'
       ShortCut = 16454
-      OnExecute = Action2Execute
+      OnExecute = actFacturasExecute
+    end
+    object actArticulos: TAction
+      Caption = 'actArticulos'
+      ShortCut = 16466
+      OnExecute = actArticulosExecute
     end
   end
   inherited cxstylrpstry: TcxStyleRepository

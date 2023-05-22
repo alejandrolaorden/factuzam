@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.Classes, UniDataGen, Data.DB, MemDS, DBAccess,
-  inMtoPrincipal, Uni, inLibUser, UniDataConn, inLibWin;
+  inMtoPrincipal, Uni, inLibUser, UniDataConn, inLibWin, Forms, Windows;
 
 type
   TdmClientes = class(TdmBase)
@@ -17,12 +17,11 @@ type
     unqryFacturasClientes: TUniQuery;
     dsFacturasLineasClientes: TDataSource;
     unqryFacturasLineasClientes: TUniQuery;
-    dsTiposIVA: TDataSource;
-    unqryTiposIVA: TUniQuery;
     procedure unqryTablaGAfterInsert(DataSet: TDataSet);
     procedure unqryTablaGBeforePost(DataSet: TDataSet);
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
+    procedure unqryTablaGBeforeDelete(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -51,8 +50,8 @@ begin
   unqryTarifas.Connection := oConn;
   unqryFacturasClientes.Connection := oConn;
   unqryFacturasLineasClientes.Connection := oConn;
-  unqryTiposIVA.Connection := oConn;
-  unqryTiposIVA.Open;
+  //unqryTiposIVA.Connection := oConn;
+  //unqryTiposIVA.Open;
   unqryFacturasClientes.Open;
   unqryFacturasLineasClientes.Open;
   unqryTarifas.Open;
@@ -62,7 +61,7 @@ end;
 procedure TdmClientes.DataModuleDestroy(Sender: TObject);
 begin
   inherited;
-  unqryTiposIVA.Close;
+  //unqryTiposIVA.Close;
   unqryPerfiles.Close;
   unqryFormaPago.Close;
   unqryTarifas.Close;
@@ -102,7 +101,6 @@ begin
                                                   ParamByName('pcont').AsString;
     end;
   end;
-
 end;
 
 procedure TdmClientes.unqryTablaGAfterInsert(DataSet: TDataSet);
@@ -144,6 +142,17 @@ begin
   FreeAndNil(unqryTarifaDef);
 
   //(Self.Owner as TfrmMtoClientes).txtRAZONSOCIAL_CLIENTE.SetFocus;
+end;
+
+procedure TdmClientes.unqryTablaGBeforeDelete(DataSet: TDataSet);
+begin
+  inherited;
+  if (unqryFacturasClientes.RecordCount > 0) then
+    if not ( Application.MessageBox( 'El cliente tiene facturas emitidas, ' +
+                                   ' ¿Desea realmente borrar el registro?',
+                                   'Mensaje Advertencia',
+                                   MB_YESNO ) = ID_YES ) then
+      Abort;
 end;
 
 procedure TdmClientes.unqryTablaGBeforePost(DataSet: TDataSet);

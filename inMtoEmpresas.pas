@@ -92,7 +92,6 @@ type
     chkActivo: TcxDBCheckBox;
     tsRetenciones: TcxTabSheet;
     lbl1: TcxLabel;
-    cbbZONAIVA: TcxDBLookupComboBox;
     lblOrden: TcxLabel;
     chkRegimenEspecial: TcxDBCheckBox;
     txtMOVIL_CLIENTE1: TcxDBTextEdit;
@@ -131,7 +130,6 @@ type
     tvLineasFacturacionTIPO_CANTIDAD_ARTICULO_FACTURA_LINEA: TcxGridDBColumn;
     tvLineasFacturacionSUM_TOTAL_LINEA: TcxGridDBColumn;
     tvLineasFacturacionFECHA_ENTREGA_FACTURA_LINEA: TcxGridDBColumn;
-    tvLineasFacturacionTIPOIVA_ARTICULO_FACTURA_LINEA: TcxGridDBColumn;
     cxgrdlvlcxgrd1Level1: TcxGridLevel;
     cxgrdlvlcxgrd1Level2: TcxGridLevel;
     pnlFacturaOpts: TPanel;
@@ -208,10 +206,10 @@ type
     tvFacturacionDESCRIPCION_ZONA_IVA: TcxGridDBColumn;
     tvFacturacionDESCRIPCION_ZONA_IVA_EMPRESA_FACTURA: TcxGridDBColumn;
     ActionManager1: TActionManager;
-    Action1: TAction;
-    Action2: TAction;
+    actClientes: TAction;
+    actFacturas: TAction;
     cxspltr1: TcxSplitter;
-    Action3: TAction;
+    actArticulos: TAction;
     btnIraArticulo: TcxButton;
     tsSeries: TcxTabSheet;
     pnl: TPanel;
@@ -228,6 +226,8 @@ type
     cxgrdbclmn4: TcxGridDBColumn;
     cxgrdbclmn5: TcxGridDBColumn;
     lvSeries: TcxGridLevel;
+    cbbZonaIVA: TcxDBLookupComboBox;
+    dbcLineasFacturacionNOMBRE_TIPO_IVA: TcxGridDBColumn;
     procedure tsFichaEnter(Sender: TObject);
     procedure chkAplicaRetencionesPropertiesChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -238,9 +238,9 @@ type
     procedure btIraFacturaClick(Sender: TObject);
     procedure btnIraClienteClick(Sender: TObject);
     procedure btExportarExcelClick(Sender: TObject);
-    procedure Action1Execute(Sender: TObject);
-    procedure Action2Execute(Sender: TObject);
-    procedure Action3Execute(Sender: TObject);
+    procedure actClientesExecute(Sender: TObject);
+    procedure actFacturasExecute(Sender: TObject);
+    procedure actArticulosExecute(Sender: TObject);
     procedure btnIraArticuloClick(Sender: TObject);
     procedure btnAddSerieClick(Sender: TObject);
   public
@@ -288,7 +288,16 @@ procedure ShowMtoEmpresas(Owner       : TComponent; sOdon: String); overload;
 var
   frmMtoEmpresas : TfrmMtoEmpresas;
 begin
-   ShowMtoEmpresas(Owner);
+  frmMtoEmpresas := TfrmMtoEmpresas(FindMDIChildOpen((Owner as TfrmOpenApp),
+                                                     TfrmMtoEmpresas,
+                                                     'frmMtoEmpresas'));
+  if (frmMtoEmpresas = nil) then
+  begin
+    frmMtoEmpresas := TfrmMtoEmpresas.Create(Owner);
+    frmMtoEmpresas.edtBusqGlobal.SetFocus;
+  end
+  else
+    frmMtoEmpresas.BringToFront;
    if not (frmMtoEmpresas.tdmDataModule.unqryTablaG.Locate(pkFieldName,
                                                            sOdon, [])) then
     ShowMessage('Empresa no encontrada')
@@ -296,7 +305,7 @@ begin
      frmMtoEmpresas.pcPantalla.ActivePage := frmMtoEmpresas.tsFicha;
 end;
 
-procedure TfrmMtoEmpresas.Action1Execute(Sender: TObject);
+procedure TfrmMtoEmpresas.actClientesExecute(Sender: TObject);
 begin
   inherited;
   //Control + K
@@ -310,7 +319,7 @@ begin
     ShowMtoClientes(Self.Owner);
 end;
 
-procedure TfrmMtoEmpresas.Action2Execute(Sender: TObject);
+procedure TfrmMtoEmpresas.actFacturasExecute(Sender: TObject);
 begin
   inherited;
   //Control + F
@@ -321,7 +330,7 @@ begin
       ShowMtoFacturas(Self.Owner);
 end;
 
-procedure TfrmMtoEmpresas.Action3Execute(Sender: TObject);
+procedure TfrmMtoEmpresas.actArticulosExecute(Sender: TObject);
 begin
   inherited;
   //Control + R -> Articulos
@@ -446,6 +455,10 @@ begin
   tvRetenciones.DataController.DataSource := dmmEmpresas.dsRetenciones;
   pcPestana.ActivePage := tsMasDatos;
   tvSeries.DataController.DataSource := dmmEmpresas.dsSeries;
+  cbbZonaIVA.Properties.ListSource := dmmEmpresas.dsIvas;
+  tvFacturacion.DataController.DataSource := dmmEmpresas.dsFacturasEmpresas;
+  tvLineasFacturacion.DataController.DataSource :=
+                                           dmmEmpresas.dsFacturasLineasEmpresas;
 end;
 
 procedure TfrmMtoEmpresas.btnIraArticuloClick(Sender: TObject);
