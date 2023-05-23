@@ -46,7 +46,7 @@ type
     pnl1: TPanel;
     cxdbtxtdtCODIGO_CLIENTE: TcxDBTextEdit;
     lblCodigoCliente: TcxLabel;
-    cxdbtxtdtRAZON_SOCIAL: TcxDBTextEdit;
+    txtRAZONSOCIAL_PROVEEDOR: TcxDBTextEdit;
     lblRazonSocial: TcxLabel;
     cxdbtxtdtTELEFONO2: TcxDBTextEdit;
     lblEmail: TcxLabel;
@@ -99,17 +99,6 @@ type
     cxdbm2: TcxDBMemo;
     chkActivo: TcxDBCheckBox;
     cxgrdbclmnGrdDBTabPrinACTIVO_CLIENTE: TcxGridDBColumn;
-    cxgrdbclmnPerfilUSUARIO_GRUPO_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilKEY_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilSUBKEY_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilVALUE_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilVALUE_TEXT_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilTYPE_BLOB_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilVALUE_BLOB_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilINSTANTEMODIF: TcxGridDBColumn;
-    cxgrdbclmnPerfilINSTANTEALTA: TcxGridDBColumn;
-    cxgrdbclmnPerfilUSUARIOALTA: TcxGridDBColumn;
-    cxgrdbclmnPerfilUSUARIOMODIF: TcxGridDBColumn;
     tsArticulos: TcxTabSheet;
     pnl6: TPanel;
     btnIraArticulo: TcxButton;
@@ -159,9 +148,11 @@ type
     cxspltr1: TcxSplitter;
     lblTextoLegal11: TcxLabel;
     cxdbspndtORDEN_CLIENTE: TcxDBSpinEdit;
+    btnNuevoProveedor: TcxButton;
     procedure btnGrabarClick(Sender: TObject);
     procedure btnIraArticuloClick(Sender: TObject);
     procedure act3Execute(Sender: TObject);
+    procedure btnNuevoProveedorClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -192,18 +183,21 @@ procedure ShowMtoProveedores(Owner: TComponent); overload;
 var
   frmMtoProveedores: TfrmMtoProveedores;
 begin
-  frmMtoProveedores := TfrmMtoProveedores(
+  if ((Owner as TfrmOpenApp).mnuProveedores.Visible) then
+  begin
+    frmMtoProveedores := TfrmMtoProveedores(
                                       FindMDIChildOpen((Owner as TfrmOpenApp),
                                       TfrmMtoProveedores, 'frmMtoProveedores'));
-  if (frmMtoProveedores = nil) then
-  begin
-    frmMtoProveedores := TfrmMtoProveedores.Create(Owner);
-    frmMtoProveedores.edtBusqGlobal.SetFocus;
-  end
-  else
-    frmMtoProveedores.BringToFront;
-  frmMtoProveedores.pcPantalla.ActivePage :=
-                                            frmMtoProveedores.tsDomicilioFiscal;
+    if (frmMtoProveedores = nil) then
+    begin
+      frmMtoProveedores := TfrmMtoProveedores.Create(Owner);
+      frmMtoProveedores.edtBusqGlobal.SetFocus;
+    end
+    else
+      frmMtoProveedores.BringToFront;
+    frmMtoProveedores.pcPantalla.ActivePage :=
+                                              frmMtoProveedores.tsDomicilioFiscal;
+  end;
   //cxdbtxtdtRAZON_SOCIAL.SetFocus;
 end;
 
@@ -212,22 +206,25 @@ procedure ShowMtoProveedores(Owner: TComponent; sCodigoProveedor: string);
 var
   frmMtoProveedores: TfrmMtoProveedores;
 begin
-  frmMtoProveedores := TfrmMtoProveedores(
+  if ((Owner as TfrmOpenApp).mnuProveedores.Visible) then
+  begin
+    frmMtoProveedores := TfrmMtoProveedores(
                                       FindMDIChildOpen((Owner as TfrmOpenApp),
                                       TfrmMtoProveedores, 'frmMtoProveedores'));
-  if (frmMtoProveedores = nil) then
-  begin
-    frmMtoProveedores := TfrmMtoProveedores.Create(Owner);
-  end;
-  frmMtoProveedores.BringToFront;
-  if not (frmMtoProveedores.tdmDataModule.unqryTablaG.Locate(pkFieldName,
-                                                             sCodigoProveedor,
-                                                             [])) then
-    ShowMessage('Proveedor no encontrado')
-  else
-    frmMtoProveedores.pcPantalla.ActivePage := frmMtoProveedores.tsFicha;
-  frmMtoProveedores.pcPantalla.ActivePage :=
+    if (frmMtoProveedores = nil) then
+    begin
+      frmMtoProveedores := TfrmMtoProveedores.Create(Owner);
+    end;
+    frmMtoProveedores.BringToFront;
+    if not (frmMtoProveedores.tdmDataModule.unqryTablaG.Locate(pkFieldName,
+                                                               sCodigoProveedor,
+                                                               [])) then
+      ShowMessage('Proveedor no encontrado')
+    else
+      frmMtoProveedores.pcPantalla.ActivePage := frmMtoProveedores.tsFicha;
+    frmMtoProveedores.pcPantalla.ActivePage :=
                                             frmMtoProveedores.tsDomicilioFiscal;
+  end;
 end;
 
 procedure TfrmMtoProveedores.btnIraArticuloClick(Sender: TObject);
@@ -242,6 +239,19 @@ begin
       ShowMtoArticulos(Self.Owner,
               unqryLinFacturasArticulos.FieldByName('CODIGO_ARTICULO').AsString)
   end;
+end;
+
+procedure TfrmMtoProveedores.btnNuevoProveedorClick(Sender: TObject);
+begin
+  inherited;
+  if ( (dmmProveedores.unqryTablaG.State <> dsInsert) and
+       (dmmProveedores.unqryTablaG.State <> dsEdit)) then
+  begin
+    dmmProveedores.unqryTablaG.Insert;
+  end;
+  tsFicha.SetFocus;
+  pcPestanas.ActivePageIndex := tsDomicilioFiscal.PageIndex;
+  txtRAZONSOCIAL_PROVEEDOR.SetFocus;
 end;
 
 procedure TfrmMtoProveedores.act3Execute(Sender: TObject);
@@ -267,6 +277,7 @@ begin
   dmmProveedores := TDMProveedores.Create(Self);
   tvArticulos.DataController.DataSource := dmmProveedores.dsArticulos;
   tvLinFac.DataController.DataSource := dmmProveedores.dsLinFacturasArticulos;
+  pcPestanas.ActivePage := tsDomicilioFiscal;
 end;
 
 end.

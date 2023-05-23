@@ -75,7 +75,6 @@ begin
       unqryTablaG.FindField('ORDEN_PROVEEDOR').AsString := ParamByName('pcont').AsString;
     end;
   end;
-
 end;
 
 procedure TdmProveedores.unqryTablaGAfterInsert(DataSet: TDataSet);

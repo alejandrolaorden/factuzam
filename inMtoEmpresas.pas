@@ -272,37 +272,43 @@ procedure ShowMtoEmpresas(Owner       : TComponent); overload;
 var
   frmMtoEmpresas : TfrmMtoEmpresas;
 begin
-  frmMtoEmpresas := TfrmMtoEmpresas(FindMDIChildOpen((Owner as TfrmOpenApp),
-                                                     TfrmMtoEmpresas,
-                                                     'frmMtoEmpresas'));
-  if (frmMtoEmpresas = nil) then
+  if ((Owner as TfrmOpenApp).mnuEmpresas.Visible) then
   begin
-    frmMtoEmpresas := TfrmMtoEmpresas.Create(Owner);
-    frmMtoEmpresas.edtBusqGlobal.SetFocus;
-  end
-  else
-    frmMtoEmpresas.BringToFront;
+    frmMtoEmpresas := TfrmMtoEmpresas(FindMDIChildOpen((Owner as TfrmOpenApp),
+                                                       TfrmMtoEmpresas,
+                                                       'frmMtoEmpresas'));
+    if (frmMtoEmpresas = nil) then
+    begin
+      frmMtoEmpresas := TfrmMtoEmpresas.Create(Owner);
+      frmMtoEmpresas.edtBusqGlobal.SetFocus;
+    end
+    else
+      frmMtoEmpresas.BringToFront;
+  end;
 end;
 
 procedure ShowMtoEmpresas(Owner       : TComponent; sOdon: String); overload;
 var
   frmMtoEmpresas : TfrmMtoEmpresas;
 begin
-  frmMtoEmpresas := TfrmMtoEmpresas(FindMDIChildOpen((Owner as TfrmOpenApp),
-                                                     TfrmMtoEmpresas,
-                                                     'frmMtoEmpresas'));
-  if (frmMtoEmpresas = nil) then
+  if ((Owner as TfrmOpenApp).mnuEmpresas.Visible) then
   begin
-    frmMtoEmpresas := TfrmMtoEmpresas.Create(Owner);
-    frmMtoEmpresas.edtBusqGlobal.SetFocus;
-  end
-  else
-    frmMtoEmpresas.BringToFront;
-   if not (frmMtoEmpresas.tdmDataModule.unqryTablaG.Locate(pkFieldName,
-                                                           sOdon, [])) then
-    ShowMessage('Empresa no encontrada')
-   else
-     frmMtoEmpresas.pcPantalla.ActivePage := frmMtoEmpresas.tsFicha;
+    frmMtoEmpresas := TfrmMtoEmpresas(FindMDIChildOpen((Owner as TfrmOpenApp),
+                                                       TfrmMtoEmpresas,
+                                                       'frmMtoEmpresas'));
+    if (frmMtoEmpresas = nil) then
+    begin
+      frmMtoEmpresas := TfrmMtoEmpresas.Create(Owner);
+      frmMtoEmpresas.edtBusqGlobal.SetFocus;
+    end
+    else
+      frmMtoEmpresas.BringToFront;
+     if not (frmMtoEmpresas.tdmDataModule.unqryTablaG.Locate(pkFieldName,
+                                                             sOdon, [])) then
+      ShowMessage('Empresa no encontrada')
+     else
+       frmMtoEmpresas.pcPantalla.ActivePage := frmMtoEmpresas.tsFicha;
+  end;
 end;
 
 procedure TfrmMtoEmpresas.actClientesExecute(Sender: TObject);

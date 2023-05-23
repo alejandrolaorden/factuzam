@@ -290,16 +290,19 @@ procedure ShowMtoClientes(Owner       : TComponent); overload;
 var
   frmMtoClientes : TfrmMtoClientes;
 begin
-  frmMtoClientes := TfrmMtoClientes(FindMDIChildOpen((Owner as TfrmOpenApp),
-                                    TfrmMtoClientes,
-                                    'frmMtoClientes'));
-  if (frmMtoClientes = nil) then
+  if ((Owner as TfrmOpenApp).mnuClientes.Visible) then
   begin
-    frmMtoClientes := TfrmMtoClientes.Create(Owner);
-    frmMtoClientes.edtBusqGlobal.SetFocus;
-  end
-  else
-    frmMtoClientes.BringToFront;
+    frmMtoClientes := TfrmMtoClientes(FindMDIChildOpen((Owner as TfrmOpenApp),
+                                      TfrmMtoClientes,
+                                      'frmMtoClientes'));
+    if (frmMtoClientes = nil) then
+    begin
+      frmMtoClientes := TfrmMtoClientes.Create(Owner);
+      frmMtoClientes.edtBusqGlobal.SetFocus;
+    end
+    else
+      frmMtoClientes.BringToFront;
+  end;
 end;
 
 procedure ShowMtoClientes(Owner       : TComponent;
@@ -307,21 +310,24 @@ procedure ShowMtoClientes(Owner       : TComponent;
 var
   frmMtoClientes : TfrmMtoClientes;
 begin
-  frmMtoClientes := TfrmMtoClientes(FindMDIChildOpen((Owner as TfrmOpenApp),
-                                    TfrmMtoClientes,
-                                    'frmMtoClientes'));
-  if (frmMtoClientes = nil) then
+  if ((Owner as TfrmOpenApp).mnuClientes.Visible) then
   begin
-    frmMtoClientes := TfrmMtoClientes.Create(Owner);
-    frmMtoClientes.edtBusqGlobal.SetFocus;
-  end
-  else
-    frmMtoClientes.BringToFront;
-  if not (frmMtoClientes.tdmDataModule.unqryTablaG.Locate(pkFieldName,
-                                                          sCodigoCliente, [])) then
-    ShowMessage('Cliente no encontrado')
-  else
-    frmMtoClientes.pcPantalla.ActivePage := frmMtoClientes.tsFicha;
+    frmMtoClientes := TfrmMtoClientes(FindMDIChildOpen((Owner as TfrmOpenApp),
+                                      TfrmMtoClientes,
+                                      'frmMtoClientes'));
+    if (frmMtoClientes = nil) then
+    begin
+      frmMtoClientes := TfrmMtoClientes.Create(Owner);
+      frmMtoClientes.edtBusqGlobal.SetFocus;
+    end
+    else
+      frmMtoClientes.BringToFront;
+    if not (frmMtoClientes.tdmDataModule.unqryTablaG.Locate(pkFieldName,
+                                                            sCodigoCliente, [])) then
+      ShowMessage('Cliente no encontrado')
+    else
+      frmMtoClientes.pcPantalla.ActivePage := frmMtoClientes.tsFicha;
+  end;
 end;
 
 procedure TfrmMtoClientes.actArticulosExecute(Sender: TObject);

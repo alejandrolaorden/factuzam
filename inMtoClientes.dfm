@@ -233,7 +233,7 @@ inherited frmMtoClientes: TfrmMtoClientes
             Margins.Bottom = 4
             DataBinding.DataField = 'CODIGO_CLIENTE'
             DataBinding.DataSource = dsTablaG
-            TabOrder = 1
+            TabOrder = 2
             Width = 149
           end
           object lblCodigoCliente: TcxLabel
@@ -309,7 +309,7 @@ inherited frmMtoClientes: TfrmMtoClientes
             Margins.Bottom = 4
             DataBinding.DataField = 'EMAIL_CLIENTE'
             DataBinding.DataSource = dsTablaG
-            TabOrder = 5
+            TabOrder = 6
             Width = 351
           end
           object lblNif: TcxLabel
@@ -331,7 +331,7 @@ inherited frmMtoClientes: TfrmMtoClientes
             Margins.Bottom = 4
             DataBinding.DataField = 'NIF_CLIENTE'
             DataBinding.DataSource = dsTablaG
-            TabOrder = 6
+            TabOrder = 8
             Width = 149
           end
           object txtMOVIL_CLIENTE: TcxDBTextEdit
@@ -343,7 +343,7 @@ inherited frmMtoClientes: TfrmMtoClientes
             Margins.Bottom = 4
             DataBinding.DataField = 'MOVIL_CLIENTE'
             DataBinding.DataSource = dsTablaG
-            TabOrder = 7
+            TabOrder = 9
             Width = 163
           end
           object chkActivo: TcxDBCheckBox
@@ -1176,7 +1176,7 @@ inherited frmMtoClientes: TfrmMtoClientes
                     Width = 107
                     Height = 34
                     Caption = '&Exp Excel'
-                    TabOrder = 2
+                    TabOrder = 3
                     OnClick = btExportarClick
                   end
                   object btnIraArticulo: TcxButton
@@ -1185,7 +1185,7 @@ inherited frmMtoClientes: TfrmMtoClientes
                     Width = 105
                     Height = 34
                     Caption = 'I&r a Art'#237'culo'
-                    TabOrder = 3
+                    TabOrder = 2
                     OnClick = btnIraArticuloClick
                   end
                 end
@@ -1195,9 +1195,6 @@ inherited frmMtoClientes: TfrmMtoClientes
               Caption = 'Historia Presupuestos'
               ImageIndex = 4
               TabVisible = False
-              ExplicitTop = 0
-              ExplicitWidth = 0
-              ExplicitHeight = 0
               object cxgrd3: TcxGrid
                 Left = 0
                 Top = 0
@@ -1558,6 +1555,9 @@ inherited frmMtoClientes: TfrmMtoClientes
         inherited pnl4: TPanel
           Width = 816
           ExplicitWidth = 816
+          inherited edtPerfilBusq: TcxTextEdit
+            ExplicitHeight = 27
+          end
         end
         inherited pnl5: TPanel
           Width = 816
@@ -1586,6 +1586,7 @@ inherited frmMtoClientes: TfrmMtoClientes
         end
         inherited edtBusqGlobal: TcxTextEdit
           TabOrder = 2
+          ExplicitHeight = 27
         end
         inherited nvNavegador: TcxDBNavigator
           Top = 5
