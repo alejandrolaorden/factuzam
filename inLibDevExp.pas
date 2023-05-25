@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, DB, ADODB, DBCtrls, StdCtrls,
+  Dialogs, DB, ADODB, DBCtrls, StdCtrls, cxGridExportLink,
   ExtCtrls, Grids, DBGrids, ComCtrls, Buttons, Mask,
   cxControls, cxContainer, cxEdit, inLibUser,
   cxTextEdit, cxMaskEdit, cxDBEdit, cxNavigator, cxLookAndFeelPainters,
@@ -30,10 +30,26 @@ uses
   procedure PonerAnchosTitulos(cxgrdtvVista: TcxGridDBTableView;
                                sDes: string;
                                var oPerfilDic: TProfileDicc);
+  procedure ExportarExcel(cxGrd:TcxGrid; sNomFile:string);
 implementation
 
 uses  inLibWin, inLibtb, inLibDir, inLibGlobalVar;//, DuckTypeUtilsU;
 
+procedure ExportarExcel(cxGrd:TcxGrid; sNomFile:string);
+var
+  saveDialog : tsavedialog;
+begin
+  saveDialog := TSaveDialog.Create(nil);
+  saveDialog.Title := 'Guardar listado a Excel';
+  saveDialog.InitialDir :=  GetSpecialFolderPath(CSIDL_MYDOCUMENTS);
+  saveDialog.Filter := 'Archivo Excel|*.xlsx';
+  saveDialog.DefaultExt := 'xlsx';
+  saveDialog.FilterIndex := 1;
+  saveDialog.FileName := sNomFile;
+  if ( saveDialog.Execute ) then
+    ExportGridToXLSX(saveDialog.FileName, cxGrd);
+  saveDialog.Free;
+end;
 
 procedure GetSettingsColumn(cxgrdtvVista: TcxGridDBTableView;
                             sName:String; Sender:TComponent);

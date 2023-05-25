@@ -11,25 +11,25 @@
     Width = 730
     Height = 564
     TabOrder = 0
-    ExplicitWidth = 744
+    ExplicitWidth = 730
     ExplicitHeight = 564
     inherited pcPantalla: TcxPageControl
       Width = 728
       Height = 522
       TabOrder = 1
       Properties.ActivePage = tsFicha
-      ExplicitWidth = 742
+      ExplicitWidth = 728
       ExplicitHeight = 522
       ClientRectBottom = 522
       ClientRectRight = 728
       inherited tsLista: TcxTabSheet
         ExplicitTop = 30
-        ExplicitWidth = 742
+        ExplicitWidth = 728
         ExplicitHeight = 492
         inherited cxGrdPrincipal: TcxGrid
           Width = 728
           Height = 492
-          ExplicitWidth = 742
+          ExplicitWidth = 728
           ExplicitHeight = 492
           inherited cxGrdDBTabPrin: TcxGridDBTableView
             object cxgrdbclmnGrdDBTabPrinCODIGO_CLIENTE: TcxGridDBColumn
@@ -174,7 +174,7 @@
       end
       inherited tsFicha: TcxTabSheet
         ExplicitTop = 30
-        ExplicitWidth = 742
+        ExplicitWidth = 728
         ExplicitHeight = 492
         object pnl1: TPanel
           Left = 0
@@ -187,7 +187,6 @@
           Margins.Bottom = 4
           Align = alTop
           TabOrder = 0
-          ExplicitWidth = 742
           object cxdbtxtdtCODIGO_CLIENTE: TcxDBTextEdit
             Left = 41
             Top = 31
@@ -295,7 +294,7 @@
             Margins.Bottom = 4
             DataBinding.DataField = 'NIF_PROVEEDOR'
             DataBinding.DataSource = dsTablaG
-            TabOrder = 7
+            TabOrder = 6
             Width = 149
           end
           object cxdbtxtdtMOVIL_CLIENTE: TcxDBTextEdit
@@ -307,7 +306,7 @@
             Margins.Bottom = 4
             DataBinding.DataField = 'MOVIL_PROVEEDOR'
             DataBinding.DataSource = dsTablaG
-            TabOrder = 8
+            TabOrder = 7
             Width = 139
           end
           object chkActivo: TcxDBCheckBox
@@ -333,7 +332,6 @@
           Margins.Bottom = 4
           Align = alClient
           TabOrder = 2
-          ExplicitWidth = 742
           object pcPestanas: TcxPageControl
             Left = 1
             Top = 1
@@ -345,9 +343,8 @@
             Margins.Bottom = 4
             Align = alClient
             TabOrder = 0
-            Properties.ActivePage = tsDomicilioFiscal
+            Properties.ActivePage = tsVentas
             Properties.CustomButtons.Buttons = <>
-            ExplicitWidth = 740
             ClientRectBottom = 345
             ClientRectRight = 726
             ClientRectTop = 30
@@ -358,7 +355,6 @@
               Margins.Bottom = 4
               Caption = '&1_Domicilio fiscal'
               ImageIndex = 0
-              ExplicitWidth = 740
               object cxdbtxtdt7: TcxDBTextEdit
                 Left = 147
                 Top = 21
@@ -507,19 +503,17 @@
             object tsArticulos: TcxTabSheet
               Caption = '&2_Articulos'
               ImageIndex = 3
-              ExplicitWidth = 740
               object pnl6: TPanel
-                Left = 634
+                Left = 608
                 Top = 0
-                Width = 92
+                Width = 118
                 Height = 315
                 Align = alRight
                 TabOrder = 1
-                ExplicitLeft = 648
                 object btnIraArticulo: TcxButton
                   Left = 6
                   Top = 13
-                  Width = 81
+                  Width = 110
                   Height = 25
                   Caption = 'Ir a Art'#237'culo'
                   TabOrder = 0
@@ -529,15 +523,14 @@
               object pnl61: TPanel
                 Left = 0
                 Top = 0
-                Width = 634
+                Width = 608
                 Height = 315
                 Align = alClient
                 TabOrder = 0
-                ExplicitWidth = 648
                 object cxgrdArticulos: TcxGrid
                   Left = 1
                   Top = 1
-                  Width = 632
+                  Width = 606
                   Height = 313
                   Margins.Left = 4
                   Margins.Top = 4
@@ -545,7 +538,6 @@
                   Margins.Bottom = 4
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 646
                   object tvArticulos: TcxGridDBTableView
                     OnDblClick = cxGrdDBTabPrinDblClick
                     Navigator.Buttons.ConfirmDelete = True
@@ -592,7 +584,10 @@
                     OptionsBehavior.GoToNextCellOnEnter = True
                     OptionsBehavior.IncSearch = True
                     OptionsCustomize.ColumnHiding = True
-                    OptionsData.Appending = True
+                    OptionsData.CancelOnExit = False
+                    OptionsData.Deleting = False
+                    OptionsData.DeletingConfirmation = False
+                    OptionsData.Inserting = False
                     OptionsView.GroupByBox = False
                     OptionsView.Indicator = True
                     object cxgrdbclmnArticulosCODIGO_PROVEEDOR: TcxGridDBColumn
@@ -603,27 +598,31 @@
                     object cxgrdbclmnArticulosCODIGO_ARTICULO: TcxGridDBColumn
                       Caption = 'C'#243'digo Art'#237'culo'
                       DataBinding.FieldName = 'CODIGO_ARTICULO'
+                      Options.Editing = False
                       Width = 135
                     end
                     object cxgrdbclmnArticulosDESCRIPCION_ARTICULO: TcxGridDBColumn
                       Caption = 'Descripci'#243'n'
                       DataBinding.FieldName = 'DESCRIPCION_ARTICULO'
+                      Options.Editing = False
                       Width = 269
                     end
                     object cxgrdbclmnArticulosCODIGO_FAMILIA: TcxGridDBColumn
                       Caption = 'C'#243'digo Familia'
                       DataBinding.FieldName = 'CODIGO_FAMILIA'
+                      Options.Editing = False
                       Width = 130
                     end
                     object cxgrdbclmnArticulosDESCRIPCION_FAMILIA: TcxGridDBColumn
                       Caption = 'Familia'
                       DataBinding.FieldName = 'DESCRIPCION_FAMILIA'
+                      Options.Editing = False
                       Width = 222
                     end
                     object cxgrdbclmnArticulosTIPO_CATNTIDAD_ARTICULO: TcxGridDBColumn
                       Caption = 'Tipo Cantidad'
                       DataBinding.FieldName = 'TIPO_CATNTIDAD_ARTICULO'
-                      Width = 93
+                      Width = 127
                     end
                     object cxgrdbclmnArticulosESACTIVO_FIJO_ARTICULO: TcxGridDBColumn
                       DataBinding.FieldName = 'ESACTIVO_FIJO_ARTICULO'
@@ -633,16 +632,17 @@
                     object cxgrdbclmnArticulosPRECIO_ULT_COMPRA: TcxGridDBColumn
                       Caption = 'Precio '#218'lt. Compra'
                       DataBinding.FieldName = 'PRECIO_ULT_COMPRA'
-                      Width = 127
+                      Width = 167
                     end
                     object cxgrdbclmnArticulosFECHA_VALIDEZ: TcxGridDBColumn
                       Caption = 'Fecha '#218'lt Compra'
                       DataBinding.FieldName = 'FECHA_VALIDEZ'
+                      Width = 159
                     end
                     object cxgrdbclmnArticulosESPROVEEDORPRINCIPAL: TcxGridDBColumn
                       Caption = 'Proveedor Principal'
                       DataBinding.FieldName = 'ESPROVEEDORPRINCIPAL'
-                      Width = 140
+                      Width = 183
                     end
                     object cxgrdbclmnArticulosINSTANTEMODIF: TcxGridDBColumn
                       DataBinding.FieldName = 'INSTANTEMODIF'
@@ -674,11 +674,10 @@
             object tsVentas: TcxTabSheet
               Caption = '&3_Ventas'
               ImageIndex = 4
-              ExplicitWidth = 740
               object cxgrdLinFac: TcxGrid
                 Left = 0
                 Top = 0
-                Width = 726
+                Width = 608
                 Height = 315
                 Margins.Left = 4
                 Margins.Top = 4
@@ -686,7 +685,6 @@
                 Margins.Bottom = 4
                 Align = alClient
                 TabOrder = 0
-                ExplicitWidth = 740
                 object tvLinFac: TcxGridDBTableView
                   OnDblClick = cxGrdDBTabPrinDblClick
                   Navigator.Buttons.ConfirmDelete = True
@@ -727,13 +725,23 @@
                   DataController.DataSource = dmArticulos.dsLinFacturasArticulos
                   DataController.Options = [dcoCaseInsensitive, dcoAssignGroupingValues, dcoAssignMasterDetailKeys, dcoSaveExpanding]
                   DataController.Summary.DefaultGroupSummaryItems = <>
-                  DataController.Summary.FooterSummaryItems = <>
+                  DataController.Summary.FooterSummaryItems = <
+                    item
+                      Format = '0.00 '#8364';-0.00 '#8364
+                      Kind = skSum
+                      Column = cxgrdbclmnLinFacTOTAL_FACTURA_LINEA
+                    end>
                   DataController.Summary.SummaryGroups = <>
                   OptionsBehavior.AlwaysShowEditor = True
                   OptionsBehavior.GoToNextCellOnEnter = True
                   OptionsBehavior.IncSearch = True
                   OptionsCustomize.ColumnHiding = True
-                  OptionsData.Appending = True
+                  OptionsData.CancelOnExit = False
+                  OptionsData.Deleting = False
+                  OptionsData.DeletingConfirmation = False
+                  OptionsData.Editing = False
+                  OptionsData.Inserting = False
+                  OptionsView.Footer = True
                   OptionsView.GroupByBox = False
                   OptionsView.Indicator = True
                   object cxgrdbclmnLinFacNRO_FACTURA_LINEA: TcxGridDBColumn
@@ -798,10 +806,9 @@
                     Caption = 'Precio SIVA'
                     DataBinding.FieldName = 'PRECIOVENTA_SIVA_ARTICULO_FACTURA_LINEA'
                   end
-                  object cxgrdbclmnLinFacTIPOIVA_ARTICULO_FACTURA_LINEA: TcxGridDBColumn
-                    Caption = 'Tipo IVA'
-                    DataBinding.FieldName = 'TIPOIVA_ARTICULO_FACTURA_LINEA'
-                    Width = 73
+                  object dbcLinFacNOMBRE_TIPO_IVA: TcxGridDBColumn
+                    Caption = 'Tipo de IVA'
+                    DataBinding.FieldName = 'NOMBRE_TIPO_IVA'
                   end
                   object cxgrdbclmnLinFacPORCEN_IVA_FACTURA_LINEA: TcxGridDBColumn
                     Caption = '% IVA'
@@ -816,22 +823,76 @@
                   object cxgrdbclmnLinFacTOTAL_FACTURA_LINEA: TcxGridDBColumn
                     Caption = 'Total Linea'
                     DataBinding.FieldName = 'TOTAL_FACTURA_LINEA'
+                    PropertiesClassName = 'TcxCurrencyEditProperties'
+                    Options.Editing = False
                     Width = 97
                   end
                   object cxgrdbclmnLinFacFECHA_ENTREGA_FACTURA_LINEA: TcxGridDBColumn
                     Caption = 'Fecha Entrega'
                     DataBinding.FieldName = 'FECHA_ENTREGA_FACTURA_LINEA'
+                    PropertiesClassName = 'TcxDateEditProperties'
+                  end
+                  object dbcLinFacCODIGO_TARIFA_FACTURA_LINEA: TcxGridDBColumn
+                    Caption = 'Tarifa Empleada'
+                    DataBinding.FieldName = 'CODIGO_TARIFA_FACTURA_LINEA'
+                    Width = 149
+                  end
+                  object dbcLinFacCODIGO_CLIENTE_FACTURA: TcxGridDBColumn
+                    DataBinding.FieldName = 'CODIGO_CLIENTE_FACTURA'
                   end
                 end
                 object cxgrdlvlLinFac: TcxGridLevel
                   GridView = tvLinFac
                 end
               end
+              object pnl62: TPanel
+                Left = 608
+                Top = 0
+                Width = 118
+                Height = 315
+                Align = alRight
+                TabOrder = 1
+                object btnIraFactura: TcxButton
+                  Left = 6
+                  Top = 13
+                  Width = 110
+                  Height = 25
+                  Caption = 'Ir a Factura'
+                  TabOrder = 0
+                  OnClick = btnIraFacturaClick
+                end
+                object btnIraCliente: TcxButton
+                  Left = 6
+                  Top = 53
+                  Width = 110
+                  Height = 25
+                  Caption = 'Ir a Cliente'
+                  TabOrder = 1
+                  OnClick = btnIraClienteClick
+                end
+                object btnExportar: TcxButton
+                  Left = 6
+                  Top = 135
+                  Width = 110
+                  Height = 24
+                  Caption = '&Exp Excel'
+                  TabOrder = 2
+                  OnClick = btnExportarClick
+                end
+                object btnIraArticuloVentas: TcxButton
+                  Left = 4
+                  Top = 93
+                  Width = 112
+                  Height = 25
+                  Caption = 'Ir a Art'#237'culo'
+                  TabOrder = 3
+                  OnClick = btnIraArticuloClick
+                end
+              end
             end
             object tsMasDatos: TcxTabSheet
               Caption = '&4_M'#225's datos'
               ImageIndex = 1
-              ExplicitWidth = 740
               object lblObservaciones: TcxLabel
                 Left = -8
                 Top = 105
@@ -951,7 +1012,6 @@
             object tsOtros: TcxTabSheet
               Caption = '&5_Otros'
               ImageIndex = 4
-              ExplicitWidth = 740
               object pnl3: TPanel
                 Left = 0
                 Top = 236
@@ -959,7 +1019,6 @@
                 Height = 79
                 Align = alBottom
                 TabOrder = 2
-                ExplicitWidth = 740
                 object cxdbtxtdtDIRECCION1_CLIENTE: TcxDBTextEdit
                   Left = 17
                   Top = 37
@@ -1003,7 +1062,7 @@
                   DataBinding.DataField = 'INSTANTEALTA'
                   DataBinding.DataSource = dsTablaG
                   Properties.ReadOnly = True
-                  TabOrder = 4
+                  TabOrder = 3
                   Width = 193
                 end
                 object cxdbtxtdtINSTANTEALTA: TcxDBTextEdit
@@ -1039,7 +1098,7 @@
                   DataBinding.DataField = 'USUARIOALTA'
                   DataBinding.DataSource = dsTablaG
                   Properties.ReadOnly = True
-                  TabOrder = 5
+                  TabOrder = 4
                   Width = 140
                 end
                 object lblUsuarioModif: TcxLabel
@@ -1082,15 +1141,14 @@
           HotZoneClassName = 'TcxMediaPlayer9Style'
           AlignSplitter = salTop
           Control = pnl2
-          ExplicitWidth = 742
         end
       end
       inherited tsPerfil: TcxTabSheet
-        ExplicitWidth = 742
+        ExplicitWidth = 728
         ExplicitHeight = 492
         inherited pnl4: TPanel
           Width = 728
-          ExplicitWidth = 742
+          ExplicitWidth = 728
           inherited edtPerfilBusq: TcxTextEdit
             ExplicitHeight = 27
           end
@@ -1098,12 +1156,12 @@
         inherited pnl5: TPanel
           Width = 728
           Height = 435
-          ExplicitWidth = 742
+          ExplicitWidth = 728
           ExplicitHeight = 435
           inherited cxgrdPerfil: TcxGrid
             Width = 726
             Height = 433
-            ExplicitWidth = 740
+            ExplicitWidth = 726
             ExplicitHeight = 433
           end
         end
@@ -1112,10 +1170,10 @@
     inherited pnlTopPage: TPanel
       Width = 728
       TabOrder = 0
-      ExplicitWidth = 742
+      ExplicitWidth = 728
       inherited pnlTopGrid: TPanel
         Width = 726
-        ExplicitWidth = 740
+        ExplicitWidth = 726
         inherited dxbvl1: TdxBevel
           Width = 827
           ExplicitWidth = 827
@@ -1148,14 +1206,18 @@
       Top = 365
       Width = 152
       ExplicitTop = 365
+      ExplicitWidth = 152
     end
     inherited pButtonBDStat: TPanel
       Width = 152
+      ExplicitWidth = 152
       inherited pnTableName: TPanel
         Width = 152
+        ExplicitWidth = 152
       end
       inherited Panel4: TPanel
         Width = 152
+        ExplicitWidth = 152
       end
     end
     object btnNuevoProveedor: TcxButton
@@ -1199,17 +1261,19 @@
     Top = 312
     StyleName = 'Platform Default'
     object act1: TAction
-      Caption = 'act1'
+      Caption = 'actClientes'
       ShortCut = 16459
+      OnExecute = act1Execute
     end
-    object act2: TAction
-      Caption = 'act2'
+    object actFacturas: TAction
+      Caption = 'actFacturas'
       ShortCut = 16454
+      OnExecute = actFacturasExecute
     end
-    object act3: TAction
-      Caption = 'act3'
+    object actArticulos: TAction
+      Caption = 'actArticulos'
       ShortCut = 16466
-      OnExecute = act3Execute
+      OnExecute = actArticulosExecute
     end
   end
 end

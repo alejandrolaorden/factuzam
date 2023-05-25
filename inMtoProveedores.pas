@@ -122,7 +122,7 @@ type
     cxgrdbclmnArticulosUSUARIOMODIF: TcxGridDBColumn;
     actmgr1: TActionManager;
     act1: TAction;
-    act2: TAction;
+    actFacturas: TAction;
     tsVentas: TcxTabSheet;
     cxgrdLinFac: TcxGrid;
     tvLinFac: TcxGridDBTableView;
@@ -135,7 +135,6 @@ type
     cxgrdbclmnLinFacNOMBRE_TARIFA: TcxGridDBColumn;
     cxgrdbclmnLinFacESIMP_INCL_TARIFA_FACTURA_LINEA: TcxGridDBColumn;
     cxgrdbclmnLinFacPRECIOVENTA_SIVA_ARTICULO_FACTURA_LINEA: TcxGridDBColumn;
-    cxgrdbclmnLinFacTIPOIVA_ARTICULO_FACTURA_LINEA: TcxGridDBColumn;
     cxgrdbclmnLinFacPORCEN_IVA_FACTURA_LINEA: TcxGridDBColumn;
     cxgrdbclmnLinFacPRECIOVENTA_CIVA_ARTICULO_FACTURA_LINEA: TcxGridDBColumn;
     cxgrdbclmnLinFacCODIGO_ARTICULO_FACTURA_LINEA: TcxGridDBColumn;
@@ -144,15 +143,28 @@ type
     cxgrdbclmnLinFacTOTAL_FACTURA_LINEA: TcxGridDBColumn;
     cxgrdbclmnLinFacFECHA_ENTREGA_FACTURA_LINEA: TcxGridDBColumn;
     cxgrdlvlLinFac: TcxGridLevel;
-    act3: TAction;
+    actArticulos: TAction;
     cxspltr1: TcxSplitter;
     lblTextoLegal11: TcxLabel;
     cxdbspndtORDEN_CLIENTE: TcxDBSpinEdit;
     btnNuevoProveedor: TcxButton;
+    dbcLinFacNOMBRE_TIPO_IVA: TcxGridDBColumn;
+    dbcLinFacCODIGO_TARIFA_FACTURA_LINEA: TcxGridDBColumn;
+    pnl62: TPanel;
+    btnIraFactura: TcxButton;
+    btnIraCliente: TcxButton;
+    dbcLinFacCODIGO_CLIENTE_FACTURA: TcxGridDBColumn;
+    btnExportar: TcxButton;
+    btnIraArticuloVentas: TcxButton;
     procedure btnGrabarClick(Sender: TObject);
     procedure btnIraArticuloClick(Sender: TObject);
-    procedure act3Execute(Sender: TObject);
+    procedure actArticulosExecute(Sender: TObject);
     procedure btnNuevoProveedorClick(Sender: TObject);
+    procedure actFacturasExecute(Sender: TObject);
+    procedure btnIraFacturaClick(Sender: TObject);
+    procedure btnIraClienteClick(Sender: TObject);
+    procedure act1Execute(Sender: TObject);
+    procedure btnExportarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -175,7 +187,12 @@ var
 implementation
 
 uses
-  inLibWin, inLibUser, inMtoPrincipal, inMtoArticulos;
+  inLibWin,
+  inLibUser,
+  inMtoPrincipal,
+  inMtoArticulos,
+  inMtoClientes,
+  inMtoFacturas;
 
 {$R *.dfm}
 
@@ -196,7 +213,7 @@ begin
     else
       frmMtoProveedores.BringToFront;
     frmMtoProveedores.pcPantalla.ActivePage :=
-                                              frmMtoProveedores.tsDomicilioFiscal;
+                                            frmMtoProveedores.tsDomicilioFiscal;
   end;
   //cxdbtxtdtRAZON_SOCIAL.SetFocus;
 end;
@@ -241,24 +258,75 @@ begin
   end;
 end;
 
+procedure TfrmMtoProveedores.btnIraClienteClick(Sender: TObject);
+begin
+  inherited;
+  ShowMtoClientes(Self.Owner,
+                           dmmProveedores.unqryLinFacturasArticulos.FieldByName(
+                                            'CODIGO_CLIENTE_FACTURA').AsString);
+end;
+
+procedure TfrmMtoProveedores.btnIraFacturaClick(Sender: TObject);
+var
+  sNroFactura, sSerieFactura:String;
+begin
+  inherited;
+  sNroFactura := tvLinFac.DataController.DataSet.FieldByName(
+                                                  'NRO_FACTURA_LINEA').AsString;
+  sSerieFactura := tvLinFac.DataController.DataSet.FieldByName(
+                                                'SERIE_FACTURA_LINEA').AsString;
+  ShowMtoFacturas(Self.Owner, sNroFactura, sSerieFactura);
+end;
+
 procedure TfrmMtoProveedores.btnNuevoProveedorClick(Sender: TObject);
 begin
   inherited;
-  if ( (dmmProveedores.unqryTablaG.State <> dsInsert) and
-       (dmmProveedores.unqryTablaG.State <> dsEdit)) then
+  if ( (dmmProveedores.unqryTablaG.State = dsInsert) or
+       (dmmProveedores.unqryTablaG.State = dsEdit)) then
   begin
-    dmmProveedores.unqryTablaG.Insert;
+    dmmProveedores.unqryTablaG.Post;
   end;
+  dmmProveedores.unqryTablaG.Insert;
   tsFicha.SetFocus;
   pcPestanas.ActivePageIndex := tsDomicilioFiscal.PageIndex;
   txtRAZONSOCIAL_PROVEEDOR.SetFocus;
 end;
 
-procedure TfrmMtoProveedores.act3Execute(Sender: TObject);
+procedure TfrmMtoProveedores.act1Execute(Sender: TObject);
+begin
+  inherited;
+  //Control + K
+    if ((tvLinFac.Focused) and
+      (pcPestanas.ActivePage = tsVentas)
+     ) then
+       btnIraClienteClick(Sender)
+  else
+    ShowMtoClientes(Self.Owner);
+end;
+
+procedure TfrmMtoProveedores.actFacturasExecute(Sender: TObject);
+begin
+  inherited;
+  //Control + F
+    if ((tvLinFac.Focused) and
+        (pcPestanas.ActivePage = tsVentas)) then
+      btnIraFacturaClick(Sender)
+    else
+      ShowMtoFacturas(Self.Owner);
+end;
+
+procedure TfrmMtoProveedores.actArticulosExecute(Sender: TObject);
 begin
   inherited;
   // Control + R
   btnIraArticuloClick(Sender);
+end;
+
+procedure TfrmMtoProveedores.btnExportarClick(Sender: TObject);
+begin
+  inherited;
+  ExportarExcel(cxgrdLinFac, 'Ventas de artículos por proveedor_' +
+                     dsTablaG.DataSet.FieldByName('CODIGO_PROVEEDOR').AsString);
 end;
 
 procedure TfrmMtoProveedores.btnGrabarClick(Sender: TObject);

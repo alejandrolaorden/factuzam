@@ -15,13 +15,14 @@ uses
   cxMaskEdit, cxDropDownEdit, cxDBEdit, cxLabel,
   cxGridBandedTableView, cxGridDBBandedTableView,  cxLocalization,
   cxCurrencyEdit, cxDataControllerConditionalFormattingRulesManagerDialog,
-  dxBevel, cxDBNavigator, inMtoPrincipal, UniDataArticulos,
+  dxBevel, cxDBNavigator, UniDataArticulos,
   dxDateRanges, MemDS, DBAccess, Uni, cxImage, dxGDIPlusClasses, inMtoGen,
   Vcl.Menus, dxSkinsForm, cxButtons, dxSkinsDefaultPainters, cxMemo, cxSpinEdit,
   cxCalendar, cxBlobEdit, Vcl.DBCtrls, cxCheckComboBox, cxDBCheckComboBox,
   cxGroupBox, cxCheckGroup, cxDBCheckGroup, cxRadioGroup,
   dxScrollbarAnnotations, dxCore, System.Actions, Vcl.ActnList,
-  Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan, cxButtonEdit, cxSplitter;
+  Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan, cxButtonEdit, cxSplitter,
+  cxDBExtLookupComboBox;
 
 type
   TfrmMtoArticulos = class(TfrmMtoGen)
@@ -31,6 +32,7 @@ type
     pnl2: TPanel;
     pcPestana: TcxPageControl;
     cxdbtxtdt15: TcxDBTextEdit;
+    txtDESCRIPCION_ARTICULO: TcxDBTextEdit;
     Panel1: TPanel;
     lblCodigo: TcxLabel;
     lblNombre: TcxLabel;
@@ -62,10 +64,10 @@ type
     tsProveedores: TcxTabSheet;
     tsLineasFactura: TcxTabSheet;
     actmgr1: TActionManager;
-    act1: TAction;
-    act2: TAction;
-    act3: TAction;
-    act4: TAction;
+    actEmpresas: TAction;
+    actFacturas: TAction;
+    actProveedores: TAction;
+    actTarifas: TAction;
     cxgrdProveedores: TcxGrid;
     tvProveedores: TcxGridDBTableView;
     cxgrdlvlProveedores: TcxGridLevel;
@@ -140,13 +142,20 @@ type
     cxgrdbclmnTarifasNOMBRE_TARIFA: TcxGridDBColumn;
     lblTextoLegal11: TcxLabel;
     cxdbspndtORDEN_CLIENTE: TcxDBSpinEdit;
+    btnNuevoArticulo: TcxButton;
+    actFamilias: TAction;
     procedure btAddProveedorClick(Sender: TObject);
     procedure cxgrdbclmnProveedoresCODIGO_PROVEEDORPropertiesButtonClick(
       Sender: TObject; AButtonIndex: Integer);
     procedure btIraProveedorClick(Sender: TObject);
-    procedure act3Execute(Sender: TObject);
+    procedure actProveedoresExecute(Sender: TObject);
     procedure btnGrabarClick(Sender: TObject);
-    procedure act4Execute(Sender: TObject);
+    procedure actTarifasExecute(Sender: TObject);
+    procedure btnNuevoArticuloClick(Sender: TObject);
+    procedure actFacturasExecute(Sender: TObject);
+    procedure actFamiliasExecute(Sender: TObject);
+    procedure btIraFacturaClick(Sender: TObject);
+    procedure btIraEmpresaClick(Sender: TObject);
   private
      procedure BuscarProveedores;
   public
@@ -169,7 +178,11 @@ uses
   inLibUser,
   inLibDevExp,
   inMtoProveedores,
+  inMtoPrincipal,
   inMtoTarifas,
+  inMtoFamilias,
+  inMtoEmpresas,
+  inMtoFacturas,
   inMtoGenSearch;
 
 {$R *.dfm}
@@ -178,16 +191,19 @@ procedure ShowMtoArticulos(Owner       : TComponent); overload;
 var
   frmMtoArticulos : TfrmMtoArticulos;
 begin
-  frmMtoArticulos := TfrmMtoArticulos(FindMDIChildOpen((Owner as TfrmOpenApp),
-                                      TfrmMtoArticulos,
-                                      'frmMtoArticulos'));
-  if (frmMtoArticulos = nil) then
+  if ((Owner as TfrmOpenApp).mnuArticulos.Visible) then
   begin
-    frmMtoArticulos := TfrmMtoArticulos.Create(Owner);
-    frmMtoArticulos.edtBusqGlobal.SetFocus;
-  end
-  else
-    frmMtoArticulos.BringToFront;
+    frmMtoArticulos := TfrmMtoArticulos(FindMDIChildOpen((Owner as TfrmOpenApp),
+                                        TfrmMtoArticulos,
+                                        'frmMtoArticulos'));
+    if (frmMtoArticulos = nil) then
+    begin
+      frmMtoArticulos := TfrmMtoArticulos.Create(Owner);
+      frmMtoArticulos.edtBusqGlobal.SetFocus;
+    end
+    else
+      frmMtoArticulos.BringToFront;
+  end;
 end;
 
 procedure ShowMtoArticulos(Owner       : TComponent;
@@ -195,22 +211,53 @@ procedure ShowMtoArticulos(Owner       : TComponent;
 var
   frmMtoArticulos : TfrmMtoArticulos;
 begin
-  frmMtoArticulos := TfrmMtoArticulos(FindMDIChildOpen((Owner as TfrmOpenApp),
-                                      TfrmMtoArticulos,
-                                      'frmMtoArticulos'));
-  if (frmMtoArticulos = nil) then
+  if ((Owner as TfrmOpenApp).mnuArticulos.Visible) then
   begin
-    frmMtoArticulos := TfrmMtoArticulos.Create(Owner);
+    frmMtoArticulos := TfrmMtoArticulos(FindMDIChildOpen((Owner as TfrmOpenApp),
+                                        TfrmMtoArticulos,
+                                        'frmMtoArticulos'));
+    if (frmMtoArticulos = nil) then
+    begin
+      frmMtoArticulos := TfrmMtoArticulos.Create(Owner);
+    end;
+    frmMtoArticulos.BringToFront;
+    if not (frmMtoArticulos.tdmDataModule.unqryTablaG.Locate(pkFieldName,
+                                                      sCodigoArticulo, [])) then
+      ShowMessage('Artículo no encontrado')
+    else
+      frmMtoArticulos.pcPantalla.ActivePage := frmMtoArticulos.tsFicha;
   end;
-  frmMtoArticulos.BringToFront;
-  if not (frmMtoArticulos.tdmDataModule.unqryTablaG.Locate(pkFieldName,
-                                                           sCodigoArticulo, [])) then
-    ShowMessage('Artículo no encontrado')
-  else
-    frmMtoArticulos.pcPantalla.ActivePage := frmMtoArticulos.tsFicha;
 end;
 
-procedure TfrmMtoArticulos.act3Execute(Sender: TObject);
+procedure TfrmMtoArticulos.actFacturasExecute(Sender: TObject);
+begin
+  inherited;
+  //Control + F   -> Facturas
+   with tvLinFac.DataController.DataSet do
+    if ((tvLinFac.Focused) and
+        (pcPestana.ActivePage = tsLineasFactura)        and
+        (not(FieldByName('NRO_FACTURA_LINEA').IsNull))  and
+        (not(FieldByName('SERIE_FACTURA_LINEA').IsNull))
+       ) then
+      btIraFacturaClick(Sender)
+    else
+      ShowMtoFacturas(Self.Owner);
+end;
+
+procedure TfrmMtoArticulos.actFamiliasExecute(Sender: TObject);
+begin
+  inherited;
+  //Control + N     -> Familias
+  with dsTablaG.DataSet do
+    if ((not(FieldByName('CODIGO_FAMILIA_ARTICULO').IsNull))
+       ) then
+      ShowMtoFamilias(Self.Owner,
+                               FieldByName('CODIGO_FAMILIA_ARTICULO').AsString)
+    else
+      ShowMtoFamilias(Self.Owner);
+end;
+
+procedure TfrmMtoArticulos.actProveedoresExecute(Sender: TObject);
 begin  //control + P -> proveedores
   inherited;
   with tvProveedores.DataController.DataSet do
@@ -223,7 +270,7 @@ begin  //control + P -> proveedores
       ShowMtoProveedores(Self.Owner);
 end;
 
-procedure TfrmMtoArticulos.act4Execute(Sender: TObject);
+procedure TfrmMtoArticulos.actTarifasExecute(Sender: TObject);
 begin
   inherited;
   //Control + T -> Tarifas
@@ -238,11 +285,28 @@ begin
   BuscarProveedores;
 end;
 
+procedure TfrmMtoArticulos.btIraEmpresaClick(Sender: TObject);
+begin
+  inherited;
+  ShowMtoEmpresas(Self.Owner,
+  tvLinfac.DataController.DataSet.FieldByName(
+                                      'CODIGO_EMPRESA_FACTURA_LINEA').AsString);
+end;
+
+procedure TfrmMtoArticulos.btIraFacturaClick(Sender: TObject);
+begin
+  inherited;
+  with tvLinFac.DataController.DataSource.DataSet do
+  ShowMtoFacturas(Self.Owner,
+                  FieldByName('NRO_FACTURA_LINEA').AsString,
+                  FieldByName('SERIE_FACTURA_LINEA').AsString);
+end;
+
 procedure TfrmMtoArticulos.btIraProveedorClick(Sender: TObject);
 begin
   inherited;
     ShowMtoProveedores(Self.Owner,
-  tvProveedores.DataController.DataSet.FieldByName('CODIGO_PROVEEDOR').AsString);
+ tvProveedores.DataController.DataSet.FieldByName('CODIGO_PROVEEDOR').AsString);
 end;
 
 procedure TfrmMtoArticulos.btnGrabarClick(Sender: TObject);
@@ -252,6 +316,32 @@ begin
   begin
     dmmArticulos.unqryTablaG.Post;
   end;
+  if ( (dmmArticulos.unqryProveedoresArticulos.State = dsInsert) or
+       (dmmArticulos.unqryProveedoresArticulos.State = dsEdit)) then
+  begin
+    dmmArticulos.unqryProveedoresArticulos.Post;
+  end;
+  if ( (dmmArticulos.unqryTarifasArticulos.State = dsInsert) or
+       (dmmArticulos.unqryTarifasArticulos.State = dsEdit)) then
+  begin
+    dmmArticulos.unqryTarifasArticulos.Post;
+  end;
+end;
+
+procedure TfrmMtoArticulos.btnNuevoArticuloClick(Sender: TObject);
+begin
+  inherited;
+  if ( (dmmArticulos.unqryTablaG.State = dsInsert) or
+       (dmmArticulos.unqryTablaG.State = dsEdit)) then
+  begin
+    dmmArticulos.unqryTablaG.Post;
+  end;
+  dmmArticulos.unqryTablaG.Insert;
+  pcPantalla.Properties.ActivePage := tsFicha;
+  tsFicha.SetFocus;
+  pcPestana.Properties.ActivePage := tsTarifas;
+  //tsDomicilioFiscal.SetFocus;
+  txtDESCRIPCION_ARTICULO.SetFocus;
 end;
 
 procedure TfrmMtoArticulos.BuscarProveedores;
@@ -284,9 +374,9 @@ begin
   tvProveedores.DataController.DataSource :=
                                             dmmArticulos.dsProveedoresArticulos;
   tvLinFac.DataController.DataSource := dmmArticulos.dsLinFacturasArticulos;
-  TcxLookupComboBoxProperties(
-               cxgrdbclmnGrdDBTabPrinTIPOIVA_ARTICULO.Properties).ListSource :=
-                                                        dmmArticulos.dsTiposIVA;
+//TcxLookupComboBoxProperties(
+//             cxgrdbclmnGrdDBTabPrinTIPOIVA_ARTICULO.Properties).ListSource :=
+//                                                      dmmArticulos.dsTiposIVA;
   pcPestana.ActivePage := tsTarifas;
 end;
 

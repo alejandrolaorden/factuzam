@@ -3,53 +3,60 @@ inherited dmArticulos: TdmArticulos
   Width = 913
   inherited unqryTablaG: TUniQuery
     SQLInsert.Strings = (
-      'INSERT INTO fza_articulos'
+      'INSERT INTO `fza_articulos`'
       
-        '  (CODIGO_ARTICULO, ACTIVO_ARTICULO, DESCRIPCION_ARTICULO, CODIG' +
-        'O_FAMILIA_ARTICULO, TIPOIVA_ARTICULO, INSTANTEMODIF, INSTANTEALT' +
-        'A, USUARIOALTA, USUARIOMODIF)'
+        '  (`CODIGO_ARTICULO`, `ACTIVO_ARTICULO`, `ORDEN_ARTICULO`, `DESC' +
+        'RIPCION_ARTICULO`, `CODIGO_FAMILIA_ARTICULO`, `TIPOIVA_ARTICULO`' +
+        ', `ESACTIVO_FIJO_ARTICULO`, `TIPO_CANTIDAD_ARTICULO`, `INSTANTEM' +
+        'ODIF`, `INSTANTEALTA`, `USUARIOALTA`, `USUARIOMODIF`)'
       'VALUES'
       
-        '  (:CODIGO_ARTICULO, :ACTIVO_ARTICULO, :DESCRIPCION_ARTICULO, :C' +
-        'ODIGO_FAMILIA_ARTICULO, :TIPOIVA_ARTICULO, :INSTANTEMODIF, :INST' +
-        'ANTEALTA, :USUARIOALTA, :USUARIOMODIF)')
+        '  (:`CODIGO_ARTICULO`, :`ACTIVO_ARTICULO`, :`ORDEN_ARTICULO`, :`' +
+        'DESCRIPCION_ARTICULO`, :`CODIGO_FAMILIA_ARTICULO`, :`TIPOIVA_ART' +
+        'ICULO`, :`ESACTIVO_FIJO_ARTICULO`, :`TIPO_CANTIDAD_ARTICULO`, :`' +
+        'INSTANTEMODIF`, :`INSTANTEALTA`, :`USUARIOALTA`, :`USUARIOMODIF`' +
+        ')')
     SQLDelete.Strings = (
-      'DELETE FROM fza_articulos'
+      'DELETE FROM `fza_articulos`'
       'WHERE'
-      '  CODIGO_ARTICULO = :Old_CODIGO_ARTICULO')
+      '  `CODIGO_ARTICULO` = :`Old_CODIGO_ARTICULO`')
     SQLUpdate.Strings = (
-      'UPDATE fza_articulos'
+      'UPDATE `fza_articulos`'
       'SET'
       
-        '  CODIGO_ARTICULO = :CODIGO_ARTICULO, ACTIVO_ARTICULO = :ACTIVO_' +
-        'ARTICULO, DESCRIPCION_ARTICULO = :DESCRIPCION_ARTICULO, CODIGO_F' +
-        'AMILIA_ARTICULO = :CODIGO_FAMILIA_ARTICULO, TIPOIVA_ARTICULO = :' +
-        'TIPOIVA_ARTICULO, INSTANTEMODIF = :INSTANTEMODIF, INSTANTEALTA =' +
-        ' :INSTANTEALTA, USUARIOALTA = :USUARIOALTA, USUARIOMODIF = :USUA' +
-        'RIOMODIF'
+        '  `CODIGO_ARTICULO` = :`CODIGO_ARTICULO`, `ACTIVO_ARTICULO` = :`' +
+        'ACTIVO_ARTICULO`, `ORDEN_ARTICULO` = :`ORDEN_ARTICULO`, `DESCRIP' +
+        'CION_ARTICULO` = :`DESCRIPCION_ARTICULO`, `CODIGO_FAMILIA_ARTICU' +
+        'LO` = :`CODIGO_FAMILIA_ARTICULO`, `TIPOIVA_ARTICULO` = :`TIPOIVA' +
+        '_ARTICULO`, `ESACTIVO_FIJO_ARTICULO` = :`ESACTIVO_FIJO_ARTICULO`' +
+        ', `TIPO_CANTIDAD_ARTICULO` = :`TIPO_CANTIDAD_ARTICULO`, `INSTANT' +
+        'EMODIF` = :`INSTANTEMODIF`, `INSTANTEALTA` = :`INSTANTEALTA`, `U' +
+        'SUARIOALTA` = :`USUARIOALTA`, `USUARIOMODIF` = :`USUARIOMODIF`'
       'WHERE'
-      '  CODIGO_ARTICULO = :Old_CODIGO_ARTICULO')
+      '  `CODIGO_ARTICULO` = :`Old_CODIGO_ARTICULO`')
     SQLLock.Strings = (
       'SELECT * FROM fza_articulos'
       'WHERE'
-      '  CODIGO_ARTICULO = :Old_CODIGO_ARTICULO'
+      '  `CODIGO_ARTICULO` = :`Old_CODIGO_ARTICULO`'
       'FOR UPDATE')
     SQLRefresh.Strings = (
       
-        'SELECT CODIGO_ARTICULO, ACTIVO_ARTICULO, DESCRIPCION_ARTICULO, C' +
-        'ODIGO_FAMILIA_ARTICULO, TIPOIVA_ARTICULO, INSTANTEMODIF, INSTANT' +
-        'EALTA, USUARIOALTA, USUARIOMODIF FROM fza_articulos'
+        'SELECT `CODIGO_ARTICULO`, `ACTIVO_ARTICULO`, `ORDEN_ARTICULO`, `' +
+        'DESCRIPCION_ARTICULO`, `CODIGO_FAMILIA_ARTICULO`, `TIPOIVA_ARTIC' +
+        'ULO`, `ESACTIVO_FIJO_ARTICULO`, `TIPO_CANTIDAD_ARTICULO`, `INSTA' +
+        'NTEMODIF`, `INSTANTEALTA`, `USUARIOALTA`, `USUARIOMODIF` FROM `f' +
+        'za_articulos`'
       'WHERE'
-      '  CODIGO_ARTICULO = :CODIGO_ARTICULO')
+      '  `CODIGO_ARTICULO` = :`CODIGO_ARTICULO`')
     SQLRecCount.Strings = (
       'SELECT COUNT(*) FROM fza_articulos')
     Connection = dmConn.conUni
     SQL.Strings = (
       'SELECT *  '
-      '  FROM vi_fza_articulos '
+      '  FROM vi_articulos '
       '')
-    Active = True
     AfterInsert = unqryTablaGAfterInsert
+    AfterDelete = unqryTablaGAfterDelete
   end
   inherited unqryPerfiles: TUniQuery
     SQL.Strings = (
@@ -58,37 +65,43 @@ inherited dmArticulos: TdmArticulos
       'where (KEY_PERFILES = Nothing)')
   end
   object unstrdprcContador: TUniStoredProc
-    StoredProcName = 'GET_NEXT_CONT'
+    StoredProcName = 'PRC_GET_NEXT_CONT'
     SQL.Strings = (
       
-        'CALL GET_NEXT_CONT(:pTipoDoc, @pcont); SELECT CAST(@pcont AS SIG' +
-        'NED) AS '#39'@pcont'#39)
+        'CALL PRC_GET_NEXT_CONT(:pTipoDoc, :pUSUARIO_MODIF, @pcont); SELE' +
+        'CT @pcont AS '#39'@pcont'#39)
     Connection = dmConn.conUni
     Left = 8
     Top = 84
     ParamData = <
       item
-        DataType = ftString
+        DataType = ftWideString
         Name = 'pTipoDoc'
         ParamType = ptInput
         Size = 2
-        Value = nil
+        Value = 'AR'
       end
       item
-        DataType = ftInteger
+        DataType = ftWideString
+        Name = 'pUSUARIO_MODIF'
+        ParamType = ptInput
+        Size = 100
+        Value = 'Administrador'
+      end
+      item
+        DataType = ftWideString
         Name = 'pcont'
         ParamType = ptOutput
-        Value = nil
+        Size = 20
+        Value = '002'
       end>
-    CommandStoredProcName = 'GET_NEXT_CONT'
+    CommandStoredProcName = 'PRC_GET_NEXT_CONT'
   end
   object unqryFamiliaArticulos: TUniQuery
     Connection = dmConn.conUni
     SQL.Strings = (
       'select *'
       'from vi_articulos_familias')
-    Active = True
-    BeforePost = unqryPerfilesBeforePost
     Left = 184
     Top = 24
   end
@@ -156,8 +169,6 @@ inherited dmArticulos: TdmArticulos
     MasterSource = frmMtoArticulos.dsTablaG
     MasterFields = 'CODIGO_ARTICULO'
     DetailFields = 'CODIGO_ARTICULO_TARIFA'
-    Active = True
-    BeforePost = unqryPerfilesBeforePost
     Left = 288
     Top = 16
     ParamData = <
@@ -259,8 +270,7 @@ inherited dmArticulos: TdmArticulos
     MasterSource = frmMtoArticulos.dsTablaG
     MasterFields = 'CODIGO_ARTICULO'
     DetailFields = 'CODIGO_ARTICULO'
-    Active = True
-    BeforePost = unqryPerfilesBeforePost
+    BeforePost = unqryProveedoresArticulosBeforePost
     Left = 408
     Top = 16
     ParamData = <
@@ -408,8 +418,6 @@ inherited dmArticulos: TdmArticulos
     SQL.Strings = (
       'select *'
       'from vi_proveedores')
-    Active = True
-    BeforePost = unqryPerfilesBeforePost
     Left = 672
     Top = 16
   end
@@ -418,59 +426,85 @@ inherited dmArticulos: TdmArticulos
     Left = 672
     Top = 80
   end
-  object dsTiposIVA: TDataSource
-    DataSet = unqryTiposIVA
-    Left = 760
-    Top = 80
-  end
   object unqryTiposIVA: TUniQuery
     SQLInsert.Strings = (
-      'INSERT INTO fza_historia'
+      'INSERT INTO fza_ivas_tipos'
       
-        '  (ID, CODIGO_ARTICULO, DESCRIPCION_ARTICULO, CODIGO_CLIENTE, PR' +
-        'ECIOVENTA_ARTICULO, FECHA, ZONA, DESCRIPCION_HISTORIA, NRO_FACTU' +
-        'RA, LINEA_LINEA, ODONTOLOGO, SERIE_FACTURA)'
+        '  (CODIGO_ABREVIATURA_TIPO_IVA, NOMBRE_TIPO_IVA, INSTANTEMODIF, ' +
+        'INSTANTEALTA, USUARIOALTA, USUARIOMODIF)'
       'VALUES'
       
-        '  (:ID, :CODIGO_ARTICULO, :DESCRIPCION_ARTICULO, :CODIGO_CLIENTE' +
-        ', :PRECIOVENTA_ARTICULO, :FECHA, :ZONA, :DESCRIPCION_HISTORIA, :' +
-        'NRO_FACTURA, :LINEA_LINEA, :ODONTOLOGO, :SERIE_FACTURA)')
+        '  (:CODIGO_ABREVIATURA_TIPO_IVA, :NOMBRE_TIPO_IVA, :INSTANTEMODI' +
+        'F, :INSTANTEALTA, :USUARIOALTA, :USUARIOMODIF)')
     SQLDelete.Strings = (
-      'DELETE FROM fza_historia'
+      'DELETE FROM `fza_articulos_proveedores`'
       'WHERE'
-      '  ID = :Old_ID')
+      
+        '  `CODIGO_PROVEEDOR_ARTICULOS_PROVEEDORES` = :`Old_CODIGO_PROVEE' +
+        'DOR`'
+      
+        ' AND `CODIGO_ARTICULO_ARTICULOS_PROVEEDORES` = :`Old_CODIGO_ARTI' +
+        'CULO`')
     SQLUpdate.Strings = (
-      'UPDATE fza_historia'
+      'UPDATE `fza_articulos_proveedores`'
       'SET'
       
-        '  ID = :ID, CODIGO_ARTICULO = :CODIGO_ARTICULO, DESCRIPCION_ARTI' +
-        'CULO = :DESCRIPCION_ARTICULO, CODIGO_CLIENTE = :CODIGO_CLIENTE, ' +
-        'PRECIOVENTA_ARTICULO = :PRECIOVENTA_ARTICULO, FECHA = :FECHA, ZO' +
-        'NA = :ZONA, DESCRIPCION_HISTORIA = :DESCRIPCION_HISTORIA, NRO_FA' +
-        'CTURA = :NRO_FACTURA, LINEA_LINEA = :LINEA_LINEA, ODONTOLOGO = :' +
-        'ODONTOLOGO, SERIE_FACTURA = :SERIE_FACTURA'
+        '  `CODIGO_PROVEEDOR_ARTICULOS_PROVEEDORES` = :`CODIGO_PROVEEDOR`' +
+        ', '
+      '  `CODIGO_ARTICULO_ARTICULOS_PROVEEDORES` = :`CODIGO_ARTICULO`, '
+      
+        '  `PRECIO_ULT_COMPRA_ARTICULOS_PROVEEDORES` = :`PRECIO_ULT_COMPR' +
+        'A`, '
+      '  `FECHA_VALIDEZ_ARTICULOS_PROVEEDORES` = :`FECHA_VALIDEZ`, '
+      '  `INSTANTEMODIF` = :`INSTANTEMODIF`, '
+      '  `INSTANTEALTA` = :`INSTANTEALTA`, '
+      '  `USUARIOALTA` = :`USUARIOALTA`, '
+      '  `USUARIOMODIF` = :`USUARIOMODIF`'
       'WHERE'
-      '  ID = :Old_ID')
+      
+        '  `CODIGO_PROVEEDOR_ARTICULOS_PROVEEDORES` = :`Old_CODIGO_PROVEE' +
+        'DOR` '
+      
+        'AND `CODIGO_ARTICULO_ARTICULOS_PROVEEDORES` = :`Old_CODIGO_ARTIC' +
+        'ULO`')
     SQLLock.Strings = (
-      'SELECT * FROM fza_historia'
+      'SELECT * FROM fza_articulos_proveedores'
       'WHERE'
-      '  ID = :Old_ID'
+      
+        '  `CODIGO_PROVEEDOR_ARTICULOS_PROVEEDORES` = :`Old_CODIGO_PROVEE' +
+        'DOR` '
+      
+        'AND `CODIGO_ARTICULO_ARTICULOS_PROVEEDORES` = :`Old_CODIGO_ARTIC' +
+        'ULO`'
       'FOR UPDATE')
     SQLRefresh.Strings = (
-      
-        'SELECT ID, CODIGO_ARTICULO, DESCRIPCION_ARTICULO, CODIGO_CLIENTE' +
-        ', PRECIOVENTA_ARTICULO, FECHA, ZONA, DESCRIPCION_HISTORIA, NRO_F' +
-        'ACTURA, LINEA_LINEA, ODONTOLOGO, SERIE_FACTURA FROM fza_historia'
+      'SELECT `CODIGO_PROVEEDOR_ARTICULOS_PROVEEDORES`, '
+      '       `CODIGO_ARTICULO_ARTICULOS_PROVEEDORES`, '
+      '       `PRECIO_ULT_COMPRA_ARTICULOS_PROVEEDORES`, '
+      '       `FECHA_VALIDEZ_ARTICULOS_PROVEEDORES`, '
+      '       `INSTANTEMODIF`, '
+      '       `INSTANTEALTA`, '
+      '       `USUARIOALTA`, '
+      '       `USUARIOMODIF` '
+      'FROM `fza_articulos_proveedores`'
       'WHERE'
-      '  ID = :ID')
+      
+        '  `CODIGO_PROVEEDOR_ARTICULOS_PROVEEDORES` = :`CODIGO_PROVEEDOR`' +
+        ' '
+      'AND `CODIGO_ARTICULO_ARTICULOS_PROVEEDORES` = :`CODIGO_ARTICULO`')
     SQLRecCount.Strings = (
-      'SELECT COUNT(*) FROM fza_historia')
+      'SELECT COUNT(*) FROM fza_ivas_tipos')
     Connection = dmConn.conUni
     SQL.Strings = (
-      'select * from fza_ivas_tipos'
-      '')
+      'select *'
+      'from fza_ivas_tipos')
     ReadOnly = True
-    Left = 760
+    Left = 784
     Top = 16
+  end
+  object dsTiposIVA: TDataSource
+    DataSet = unqryTiposIVA
+    Left = 784
+    Top = 80
   end
 end

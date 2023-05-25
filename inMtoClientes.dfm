@@ -233,7 +233,7 @@ inherited frmMtoClientes: TfrmMtoClientes
             Margins.Bottom = 4
             DataBinding.DataField = 'CODIGO_CLIENTE'
             DataBinding.DataSource = dsTablaG
-            TabOrder = 2
+            TabOrder = 1
             Width = 149
           end
           object lblCodigoCliente: TcxLabel
@@ -309,7 +309,7 @@ inherited frmMtoClientes: TfrmMtoClientes
             Margins.Bottom = 4
             DataBinding.DataField = 'EMAIL_CLIENTE'
             DataBinding.DataSource = dsTablaG
-            TabOrder = 6
+            TabOrder = 5
             Width = 351
           end
           object lblNif: TcxLabel
@@ -331,7 +331,7 @@ inherited frmMtoClientes: TfrmMtoClientes
             Margins.Bottom = 4
             DataBinding.DataField = 'NIF_CLIENTE'
             DataBinding.DataSource = dsTablaG
-            TabOrder = 8
+            TabOrder = 6
             Width = 149
           end
           object txtMOVIL_CLIENTE: TcxDBTextEdit
@@ -343,7 +343,7 @@ inherited frmMtoClientes: TfrmMtoClientes
             Margins.Bottom = 4
             DataBinding.DataField = 'MOVIL_CLIENTE'
             DataBinding.DataSource = dsTablaG
-            TabOrder = 9
+            TabOrder = 7
             Width = 163
           end
           object chkActivo: TcxDBCheckBox

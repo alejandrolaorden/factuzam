@@ -19,15 +19,18 @@ type
     dsLinFacturasArticulos: TDataSource;
     unqryProveedores: TUniQuery;
     dsProveedores: TDataSource;
-    dsTiposIVA: TDataSource;
     unqryTiposIVA: TUniQuery;
+    dsTiposIVA: TDataSource;
     procedure unqryTablaGAfterInsert(DataSet: TDataSet);
     procedure DataModuleCreate(Sender: TObject);
     procedure unqryTablaGBeforePost(DataSet: TDataSet);
+    procedure unqryTablaGAfterDelete(DataSet: TDataSet);
+    procedure unqryProveedoresArticulosBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   public
     procedure GetCodigoAutoArticulo;
+    function ArticuloTieneProvPrin(sArt:String):Boolean;
     procedure CopiarProveedoraArticulo(dtProveedores:TDataset);
     function GetDefaultFamilia:String;
     //procedure GetCodigoAutoRetencion;
@@ -45,12 +48,76 @@ uses
 
 {$R *.dfm}
 
+function TdmArticulos.ArticuloTieneProvPrin(sArt:String):Boolean;
+var
+  unqrySol: TUniQuery;
+begin
+  unqrySol := TUniQuery.Create(nil);
+  unqrySol.Connection := oConn;
+  unqrySol.SQL.Text := 'SELECT * ' +
+                       '  FROM vi_articulos_proveedores ' +
+                       ' WHERE CODIGO_ARTICULO = :CODIGO_ARTICULO' +
+                       '   AND ESPROVEEDORPRINCIPAL = ' + QuotedStr('S');
+  unqrySol.ParamByName('CODIGO_ARTICULO').AsString := sArt;
+  unqrySol.Open;
+  if (unqrySol.RecordCount > 0) then
+  begin
+    Result := True
+  end
+  else
+    Result := False;
+  unqrySol.Close;
+  FreeAndNil(unqrySol);
+end;
+
+procedure TdmArticulos.unqryProveedoresArticulosBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+  with unqryProveedoresArticulos do
+  if (unqryProveedoresARticulos.State = dsInsert) then
+    if Trim(FindField('ESPROVEEDORPRINCIPAL').AsString) = 'S' then
+    begin
+      if (ArticuloTieneProvPrin(FindField('CODIGO_ARTICULO').AsString)) then
+        raise ERangeError.CreateFmt('%s ya tiene un proveedor principal ' +
+                                    'asociado a este Artículos.',
+                                       [FindField('CODIGO_ARTICULO').AsString]);
+      Abort;
+    end
+end;
+
+procedure TdmArticulos.unqryTablaGAfterDelete(DataSet: TDataSet);
+var
+  qryBorrarLineas : TUniQuery;
+begin
+  qryBorrarLineas := TUniQuery.Create(Self);
+  with qryBorrarLineas do
+  begin
+    Connection := inLibGlobalVar.oConn;
+    SQL.Text := 'DELETE ' +
+                '  FROM fza_articulos_proveedores ' +
+                ' WHERE CODIGO_ARTICULO_ARTICULO_PROVEEDOR = :Articulo ;';
+    Params.ParamByName('Articulo').AsString :=
+                             unqryTablaG.FieldByName('CODIGO_ARTICULO').AsString;
+    ExecSQL;
+    SQL.Text := 'DELETE ' +
+                '  FROM fza_articulos_tarifas ' +
+                ' WHERE CODIGO_ARTICULO_TARIFA = :Articulo ;';
+    Params.ParamByName('Articulo').AsString :=
+                             unqryTablaG.FieldByName('CODIGO_ARTICULO').AsString;
+    ExecSQL;
+    Free;
+  end;
+end;
+
 procedure TdmArticulos.unqryTablaGAfterInsert(DataSet: TDataSet);
 begin
   inherited;
   unqryTablaG.FindField('CODIGO_ARTICULO').AsString := '0';
+  unqryTablaG.FindField('ACTIVO_ARTICULO').AsString := 'S';
+  unqryTablaG.FindField('TIPOIVA_ARTICULO').AsString := 'N';
+  unqryTablaG.FindField('TIPO_CANTIDAD_ARTICULO').AsString := 'Uds.';
   unqryTablaG.FindField('ESACTIVO_FIJO_ARTICULO').AsString := 'N';
-  unqryTablaG.FindField('ORDEN_ARTICULO').AsString := '0';
+  unqryTablaG.FindField('ORDEN_ARTICULO').AsInteger := 0;
   unqryTablaG.FindField('CODIGO_FAMILIA_ARTICULO').AsString :=
                                                               GetDefaultFamilia;
 end;
@@ -67,6 +134,7 @@ begin
                            dtProveedores.FindField('CODIGO_PROVEEDOR').AsString;
     FindField('RAZONSOCIAL_PROVEEDOR').AsString :=
                       dtProveedores.FindField('RAZONSOCIAL_PROVEEDOR').AsString;
+    FindField('ESPROVEEDORPRINCIPAL').AsString := 'N';
   end;
 end;
 
@@ -133,10 +201,9 @@ begin
                        ' WHERE ESDEFAULT_FAMILIA = ' + QuotedStr('S');
   unqrySol.Open;
   if unqrySol.RecordCount = 0 then
-    Sleep(0)
-  //   MessageDlg('Empresa: #' + VarToStr(e.EditingValue) + '# no existe')
-   else
-      Result := unqrySol.Fields[0].AsString;
+    Result := '0'
+  else
+    Result := unqrySol.Fields[0].AsString;
   unqrySol.Close;
   FreeAndNil(unqrySol);
 end;

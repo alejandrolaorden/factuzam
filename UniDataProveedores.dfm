@@ -6,7 +6,6 @@ inherited dmProveedores: TdmProveedores
     Connection = dmConn.conUni
     SQL.Strings = (
       'select * from fza_proveedores')
-    Active = True
     AfterInsert = unqryTablaGAfterInsert
   end
   inherited unqryPerfiles: TUniQuery
@@ -49,9 +48,6 @@ inherited dmProveedores: TdmProveedores
     MasterSource = frmMtoProveedores.dsTablaG
     MasterFields = 'CODIGO_PROVEEDOR'
     DetailFields = 'CODIGO_PROVEEDOR'
-    BeforeInsert = unqryTablaGBeforeInsert
-    AfterInsert = unqryTablaGAfterInsert
-    BeforePost = unqryTablaGBeforePost
     Left = 184
     Top = 24
     ParamData = <
@@ -118,12 +114,17 @@ inherited dmProveedores: TdmProveedores
       'from vi_fac_lin_busquedas'
       'INNER JOIN vi_articulos_proveedores '
       'ON vi_fac_lin_busquedas.CODIGO_ARTICULO_FACTURA_LINEA = '
-      '   vi_articulos_proveedores.CODIGO_ARTICULO')
+      '   vi_articulos_proveedores.CODIGO_ARTICULO'
+      'INNER JOIN vi_fac_busquedas'
+      
+        'ON vi_fac_lin_busquedas.NRO_FACTURA_LINEA = vi_fac_busquedas.NRO' +
+        '_FACTURA'
+      
+        'AND vi_fac_lin_busquedas.SERIE_FACTURA_LINEA = vi_fac_busquedas.' +
+        'SERIE_FACTURA')
     MasterSource = frmMtoProveedores.dsTablaG
     MasterFields = 'CODIGO_PROVEEDOR'
     DetailFields = 'CODIGO_PROVEEDOR'
-    Active = True
-    BeforePost = unqryPerfilesBeforePost
     Left = 297
     Top = 24
     ParamData = <

@@ -433,9 +433,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
             object tsRetenciones: TcxTabSheet
               Caption = '&2_Retenciones'
               ImageIndex = 2
-              ExplicitTop = 0
-              ExplicitWidth = 0
-              ExplicitHeight = 0
               object pnl6: TPanel
                 Left = 678
                 Top = 0
@@ -974,9 +971,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
             object tsSeries: TcxTabSheet
               Caption = '&4_Series'
               ImageIndex = 4
-              ExplicitTop = 0
-              ExplicitWidth = 0
-              ExplicitHeight = 0
               object pnl: TPanel
                 Left = 670
                 Top = 0
@@ -1108,9 +1102,6 @@ inherited frmMtoEmpresas: TfrmMtoEmpresas
             object tsOtros: TcxTabSheet
               Caption = '&5_Otros'
               ImageIndex = 3
-              ExplicitTop = 0
-              ExplicitWidth = 0
-              ExplicitHeight = 0
               object pnl3: TPanel
                 Left = 0
                 Top = 266

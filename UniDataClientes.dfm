@@ -289,7 +289,6 @@ inherited dmClientes: TdmClientes
     MasterFields = 'CODIGO_CLIENTE'
     DetailFields = 'CODIGO_CLIENTE_FACTURA'
     ReadOnly = True
-    Active = True
     Left = 544
     Top = 96
     ParamData = <

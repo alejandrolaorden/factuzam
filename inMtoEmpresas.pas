@@ -23,7 +23,7 @@ uses
   cxMaskEdit, cxDropDownEdit, cxDBEdit, cxLabel,
   cxGridBandedTableView, cxGridDBBandedTableView,  cxLocalization,
   cxCurrencyEdit, cxDataControllerConditionalFormattingRulesManagerDialog,
-  dxBevel, cxDBNavigator, inMtoPrincipal, UniDataEmpresas,  cxGridExportLink,
+  dxBevel, cxDBNavigator, UniDataEmpresas,  cxGridExportLink,
   dxDateRanges, MemDS, DBAccess, Uni, cxImage, dxGDIPlusClasses, inMtoGen,
   Vcl.Menus, dxSkinsForm, cxButtons, dxSkinsDefaultPainters, cxMemo, cxSpinEdit,
   cxCalendar, cxBlobEdit, dxScrollbarAnnotations, dxCore, cxRadioGroup,
@@ -262,6 +262,7 @@ uses
   inLibUser,
   inLibDir,
   inLibDevExp,
+  inMtoPrincipal,
   inMtoFacturas,
   inMtoArticulos,
   inMtoClientes;
@@ -348,20 +349,9 @@ begin
 end;
 
 procedure TfrmMtoEmpresas.btExportarExcelClick(Sender: TObject);
-var
-  saveDialog : tsavedialog;
 begin
-  saveDialog := TSaveDialog.Create(self);
-  saveDialog.Title := 'Guardar listado a Excel';
-  saveDialog.InitialDir :=  GetSpecialFolderPath(CSIDL_MYDOCUMENTS);
-  saveDialog.Filter := 'Archivo Excel|*.xlsx';
-  saveDialog.DefaultExt := 'xlsx';
-  saveDialog.FilterIndex := 1;
-  saveDialog.FileName := 'Historico_Facturas_Empresa_' +
-                        dsTablaG.Dataset.FieldByName('CODIGO_EMPRESA').AsString;
-  if ( saveDialog.Execute ) then
-    ExportGridToXLSX(saveDialog.FileName, cxgrdEmpresasFacturas);
-  saveDialog.Free;
+  ExportarExcel(cxgrdEmpresasFacturas, 'Historico_Facturas_Empresa_' +
+                       dsTablaG.Dataset.FieldByName('CODIGO_EMPRESA').AsString);
 end;
 
 procedure TfrmMtoEmpresas.btIraFacturaClick(Sender: TObject);
@@ -408,11 +398,12 @@ end;
 procedure TfrmMtoEmpresas.btnNuevaEmpresaClick(Sender: TObject);
 begin
   inherited;
-  if ( (dmmEmpresas.unqryTablaG.State <> dsInsert) and
-       (dmmEmpresas.unqryTablaG.State <> dsEdit)) then
+  if ( (dmmEmpresas.unqryTablaG.State = dsInsert) or
+       (dmmEmpresas.unqryTablaG.State = dsEdit)) then
   begin
-    dmmEmpresas.unqryTablaG.Insert;
+    dmmEmpresas.unqryTablaG.Post;
   end;
+  dmmEmpresas.unqryTablaG.Insert;
   pcPantalla.Properties.ActivePage := tsFicha;
   tsFicha.SetFocus;
   pcPestana.ActivePageIndex := tsMasDatos.PageIndex;

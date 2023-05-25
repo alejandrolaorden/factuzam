@@ -25,7 +25,8 @@ uses
   cxCurrencyEdit, cxCalendar, cxMaskEdit, cxDropDownEdit, cxDBEdit,
   dxGDIPlusClasses, cxImage, cxCustomListBox, cxCheckListBox, cxDBCheckListBox,
   cxCheckBox, cxMemo, inLibDevExp, inLibtb, cxBlobEdit, ClipBrd, cxLookupEdit,
-  cxDBLookupEdit, cxDBLookupComboBox, dxScrollbarAnnotations, dxCore, cxSpinEdit,
+  cxDBLookupEdit, cxDBLookupComboBox, dxScrollbarAnnotations, dxCore,
+  cxSpinEdit,
   cxRadioGroup, cxGridExportLink,  System.UITypes, System.Actions, Vcl.ActnList,
   IDETheme.ActnCtrls, Vcl.PlatformDefaultStyleActnCtrls, cxSplitter,
   cxDBExtLookupComboBox;
@@ -156,10 +157,13 @@ type
     tvFacturacion: TcxGridDBTableView;
     tvLineasFacturacion: TcxGridDBTableView;
     cxgrdbclmncxgrdbtblvwcxgrd1DBTableView1LINEA_LINEA: TcxGridDBColumn;
-    cxgrdbclmncxgrdbtblvwcxgrd1DBTableView1CODIGO_ARTICULO_LINEA: TcxGridDBColumn;
-    cxgrdbclmncxgrdbtblvwcxgrd1DBTableView1DESCRIPCION_ARTICULO_LINEA: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvwcxgrd1DBTableView1CODIGO_ARTICULO_LINEA:
+                                                                TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvwcxgrd1DBTableView1DESCRIPCION_ARTICULO_LINEA:
+                                                                TcxGridDBColumn;
     tvLineasFacturacionPORCEN_IVA_FACTURA_LINEA: TcxGridDBColumn;
-    cxgrdbclmncxgrdbtblvwcxgrd1DBTableView1PRECIOVENTA_ARTICULO_LINEA: TcxGridDBColumn;
+    cxgrdbclmncxgrdbtblvwcxgrd1DBTableView1PRECIOVENTA_ARTICULO_LINEA:
+                                                                TcxGridDBColumn;
     cxgrdbclmncxgrdbtblvwcxgrd1DBTableView1CANTIDAD_LINEA: TcxGridDBColumn;
     tvLineasFacturacionTIPO_CANTIDAD_ARTICULO_FACTURA_LINEA: TcxGridDBColumn;
     cxgrdbclmncxgrdbtblvwcxgrd1DBTableView1SUM_TOTAL_LINEA: TcxGridDBColumn;
@@ -323,7 +327,7 @@ begin
     else
       frmMtoClientes.BringToFront;
     if not (frmMtoClientes.tdmDataModule.unqryTablaG.Locate(pkFieldName,
-                                                            sCodigoCliente, [])) then
+                                                       sCodigoCliente, [])) then
       ShowMessage('Cliente no encontrado')
     else
       frmMtoClientes.pcPantalla.ActivePage := frmMtoClientes.tsFicha;
@@ -342,7 +346,8 @@ begin
 end;
 
 procedure TfrmMtoClientes.actEmpresasExecute(Sender: TObject);
-begin        //control + E -> Empresas
+begin
+  //control + E -> Empresas
   inherited;
     if ((tvFacturacion.Focused) and
         (pcPestanas.ActivePage = tsHistoriaFacturacion)) then
@@ -354,6 +359,7 @@ end;
 procedure TfrmMtoClientes.actFacturasExecute(Sender: TObject);
 begin
   inherited;
+  //Control + F
   if ((tvFacturacion.Focused) and
         (pcPestanas.ActivePage = tsHistoriaFacturacion)) then
       btIraFacturaClick(Sender)
@@ -362,21 +368,9 @@ begin
 end;
 
 procedure TfrmMtoClientes.btExportarClick(Sender: TObject);
-  var
-  saveDialog : tsavedialog;
 begin
-  saveDialog := TSaveDialog.Create(self);
-  saveDialog.Title := 'Guardar listado a Excel';
-  saveDialog.InitialDir :=  GetSpecialFolderPath(CSIDL_MYDOCUMENTS);
-  saveDialog.Filter := 'Archivo Excel|*.xlsx';
-  saveDialog.DefaultExt := 'xlsx';
-  saveDialog.FilterIndex := 1;
-  saveDialog.FileName := 'Historico_Facturas_Cliente_' +
-                        dsTablaG.Dataset.FieldByName('CODIGO_CLIENTE').AsString;
-
-  if ( saveDialog.Execute ) then
-    ExportGridToXLSX(saveDialog.FileName, cxgrdClientesFacturas);
-  saveDialog.Free;
+  ExportarExcel(cxgrdClientesFacturas, 'Historico_Facturas_Cliente_' +
+                       dsTablaG.Dataset.FieldByName('CODIGO_CLIENTE').AsString);
 end;
 
 procedure TfrmMtoClientes.btIraEmpresaClick(Sender: TObject);
@@ -420,11 +414,12 @@ end;
 procedure TfrmMtoClientes.btnNuevoClienteClick(Sender: TObject);
 begin
   inherited;
-    if ( (dmmClientes.unqryTablaG.State <> dsInsert) and
-       (dmmClientes.unqryTablaG.State <> dsEdit)) then
+    if ( (dmmClientes.unqryTablaG.State = dsInsert) or
+       (dmmClientes.unqryTablaG.State = dsEdit)) then
   begin
-    dmmClientes.unqryTablaG.Insert;
+    dmmClientes.unqryTablaG.Post;
   end;
+  dmmClientes.unqryTablaG.Insert;
   pcPantalla.Properties.ActivePage := tsFicha;
   tsFicha.SetFocus;
   pcPestanas.Properties.ActivePage := tsDomicilioFiscal;
