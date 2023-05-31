@@ -1,6 +1,7 @@
 inherited dmArticulos: TdmArticulos
   OldCreateOrder = True
-  Width = 913
+  Height = 159
+  Width = 1012
   inherited unqryTablaG: TUniQuery
     SQLInsert.Strings = (
       'INSERT INTO `fza_articulos`'
@@ -101,7 +102,7 @@ inherited dmArticulos: TdmArticulos
     Connection = dmConn.conUni
     SQL.Strings = (
       'select *'
-      'from vi_articulos_familias')
+      'from vi_articulos_familias_list')
     Left = 184
     Top = 24
   end
@@ -114,18 +115,16 @@ inherited dmArticulos: TdmArticulos
     SQLInsert.Strings = (
       'INSERT INTO fza_articulos_tarifas'
       
-        '  (CODIGO_ARTICULO_TARIFA, CODIGO_VARIACION_TARIFA, CODIGO_UNICO' +
-        '_TARIFA, CODIGO_TARIFA, ACTIVO_TARIFA, PRECIOSALIDA_TARIFA, PREC' +
-        'IOFINAL_TARIFA, PRECIO_DTO_TARIFA, PORCEN_DTO_TARIFA, FECHA_DESD' +
-        'E_TARIFA, FECHA_HASTA_TARIFA, INSTANTEMODIF, INSTANTEALTA, USUAR' +
-        'IOALTA, USUARIOMODIF)'
+        '  (CODIGO_ARTICULO_TARIFA, CODIGO_UNICO_TARIFA, CODIGO_TARIFA, A' +
+        'CTIVO_TARIFA, PRECIOSALIDA_TARIFA, PRECIOFINAL_TARIFA, PRECIO_DT' +
+        'O_TARIFA, PORCEN_DTO_TARIFA, FECHA_DESDE_TARIFA, FECHA_HASTA_TAR' +
+        'IFA, INSTANTEMODIF, INSTANTEALTA, USUARIOALTA, USUARIOMODIF)'
       'VALUES'
       
-        '  (:CODIGO_ARTICULO_TARIFA, :CODIGO_VARIACION_TARIFA, :CODIGO_UN' +
-        'ICO_TARIFA, :CODIGO_TARIFA, :ACTIVO_TARIFA, :PRECIOSALIDA_TARIFA' +
-        ', :PRECIOFINAL_TARIFA, :PRECIO_DTO_TARIFA, :PORCEN_DTO_TARIFA, :' +
-        'FECHA_DESDE_TARIFA, :FECHA_HASTA_TARIFA, :INSTANTEMODIF, :INSTAN' +
-        'TEALTA, :USUARIOALTA, :USUARIOMODIF)')
+        '  (:CODIGO_ARTICULO_TARIFA, :CODIGO_UNICO_TARIFA, :CODIGO_TARIFA' +
+        ', :ACTIVO_TARIFA, :PRECIOSALIDA, :PRECIOFINAL, :PRECIO_DTO_TARIF' +
+        'A, :PORCEN_DTO_TARIFA, :FECHA_DESDE_TARIFA, :FECHA_HASTA_TARIFA,' +
+        ' :INSTANTEMODIF, :INSTANTEALTA, :USUARIOALTA, :USUARIOMODIF)')
     SQLDelete.Strings = (
       'DELETE FROM fza_articulos_tarifas'
       'WHERE'
@@ -133,17 +132,20 @@ inherited dmArticulos: TdmArticulos
     SQLUpdate.Strings = (
       'UPDATE fza_articulos_tarifas'
       'SET'
-      
-        '  CODIGO_ARTICULO_TARIFA = :CODIGO_ARTICULO_TARIFA, CODIGO_VARIA' +
-        'CION_TARIFA = :CODIGO_VARIACION_TARIFA, CODIGO_UNICO_TARIFA = :C' +
-        'ODIGO_UNICO_TARIFA, CODIGO_TARIFA = :CODIGO_TARIFA, ACTIVO_TARIF' +
-        'A = :ACTIVO_TARIFA, PRECIOSALIDA_TARIFA = :PRECIOSALIDA_TARIFA, ' +
-        'PRECIOFINAL_TARIFA = :PRECIOFINAL_TARIFA, PRECIO_DTO_TARIFA = :P' +
-        'RECIO_DTO_TARIFA, PORCEN_DTO_TARIFA = :PORCEN_DTO_TARIFA, FECHA_' +
-        'DESDE_TARIFA = :FECHA_DESDE_TARIFA, FECHA_HASTA_TARIFA = :FECHA_' +
-        'HASTA_TARIFA, INSTANTEMODIF = :INSTANTEMODIF, INSTANTEALTA = :IN' +
-        'STANTEALTA, USUARIOALTA = :USUARIOALTA, USUARIOMODIF = :USUARIOM' +
-        'ODIF'
+      '  CODIGO_ARTICULO_TARIFA = :CODIGO_ARTICULO_TARIFA, '
+      '  CODIGO_UNICO_TARIFA = :CODIGO_UNICO_TARIFA, '
+      '  CODIGO_TARIFA = :CODIGO_TARIFA, '
+      '  ACTIVO_TARIFA = :ACTIVO_TARIFA, '
+      '  PRECIOSALIDA_TARIFA = :PRECIOSALIDA, '
+      '  PRECIOFINAL_TARIFA = :PRECIOFINAL, '
+      '  PRECIO_DTO_TARIFA = :PRECIO_DTO_TARIFA, '
+      '  PORCEN_DTO_TARIFA = :PORCEN_DTO_TARIFA, '
+      '  FECHA_DESDE_TARIFA = :FECHA_DESDE_TARIFA, '
+      '  FECHA_HASTA_TARIFA = :FECHA_HASTA_TARIFA, '
+      '  INSTANTEMODIF = :INSTANTEMODIF, '
+      '  INSTANTEALTA = :INSTANTEALTA, '
+      '  USUARIOALTA = :USUARIOALTA, '
+      '  USUARIOMODIF = :USUARIOMODIF'
       'WHERE'
       '  CODIGO_UNICO_TARIFA = :Old_CODIGO_UNICO_TARIFA')
     SQLLock.Strings = (
@@ -153,11 +155,11 @@ inherited dmArticulos: TdmArticulos
       'FOR UPDATE')
     SQLRefresh.Strings = (
       
-        'SELECT CODIGO_ARTICULO_TARIFA, CODIGO_VARIACION_TARIFA, CODIGO_U' +
-        'NICO_TARIFA, CODIGO_TARIFA, ACTIVO_TARIFA, PRECIOSALIDA_TARIFA, ' +
-        'PRECIOFINAL_TARIFA, PRECIO_DTO_TARIFA, PORCEN_DTO_TARIFA, FECHA_' +
-        'DESDE_TARIFA, FECHA_HASTA_TARIFA, INSTANTEMODIF, INSTANTEALTA, U' +
-        'SUARIOALTA, USUARIOMODIF FROM fza_articulos_tarifas'
+        'SELECT CODIGO_ARTICULO_TARIFA, CODIGO_UNICO_TARIFA, CODIGO_TARIF' +
+        'A, ACTIVO_TARIFA, PRECIOSALIDA_TARIFA, PRECIOFINAL_TARIFA, PRECI' +
+        'O_DTO_TARIFA, PORCEN_DTO_TARIFA, FECHA_DESDE_TARIFA, FECHA_HASTA' +
+        '_TARIFA, INSTANTEMODIF, INSTANTEALTA, USUARIOALTA, USUARIOMODIF ' +
+        'FROM fza_articulos_tarifas'
       'WHERE'
       '  CODIGO_UNICO_TARIFA = :CODIGO_UNICO_TARIFA')
     SQLRecCount.Strings = (
@@ -169,6 +171,7 @@ inherited dmArticulos: TdmArticulos
     MasterSource = frmMtoArticulos.dsTablaG
     MasterFields = 'CODIGO_ARTICULO'
     DetailFields = 'CODIGO_ARTICULO_TARIFA'
+    BeforePost = unqryTarifasArticulosBeforePost
     Left = 288
     Top = 16
     ParamData = <
@@ -505,6 +508,104 @@ inherited dmArticulos: TdmArticulos
   object dsTiposIVA: TDataSource
     DataSet = unqryTiposIVA
     Left = 784
+    Top = 80
+  end
+  object unqryTarifas: TUniQuery
+    SQLInsert.Strings = (
+      'INSERT INTO fza_ivas_tipos'
+      
+        '  (CODIGO_ABREVIATURA_TIPO_IVA, NOMBRE_TIPO_IVA, INSTANTEMODIF, ' +
+        'INSTANTEALTA, USUARIOALTA, USUARIOMODIF)'
+      'VALUES'
+      
+        '  (:CODIGO_ABREVIATURA_TIPO_IVA, :NOMBRE_TIPO_IVA, :INSTANTEMODI' +
+        'F, :INSTANTEALTA, :USUARIOALTA, :USUARIOMODIF)')
+    SQLDelete.Strings = (
+      'DELETE FROM `fza_articulos_proveedores`'
+      'WHERE'
+      
+        '  `CODIGO_PROVEEDOR_ARTICULOS_PROVEEDORES` = :`Old_CODIGO_PROVEE' +
+        'DOR`'
+      
+        ' AND `CODIGO_ARTICULO_ARTICULOS_PROVEEDORES` = :`Old_CODIGO_ARTI' +
+        'CULO`')
+    SQLUpdate.Strings = (
+      'UPDATE `fza_articulos_proveedores`'
+      'SET'
+      
+        '  `CODIGO_PROVEEDOR_ARTICULOS_PROVEEDORES` = :`CODIGO_PROVEEDOR`' +
+        ', '
+      '  `CODIGO_ARTICULO_ARTICULOS_PROVEEDORES` = :`CODIGO_ARTICULO`, '
+      
+        '  `PRECIO_ULT_COMPRA_ARTICULOS_PROVEEDORES` = :`PRECIO_ULT_COMPR' +
+        'A`, '
+      '  `FECHA_VALIDEZ_ARTICULOS_PROVEEDORES` = :`FECHA_VALIDEZ`, '
+      '  `INSTANTEMODIF` = :`INSTANTEMODIF`, '
+      '  `INSTANTEALTA` = :`INSTANTEALTA`, '
+      '  `USUARIOALTA` = :`USUARIOALTA`, '
+      '  `USUARIOMODIF` = :`USUARIOMODIF`'
+      'WHERE'
+      
+        '  `CODIGO_PROVEEDOR_ARTICULOS_PROVEEDORES` = :`Old_CODIGO_PROVEE' +
+        'DOR` '
+      
+        'AND `CODIGO_ARTICULO_ARTICULOS_PROVEEDORES` = :`Old_CODIGO_ARTIC' +
+        'ULO`')
+    SQLLock.Strings = (
+      'SELECT * FROM fza_articulos_proveedores'
+      'WHERE'
+      
+        '  `CODIGO_PROVEEDOR_ARTICULOS_PROVEEDORES` = :`Old_CODIGO_PROVEE' +
+        'DOR` '
+      
+        'AND `CODIGO_ARTICULO_ARTICULOS_PROVEEDORES` = :`Old_CODIGO_ARTIC' +
+        'ULO`'
+      'FOR UPDATE')
+    SQLRefresh.Strings = (
+      'SELECT `CODIGO_PROVEEDOR_ARTICULOS_PROVEEDORES`, '
+      '       `CODIGO_ARTICULO_ARTICULOS_PROVEEDORES`, '
+      '       `PRECIO_ULT_COMPRA_ARTICULOS_PROVEEDORES`, '
+      '       `FECHA_VALIDEZ_ARTICULOS_PROVEEDORES`, '
+      '       `INSTANTEMODIF`, '
+      '       `INSTANTEALTA`, '
+      '       `USUARIOALTA`, '
+      '       `USUARIOMODIF` '
+      'FROM `fza_articulos_proveedores`'
+      'WHERE'
+      
+        '  `CODIGO_PROVEEDOR_ARTICULOS_PROVEEDORES` = :`CODIGO_PROVEEDOR`' +
+        ' '
+      'AND `CODIGO_ARTICULO_ARTICULOS_PROVEEDORES` = :`CODIGO_ARTICULO`')
+    SQLRecCount.Strings = (
+      'SELECT COUNT(*) FROM fza_ivas_tipos')
+    Connection = dmConn.conUni
+    SQL.Strings = (
+      'SELECT CODIGO_TARIFA, NOMBRE_TARIFA '
+      'FROM fza_tarifas '
+      'WHERE CODIGO_TARIFA NOT IN ( SELECT CODIGO_TARIFA '
+      '                               FROM fza_articulos_tarifas '
+      
+        '                              WHERE CODIGO_ARTICULO_TARIFA = :CO' +
+        'DIGO_ARTICULO)'
+      'AND ACTIVO_TARIFA ='#39'S'#39
+      'AND FECHA_DESDE_TARIFA <= CURRENT_DATE'
+      'AND (FECHA_HASTA_TARIFA >= CURRENT_DATE '
+      '     OR FECHA_HASTA_TARIFA IS NULL)'
+      'ORDER BY ORDEN_TARIFA')
+    MasterSource = frmMtoArticulos.dsTablaG
+    ReadOnly = True
+    Left = 888
+    Top = 16
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'CODIGO_ARTICULO'
+        Value = nil
+      end>
+  end
+  object dsTarifas: TDataSource
+    DataSet = unqryTarifas
+    Left = 888
     Top = 80
   end
 end

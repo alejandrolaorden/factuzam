@@ -54,7 +54,8 @@ uses
   inMtoFormasdePago in 'inMtoFormasdePago.pas',
   UniDataFormasdePago in 'UniDataFormasdePago.pas' {dmFormasdePago: TDataModule},
   inMtoModalImpRecFac in 'inMtoModalImpRecFac.pas' {frmPrintRecFac},
-  inLibGlobalVar in 'inLibGlobalVar.pas';
+  inLibGlobalVar in 'inLibGlobalVar.pas',
+  inMtoModalArtTar in 'inMtoModalArtTar.pas' {frmMtoModalArtTar};
 
 {$R *.res}
 

@@ -76,7 +76,7 @@ object frmLogon: TfrmLogon
     Caption = 'Puerto Host'
   end
   object btAceptar: TcxButton
-    Left = 8
+    Left = 107
     Top = 217
     Width = 89
     Height = 29
@@ -87,8 +87,8 @@ object frmLogon: TfrmLogon
     OnClick = btAceptarClick
   end
   object btSalir: TcxButton
-    Left = 105
-    Top = 218
+    Left = 10
+    Top = 217
     Width = 91
     Height = 29
     Caption = '&Salir'
@@ -118,7 +118,7 @@ object frmLogon: TfrmLogon
   end
   object btnConf: TcxButton
     Left = 202
-    Top = 218
+    Top = 217
     Width = 123
     Height = 29
     Caption = '&Conf BBDD ->'
@@ -168,7 +168,7 @@ object frmLogon: TfrmLogon
   end
   object btnSubirScript: TcxButton
     Left = 349
-    Top = 217
+    Top = 216
     Width = 117
     Height = 30
     Caption = 'Subir script'
@@ -177,7 +177,7 @@ object frmLogon: TfrmLogon
   end
   object btnCopiaSeguridad: TcxButton
     Left = 472
-    Top = 217
+    Top = 216
     Width = 150
     Height = 30
     Caption = 'Copia seguridad'
@@ -186,7 +186,7 @@ object frmLogon: TfrmLogon
   end
   object btRecover: TcxButton
     Left = 628
-    Top = 217
+    Top = 216
     Width = 109
     Height = 30
     Caption = 'Recuperar'

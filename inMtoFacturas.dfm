@@ -1207,6 +1207,9 @@ inherited frmMtoFacturas: TfrmMtoFacturas
             object tsRecibos: TcxTabSheet
               Caption = '&3_Recibos'
               ImageIndex = 4
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object pnl6: TPanel
                 Left = 811
                 Top = 0
@@ -1399,6 +1402,9 @@ inherited frmMtoFacturas: TfrmMtoFacturas
               Margins.Bottom = 4
               Caption = '&4_Otros'
               ImageIndex = 4
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object cxlbl12: TcxLabel
                 Left = 32
                 Top = 65
@@ -1610,6 +1616,9 @@ inherited frmMtoFacturas: TfrmMtoFacturas
               object tsEmpresa: TcxTabSheet
                 Caption = 'Datos Empresa Emisora - Cabecera Factura'
                 ImageIndex = 2
+                ExplicitTop = 0
+                ExplicitWidth = 0
+                ExplicitHeight = 0
                 object cxgrp1: TcxGroupBox
                   Left = 22
                   Top = 4
@@ -2179,6 +2188,7 @@ inherited frmMtoFacturas: TfrmMtoFacturas
           HotZone.SizePercent = 50
           AlignSplitter = salTop
           Control = pnl1
+          ExplicitWidth = 8
         end
       end
       inherited tsPerfil: TcxTabSheet

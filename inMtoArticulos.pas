@@ -22,7 +22,7 @@ uses
   cxGroupBox, cxCheckGroup, cxDBCheckGroup, cxRadioGroup,
   dxScrollbarAnnotations, dxCore, System.Actions, Vcl.ActnList,
   Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan, cxButtonEdit, cxSplitter,
-  cxDBExtLookupComboBox;
+  cxDBExtLookupComboBox, cxListView;
 
 type
   TfrmMtoArticulos = class(TfrmMtoGen)
@@ -156,8 +156,17 @@ type
     procedure actFamiliasExecute(Sender: TObject);
     procedure btIraFacturaClick(Sender: TObject);
     procedure btIraEmpresaClick(Sender: TObject);
+    procedure btCrearTarifaClick(Sender: TObject);
+    procedure btExportarTarifaClick(Sender: TObject);
+    procedure btExportarProveedorClick(Sender: TObject);
+    procedure btIraTarifaClick(Sender: TObject);
+    procedure cxgrdbclmnTarifasPRECIOSALIDAPropertiesChange(Sender: TObject);
+    procedure cxgrdbclmnTarifasPORCEN_DTO_TARIFAPropertiesEditValueChanged(
+      Sender: TObject);
   private
      procedure BuscarProveedores;
+     procedure IncorporarTarifas;
+     procedure IterateCheckedList(lst:TcxListView);
   public
     procedure CrearTablaPrincipal; override;
   end;
@@ -183,6 +192,7 @@ uses
   inMtoFamilias,
   inMtoEmpresas,
   inMtoFacturas,
+  inMtoModalArtTar,
   inMtoGenSearch;
 
 {$R *.dfm}
@@ -274,7 +284,14 @@ procedure TfrmMtoArticulos.actTarifasExecute(Sender: TObject);
 begin
   inherited;
   //Control + T -> Tarifas
-
+  with tvTarifas.DataController.DataSet do
+    if ((tvTarifas.Focused) and
+        (pcPestana.ActivePage = tsTarifas) and
+        (not(FieldByName('CODIGO_TARIFA').IsNull))
+       ) then
+      btIraTarifaClick(Sender)
+    else
+      ShowMtoTarifas(Self.Owner);
 end;
 
 procedure TfrmMtoArticulos.btAddProveedorClick(Sender: TObject);
@@ -283,6 +300,32 @@ begin
      ) then
     dmmArticulos.unqryProveedoresArticulos.Insert;
   BuscarProveedores;
+end;
+
+procedure TfrmMtoArticulos.btCrearTarifaClick(Sender: TObject);
+begin
+  inherited;
+  if ( (dmmArticulos.unqryTarifasArticulos.State = dsInsert) or
+       (dmmArticulos.unqryTarifasArticulos.State = dsEdit)) then
+  begin
+    dmmArticulos.unqryTarifasArticulos.Post;
+  end;
+  //dmmArticulos.unqryTarifasArticulos.Insert;
+  IncorporarTarifas;
+end;
+
+procedure TfrmMtoArticulos.btExportarProveedorClick(Sender: TObject);
+begin
+  inherited;
+  ExportarExcel(cxgrdProveedores, 'Historico_Proveedores_Artículo_' +
+                      dsTablaG.Dataset.FieldByName('CODIGO_ARTICULO').AsString);
+end;
+
+procedure TfrmMtoArticulos.btExportarTarifaClick(Sender: TObject);
+begin
+  inherited;
+  ExportarExcel(cxGrdTarifas, 'Historico_Tarifas_Artículo_' +
+                      dsTablaG.Dataset.FieldByName('CODIGO_ARTICULO').AsString);
 end;
 
 procedure TfrmMtoArticulos.btIraEmpresaClick(Sender: TObject);
@@ -307,6 +350,14 @@ begin
   inherited;
     ShowMtoProveedores(Self.Owner,
  tvProveedores.DataController.DataSet.FieldByName('CODIGO_PROVEEDOR').AsString);
+end;
+
+procedure TfrmMtoArticulos.btIraTarifaClick(Sender: TObject);
+begin
+  inherited;
+    ShowMtoTarifas(Self.Owner,
+                 dmmArticulos.unqryTarifasArticulos.FieldByName(
+                                                     'CODIGO_TARIFA').AsString);
 end;
 
 procedure TfrmMtoArticulos.btnGrabarClick(Sender: TObject);
@@ -342,6 +393,53 @@ begin
   pcPestana.Properties.ActivePage := tsTarifas;
   //tsDomicilioFiscal.SetFocus;
   txtDESCRIPCION_ARTICULO.SetFocus;
+end;
+
+procedure TfrmMtoArticulos.IncorporarTarifas;
+var
+  formulario : TfrmMtoModalArtTar;
+begin
+  formulario := TfrmMtoModalArtTar.Create(Self.Owner);
+  formulario.Name := 'frmMtoModalArtTar';
+  formulario.Caption := 'Seleccionar Tarifas a incorporar';
+  try
+    dmmArticulos.FillTarifas(formulario.lstTarifas);
+    formulario.ShowModal;
+  finally
+      inherited;
+      if formulario.sFicha = 'S' then
+      begin
+        IterateCheckedList(formulario.lstTarifas);
+      end;
+      FreeAndNil(formulario);
+  end;
+end;
+
+procedure TfrmMtoArticulos.IterateCheckedList(lst: TcxListView);
+var
+  i: Integer;
+  item: TListItem;
+begin
+  with dmmArticulos.unqryTarifasArticulos do
+  begin
+    if ((State = dsEdit) or (State = dsInsert)) then
+      Post;
+    for i := 0 to lst.Items.Count - 1 do
+    begin
+      item := lst.Items[i];
+      if item.Checked then
+      begin
+        Insert;
+        FieldByName('CODIGO_TARIFA').AsString := item.Caption;
+        FieldByName('ACTIVO_TARIFA').AsString := 'S';
+        FieldByName('FECHA_DESDE_TARIFA').AsDateTime := Now;
+        FieldByName('PRECIOSALIDA').AsInteger := 0;
+        FieldByName('PRECIOFINAL').AsInteger := 0;
+        Post;
+      end;
+    end;
+    Refresh;
+  end;
 end;
 
 procedure TfrmMtoArticulos.BuscarProveedores;
@@ -386,6 +484,47 @@ procedure
 begin
   inherited;
   BuscarProveedores;
+end;
+
+procedure TfrmMtoArticulos.cxgrdbclmnTarifasPORCEN_DTO_TARIFAPropertiesEditValueChanged(
+  Sender: TObject);
+var
+    e: TcxCustomEdit;
+begin
+  inherited;
+  if (dmmArticulos <> nil) then
+    with dmmArticulos.unqryTarifasArticulos do
+    begin
+      if ((State = dsInsert) or (State = dsEdit)) then
+      begin
+        e := Sender as TcxCustomEdit;
+        FindField('PORCEN_DTO_TARIFA').AsString := VarToStr(e.EditingValue);
+        FindField('PRECIO_DTO_TARIFA').AsFloat :=
+                                FindField('PRECIOSALIDA').AsFloat *
+                                (FindField('PORCEN_DTO_TARIFA').AsFloat / 100);
+      end;
+    end;
+end;
+
+procedure TfrmMtoArticulos.cxgrdbclmnTarifasPRECIOSALIDAPropertiesChange(
+  Sender: TObject);
+var
+    e: TcxCustomEdit;
+begin
+  inherited;
+  if (dmmArticulos <> nil) then
+    with dmmArticulos.unqryTarifasArticulos do
+    begin
+    if ((State = dsInsert) or (State = dsEdit)) then
+      begin
+        e := Sender as TcxCustomEdit;
+        FindField('PRECIOSALIDA').AsString := VarToStr(e.EditingValue);
+        FindField('PRECIOFINAL').AsFloat :=
+                                       ( FindField('PRECIOSALIDA').AsFloat -
+                                         FindField('PRECIO_DTO_TARIFA').AsFloat
+                                       );
+      end;
+    end;
 end;
 
 end.

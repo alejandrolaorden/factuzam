@@ -11,7 +11,7 @@
  Target Server Version : 101002
  File Encoding         : 65001
 
- Date: 25/05/2023 13:39:59
+ Date: 31/05/2023 13:51:17
 */
 
 SET NAMES utf8mb4;
@@ -98,9 +98,10 @@ CREATE TABLE `fza_articulos_proveedores`  (
 -- ----------------------------
 INSERT INTO `fza_articulos_proveedores` VALUES ('10', 'CEBADA', 0.080000, '2023-03-16 00:00:00', NULL, '2023-03-16 15:34:56', '2023-03-16 15:34:56', 'Administrador', 'Administrador');
 INSERT INTO `fza_articulos_proveedores` VALUES ('11', 'ALFALFA', 0.250000, '2023-05-03 00:00:00', 'S', '2023-05-24 12:53:58', '2023-03-04 13:40:00', 'Administrador', 'Administrador');
-INSERT INTO `fza_articulos_proveedores` VALUES ('13', '003', 320.000000, '2023-05-03 00:00:00', NULL, '2023-05-25 13:07:43', '2023-05-25 13:07:43', 'Administrador', 'Administrador');
+INSERT INTO `fza_articulos_proveedores` VALUES ('13', '003', 320.000000, '2023-05-03 00:00:00', 'S', '2023-05-25 13:07:43', '2023-05-25 13:07:43', 'Administrador', 'Administrador');
 INSERT INTO `fza_articulos_proveedores` VALUES ('17', 'ALFALFA', 0.170000, '2023-05-25 00:00:00', 'N', '2023-03-03 14:30:45', '2023-03-03 14:30:45', 'Administrador', 'Administrador');
 INSERT INTO `fza_articulos_proveedores` VALUES ('20', 'ALFALFA', 0.100000, '2023-03-02 00:00:00', 'N', '2023-03-04 18:14:28', '2023-03-03 14:02:47', 'Administrador', 'Administrador');
+INSERT INTO `fza_articulos_proveedores` VALUES ('3', '003', 20.000000, '2023-05-31 00:00:00', 'N', '2023-05-31 13:34:53', '2023-05-31 13:34:53', 'Administrador', 'Administrador');
 
 -- ----------------------------
 -- Table structure for fza_articulos_tarifas
@@ -108,7 +109,7 @@ INSERT INTO `fza_articulos_proveedores` VALUES ('20', 'ALFALFA', 0.100000, '2023
 DROP TABLE IF EXISTS `fza_articulos_tarifas`;
 CREATE TABLE `fza_articulos_tarifas`  (
   `CODIGO_ARTICULO_TARIFA` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
-  `CODIGO_VARIACION_TARIFA` int(11) NULL DEFAULT NULL,
+  `CODIGO_VARIACION_TARIFA` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT NULL,
   `CODIGO_UNICO_TARIFA` int(11) NOT NULL AUTO_INCREMENT,
   `CODIGO_TARIFA` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT NULL,
   `ACTIVO_TARIFA` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT 'S',
@@ -123,12 +124,13 @@ CREATE TABLE `fza_articulos_tarifas`  (
   `USUARIOALTA` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `USUARIOMODIF` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   PRIMARY KEY (`CODIGO_UNICO_TARIFA`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_spanish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_spanish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fza_articulos_tarifas
 -- ----------------------------
 INSERT INTO `fza_articulos_tarifas` VALUES ('ALFALFA', NULL, 1, '0', 'S', NULL, 0.200000, 22.000000, NULL, '2023-03-04', '2023-03-16', '2023-03-04 18:06:12', '2023-03-04 18:06:09', 'Administrador', 'Administrador');
+INSERT INTO `fza_articulos_tarifas` VALUES ('003', NULL, 4, '0', 'S', 20.000000, 0.000000, 2.330000, 10.000000, '2023-05-31', NULL, '2023-05-31 13:24:49', '2023-05-31 13:24:49', 'Administrador', 'Administrador');
 
 -- ----------------------------
 -- Table structure for fza_clientes
@@ -495,7 +497,7 @@ INSERT INTO `fza_generadorprocesos` VALUES ('001', 'INSERTAR CAMPOS GRID POR MTO
 INSERT INTO `fza_generadorprocesos` VALUES ('002', 'update cosas', 'UPDATE fza_ivas\r\n   SET PORCENEXENTO_RE_IVA = 0', '2023-04-28 21:13:07', '2023-04-28 12:28:56', 'Administrador', 'Administrador');
 INSERT INTO `fza_generadorprocesos` VALUES ('003', 'ACTUALIZACION DE CAMPO FZA_IVAS', '           ALTER TABLE FZA_IVAS    MODIFY COLUMN   `GRUPO_ZONA_IVA` varchar(10) NOT NULL;', '2023-04-28 12:46:20', '2023-04-28 12:45:28', 'Administrador', 'Administrador');
 INSERT INTO `fza_generadorprocesos` VALUES ('004', 'SELECT FACTURAS', 'SELECT * FROM FZA_USUARIOS_PERFILES\r\nWHERE KEY_PERFILES = \'frmMtoFormasdePago\'', '2023-05-08 13:44:52', '2023-04-29 12:04:43', 'Administrador', 'Administrador');
-INSERT INTO `fza_generadorprocesos` VALUES ('005', 'borrado perfiles por mto', 'delete from fza_usuarios_perfiles where key_perfiles = \'frmMtoFormasdePago\'\r\nand subkey_perfiles like \'tvLineasFacturacion%\'', '2023-05-08 13:42:23', '2023-05-08 13:41:02', 'Administrador', 'Administrador');
+INSERT INTO `fza_generadorprocesos` VALUES ('005', 'borrado perfiles por mto', 'delete from fza_usuarios_perfiles \r\n      where key_perfiles = \'frmMtoFormasdePago\'\r\n        and subkey_perfiles like \'tvLineasFacturacion%\'', '2023-05-27 16:56:53', '2023-05-08 13:41:02', 'Administrador', 'Administrador');
 INSERT INTO `fza_generadorprocesos` VALUES ('006', 'combo facturas', '   \r\nSELECT SERIE_CONTADOR_CLIENTE AS SERIE_CONTADOR \r\n  FROM vi_clientes                              \r\n WHERE SERIE_CONTADOR_CLIENTE IS NOT NULL       \r\n   AND CODIGO_CLIENTE = \'AGRICULTOR\'                \r\n UNION                                          \r\nSELECT SERIE_SERIE AS SERIE_CONTADOR            \r\n  FROM vi_empresas_series                       \r\n WHERE CODIGO_EMPRESA_SERIE = \'007\'          \r\n   AND (FECHA_DESDE_SERIE >= \'12-05-2023\'             \r\n        AND (FECHA_HASTA_SERIE <= \'12-05-2023\'        \r\n             OR FECHA_HASTA_SERIE IS NULL ))    \r\n UNION                                          \r\nSELECT SERIE_CONTADOR_EMPRESA AS SERIE_CONTADOR \r\n  FROM vi_empresas                              \r\n WHERE SERIE_CONTADOR_EMPRESA IS NOT NULL       \r\n   AND  CODIGO_EMPRESA = \'007\'               \r\n UNION                                          \r\n SELECT SERIE_CONTADOR                          \r\n   FROM vi_contadores                           \r\n  WHERE tipodoc_contador = \'FC\'\r\n  ', '2023-05-13 13:53:12', '2023-05-13 13:47:20', 'Administrador', 'Administrador');
 
 -- ----------------------------
@@ -621,7 +623,7 @@ CREATE TABLE `fza_metadatos`  (
   `NOMBRE_METADATO` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `PARENT_METADATO` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   PRIMARY KEY (`CODIGO_METADATO`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 97 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_spanish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 119 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_spanish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fza_metadatos
@@ -657,55 +659,57 @@ INSERT INTO `fza_metadatos` VALUES (28, 'fza_usuarios_grupos', '1');
 INSERT INTO `fza_metadatos` VALUES (29, 'fza_usuarios_perfiles', '1');
 INSERT INTO `fza_metadatos` VALUES (35, 'vi_articulos', '2');
 INSERT INTO `fza_metadatos` VALUES (36, 'vi_articulos_familias', '2');
-INSERT INTO `fza_metadatos` VALUES (37, 'vi_articulos_proveedores', '2');
-INSERT INTO `fza_metadatos` VALUES (38, 'vi_articulos_tarifas', '2');
-INSERT INTO `fza_metadatos` VALUES (39, 'vi_art_busquedas', '2');
-INSERT INTO `fza_metadatos` VALUES (40, 'vi_clientes', '2');
-INSERT INTO `fza_metadatos` VALUES (41, 'vi_cli_busquedas', '2');
-INSERT INTO `fza_metadatos` VALUES (42, 'vi_contadores', '2');
-INSERT INTO `fza_metadatos` VALUES (43, 'vi_empresas', '2');
-INSERT INTO `fza_metadatos` VALUES (44, 'vi_empresas_retenciones', '2');
-INSERT INTO `fza_metadatos` VALUES (45, 'vi_empresas_series', '2');
-INSERT INTO `fza_metadatos` VALUES (46, 'vi_emp_busquedas', '2');
-INSERT INTO `fza_metadatos` VALUES (47, 'vi_facturas', '2');
-INSERT INTO `fza_metadatos` VALUES (48, 'vi_facturas_lineas', '2');
-INSERT INTO `fza_metadatos` VALUES (49, 'vi_fac_busquedas', '2');
-INSERT INTO `fza_metadatos` VALUES (50, 'vi_fac_comboseries', '2');
-INSERT INTO `fza_metadatos` VALUES (51, 'vi_fac_lin_busquedas', '2');
-INSERT INTO `fza_metadatos` VALUES (52, 'vi_formapago', '2');
-INSERT INTO `fza_metadatos` VALUES (53, 'vi_fza_articulos', '2');
-INSERT INTO `fza_metadatos` VALUES (54, 'vi_ivas', '2');
-INSERT INTO `fza_metadatos` VALUES (55, 'vi_ivas_empresa', '2');
-INSERT INTO `fza_metadatos` VALUES (56, 'vi_ivas_grupos', '2');
-INSERT INTO `fza_metadatos` VALUES (57, 'vi_ivas_zonas', '2');
-INSERT INTO `fza_metadatos` VALUES (58, 'vi_proveedores', '2');
-INSERT INTO `fza_metadatos` VALUES (59, 'vi_proveedores_articulos', '2');
-INSERT INTO `fza_metadatos` VALUES (60, 'vi_recibos', '2');
-INSERT INTO `fza_metadatos` VALUES (61, 'vi_tarifas', '2');
-INSERT INTO `fza_metadatos` VALUES (62, 'vi_usuarios', '2');
-INSERT INTO `fza_metadatos` VALUES (63, 'vi_usuarios_grupos', '2');
-INSERT INTO `fza_metadatos` VALUES (64, 'vi_usuarios_perfiles', '2');
-INSERT INTO `fza_metadatos` VALUES (66, 'GET_NEXT_CONT', '3');
-INSERT INTO `fza_metadatos` VALUES (67, 'PRC_CALCULAR_FACTURA_NETOS', '3');
-INSERT INTO `fza_metadatos` VALUES (68, 'PRC_CREAR_ACTUALIZAR_CLIENTE', '3');
-INSERT INTO `fza_metadatos` VALUES (69, 'PRC_CREAR_ACTUALIZAR_EMPRESA', '3');
-INSERT INTO `fza_metadatos` VALUES (70, 'PRC_CREAR_ACTUALIZAR_KEY', '3');
-INSERT INTO `fza_metadatos` VALUES (71, 'PRC_CREAR_FACTURA_ABONO', '3');
-INSERT INTO `fza_metadatos` VALUES (72, 'PRC_CREAR_FACTURA_DUPLICADA', '3');
-INSERT INTO `fza_metadatos` VALUES (73, 'PRC_CREAR_METADATOS', '3');
-INSERT INTO `fza_metadatos` VALUES (74, 'PRC_CREAR_RECIBOS_FACTURA', '3');
-INSERT INTO `fza_metadatos` VALUES (75, 'PRC_FNC_GET_NEXT_LINEA_FACTURA', '3');
-INSERT INTO `fza_metadatos` VALUES (76, 'PRC_FNC_GET_NEXT_LINEA_PRESUPUESTO', '3');
-INSERT INTO `fza_metadatos` VALUES (77, 'PRC_FNC_GET_NEXT_NRO_DOC', '3');
-INSERT INTO `fza_metadatos` VALUES (78, 'PRC_FNC_GET_SERIE_TIPODOC', '3');
-INSERT INTO `fza_metadatos` VALUES (79, 'PRC_GET_DATA_ARTICULO', '3');
-INSERT INTO `fza_metadatos` VALUES (80, 'PRC_GET_DATA_CLIENTE', '3');
-INSERT INTO `fza_metadatos` VALUES (81, 'PRC_GET_IVA_ZONA_FECHA', '3');
-INSERT INTO `fza_metadatos` VALUES (82, 'PRC_GET_NEXT_CONT', '3');
-INSERT INTO `fza_metadatos` VALUES (83, 'PRC_GET_NEXT_CONT_FACT_SERIE', '3');
-INSERT INTO `fza_metadatos` VALUES (84, 'PRC_GET_NEXT_CONT_SERIE', '3');
-INSERT INTO `fza_metadatos` VALUES (85, 'PRC_GET_NUMEROS_A_LETRAS', '3');
-INSERT INTO `fza_metadatos` VALUES (86, 'PRC_GET_NUMERO_MENOR_MIL', '3');
+INSERT INTO `fza_metadatos` VALUES (37, 'vi_articulos_familias_list', '2');
+INSERT INTO `fza_metadatos` VALUES (38, 'vi_articulos_list', '2');
+INSERT INTO `fza_metadatos` VALUES (39, 'vi_articulos_proveedores', '2');
+INSERT INTO `fza_metadatos` VALUES (40, 'vi_articulos_tarifas', '2');
+INSERT INTO `fza_metadatos` VALUES (41, 'vi_art_busquedas', '2');
+INSERT INTO `fza_metadatos` VALUES (42, 'vi_clientes', '2');
+INSERT INTO `fza_metadatos` VALUES (43, 'vi_cli_busquedas', '2');
+INSERT INTO `fza_metadatos` VALUES (44, 'vi_contadores', '2');
+INSERT INTO `fza_metadatos` VALUES (45, 'vi_empresas', '2');
+INSERT INTO `fza_metadatos` VALUES (46, 'vi_empresas_retenciones', '2');
+INSERT INTO `fza_metadatos` VALUES (47, 'vi_empresas_series', '2');
+INSERT INTO `fza_metadatos` VALUES (48, 'vi_emp_busquedas', '2');
+INSERT INTO `fza_metadatos` VALUES (49, 'vi_facturas', '2');
+INSERT INTO `fza_metadatos` VALUES (50, 'vi_facturas_lineas', '2');
+INSERT INTO `fza_metadatos` VALUES (51, 'vi_fac_busquedas', '2');
+INSERT INTO `fza_metadatos` VALUES (52, 'vi_fac_comboseries', '2');
+INSERT INTO `fza_metadatos` VALUES (53, 'vi_fac_lin_busquedas', '2');
+INSERT INTO `fza_metadatos` VALUES (54, 'vi_formapago', '2');
+INSERT INTO `fza_metadatos` VALUES (55, 'vi_fza_articulos', '2');
+INSERT INTO `fza_metadatos` VALUES (56, 'vi_ivas', '2');
+INSERT INTO `fza_metadatos` VALUES (57, 'vi_ivas_empresa', '2');
+INSERT INTO `fza_metadatos` VALUES (58, 'vi_ivas_grupos', '2');
+INSERT INTO `fza_metadatos` VALUES (59, 'vi_ivas_zonas', '2');
+INSERT INTO `fza_metadatos` VALUES (60, 'vi_proveedores', '2');
+INSERT INTO `fza_metadatos` VALUES (61, 'vi_proveedores_articulos', '2');
+INSERT INTO `fza_metadatos` VALUES (62, 'vi_recibos', '2');
+INSERT INTO `fza_metadatos` VALUES (63, 'vi_tarifas', '2');
+INSERT INTO `fza_metadatos` VALUES (64, 'vi_usuarios', '2');
+INSERT INTO `fza_metadatos` VALUES (65, 'vi_usuarios_grupos', '2');
+INSERT INTO `fza_metadatos` VALUES (66, 'vi_usuarios_perfiles', '2');
+INSERT INTO `fza_metadatos` VALUES (98, 'GET_NEXT_CONT', '3');
+INSERT INTO `fza_metadatos` VALUES (99, 'PRC_CALCULAR_FACTURA_NETOS', '3');
+INSERT INTO `fza_metadatos` VALUES (100, 'PRC_CREAR_ACTUALIZAR_CLIENTE', '3');
+INSERT INTO `fza_metadatos` VALUES (101, 'PRC_CREAR_ACTUALIZAR_EMPRESA', '3');
+INSERT INTO `fza_metadatos` VALUES (102, 'PRC_CREAR_ACTUALIZAR_KEY', '3');
+INSERT INTO `fza_metadatos` VALUES (103, 'PRC_CREAR_FACTURA_ABONO', '3');
+INSERT INTO `fza_metadatos` VALUES (104, 'PRC_CREAR_FACTURA_DUPLICADA', '3');
+INSERT INTO `fza_metadatos` VALUES (105, 'PRC_CREAR_METADATOS', '3');
+INSERT INTO `fza_metadatos` VALUES (106, 'PRC_CREAR_RECIBOS_FACTURA', '3');
+INSERT INTO `fza_metadatos` VALUES (107, 'PRC_FNC_GET_NEXT_LINEA_FACTURA', '3');
+INSERT INTO `fza_metadatos` VALUES (108, 'PRC_FNC_GET_NEXT_LINEA_PRESUPUESTO', '3');
+INSERT INTO `fza_metadatos` VALUES (109, 'PRC_FNC_GET_NEXT_NRO_DOC', '3');
+INSERT INTO `fza_metadatos` VALUES (110, 'PRC_FNC_GET_SERIE_TIPODOC', '3');
+INSERT INTO `fza_metadatos` VALUES (111, 'PRC_GET_DATA_ARTICULO', '3');
+INSERT INTO `fza_metadatos` VALUES (112, 'PRC_GET_DATA_CLIENTE', '3');
+INSERT INTO `fza_metadatos` VALUES (113, 'PRC_GET_IVA_ZONA_FECHA', '3');
+INSERT INTO `fza_metadatos` VALUES (114, 'PRC_GET_NEXT_CONT', '3');
+INSERT INTO `fza_metadatos` VALUES (115, 'PRC_GET_NEXT_CONT_FACT_SERIE', '3');
+INSERT INTO `fza_metadatos` VALUES (116, 'PRC_GET_NEXT_CONT_SERIE', '3');
+INSERT INTO `fza_metadatos` VALUES (117, 'PRC_GET_NUMEROS_A_LETRAS', '3');
+INSERT INTO `fza_metadatos` VALUES (118, 'PRC_GET_NUMERO_MENOR_MIL', '3');
 
 -- ----------------------------
 -- Table structure for fza_proveedores
@@ -806,8 +810,9 @@ INSERT INTO `fza_recibos` VALUES ('24', 'A1', 1, 'CONTADO', 'CONTADO', 19.834711
 DROP TABLE IF EXISTS `fza_tarifas`;
 CREATE TABLE `fza_tarifas`  (
   `CODIGO_TARIFA` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
-  `NOMBRE_TARIFA` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT NULL,
   `ACTIVO_TARIFA` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT 'S',
+  `ORDEN_TARIFA` int(10) NULL DEFAULT NULL,
+  `NOMBRE_TARIFA` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT NULL,
   `FECHA_DESDE_TARIFA` date NULL DEFAULT NULL,
   `FECHA_HASTA_TARIFA` date NULL DEFAULT NULL,
   `ESIMP_INCL_TARIFA` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT 'S',
@@ -822,8 +827,8 @@ CREATE TABLE `fza_tarifas`  (
 -- ----------------------------
 -- Records of fza_tarifas
 -- ----------------------------
-INSERT INTO `fza_tarifas` VALUES ('0', 'PVP', 'S', '2022-09-05', NULL, 'S', 'S', '2022-10-24 15:32:21', '2022-09-05 09:30:49', 'Administrador', 'Administrador');
-INSERT INTO `fza_tarifas` VALUES ('1', 'VENTA MAYOR', 'S', '2022-09-05', NULL, 'N', NULL, '2022-09-05 09:31:36', '2022-09-05 09:31:19', 'Administrador', 'Administrador');
+INSERT INTO `fza_tarifas` VALUES ('0', 'S', NULL, 'PVP', '2022-09-05', NULL, 'S', 'S', '2022-10-24 15:32:21', '2022-09-05 09:30:49', 'Administrador', 'Administrador');
+INSERT INTO `fza_tarifas` VALUES ('1', 'S', NULL, 'VENTA MAYOR', '2022-09-05', NULL, 'N', NULL, '2022-09-05 09:31:36', '2022-09-05 09:31:19', 'Administrador', 'Administrador');
 
 -- ----------------------------
 -- Table structure for fza_tipos_documentos
@@ -870,7 +875,7 @@ CREATE TABLE `fza_usuarios`  (
 -- ----------------------------
 -- Records of fza_usuarios
 -- ----------------------------
-INSERT INTO `fza_usuarios` VALUES ('Administrador', '4F8239A5B05A0E22D3DD4D7853808AF3', 'Administradores', '1', '2023-05-25 13:38:35', '2023-05-25 13:38:35', '2021-05-14 19:54:29', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios` VALUES ('Administrador', '4F8239A5B05A0E22D3DD4D7853808AF3', 'Administradores', '1', '2023-05-31 13:49:13', '2023-05-31 13:49:13', '2021-05-14 19:54:29', 'Administrador', 'Administrador');
 
 -- ----------------------------
 -- Table structure for fza_usuarios_grupos
@@ -4251,6 +4256,55 @@ FROM
 	`fza_articulos_familias` ;
 
 -- ----------------------------
+-- View structure for vi_articulos_familias_list
+-- ----------------------------
+DROP VIEW IF EXISTS `vi_articulos_familias_list`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vi_articulos_familias_list` AS SELECT
+	`fza_articulos_familias`.`CODIGO_FAMILIA` AS `CODIGO_FAMILIA`,
+	`fza_articulos_familias`.`ACTIVO_FAMILIA` AS `ACTIVO_FAMILIA`,
+	`fza_articulos_familias`.`ORDEN_FAMILIA` AS `ORDEN_FAMILIA`,
+	`fza_articulos_familias`.`ESDEFAULT_FAMILIA` AS `ESDEFAULT_FAMILIA`,
+	`fza_articulos_familias`.`NOMBRE_FAMILIA` AS `NOMBRE_FAMILIA`,
+	`fza_articulos_familias`.`DESCRIPCION_FAMILIA` AS `DESCRIPCION_FAMILIA`,
+	`fza_articulos_familias`.`INSTANTEMODIF` AS `INSTANTEMODIF`,
+	`fza_articulos_familias`.`INSTANTEALTA` AS `INSTANTEALTA`,
+	`fza_articulos_familias`.`USUARIOALTA` AS `USUARIOALTA`,
+	`fza_articulos_familias`.`USUARIOMODIF` AS `USUARIOMODIF` 
+FROM
+	`fza_articulos_familias` 
+
+WHERE ACTIVO_FAMILIA = 'S'
+ORDER BY ORDEN_FAMILIA, CODIGO_FAMILIA ;
+
+-- ----------------------------
+-- View structure for vi_articulos_list
+-- ----------------------------
+DROP VIEW IF EXISTS `vi_articulos_list`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vi_articulos_list` AS SELECT
+  `fza_articulos`.`CODIGO_ARTICULO` AS `CODIGO_ARTICULO`
+, `fza_articulos`.`ACTIVO_ARTICULO`AS`ACTIVO_ARTICULO`
+, `fza_articulos`.`ORDEN_ARTICULO`AS`ORDEN_ARTICULO`
+, `fza_articulos`.`DESCRIPCION_ARTICULO`AS`DESCRIPCION_ARTICULO`
+, `fza_articulos`.`CODIGO_FAMILIA_ARTICULO`AS`CODIGO_FAMILIA_ARTICULO`
+, `fza_articulos_familias`.`DESCRIPCION_FAMILIA`AS`DESCRIPCION_FAMILIA`
+, `fza_articulos`.`TIPOIVA_ARTICULO`AS`TIPOIVA_ARTICULO`
+, `fza_articulos`.`ESACTIVO_FIJO_ARTICULO`AS`ESACTIVO_FIJO_ARTICULO`
+, `fza_articulos`.`TIPO_CANTIDAD_ARTICULO`AS`TIPO_CANTIDAD_ARTICULO`
+, `vi_articulos_proveedores`.`RAZONSOCIAL_PROVEEDOR`AS`RAZONSOCIAL_PROVEEDOR`
+, `fza_articulos`.`INSTANTEMODIF`AS`INSTANTEMODIF`
+, `fza_articulos`.`INSTANTEALTA`AS`INSTANTEALTA`
+, `fza_articulos`.`USUARIOALTA`AS`USUARIOALTA`
+, `fza_articulos`.`USUARIOMODIF`AS`USUARIOMODIF`
+FROM ( (`fza_articulos`
+LEFT JOIN `fza_articulos_familias`
+ ON (`fza_articulos`.`CODIGO_FAMILIA_ARTICULO` = `fza_articulos_familias`.`CODIGO_FAMILIA`) )
+LEFT JOIN `vi_articulos_proveedores`
+ ON (`fza_articulos`.`CODIGO_ARTICULO` = `vi_articulos_proveedores`.`CODIGO_ARTICULO`
+AND `vi_articulos_proveedores`.`ESPROVEEDORPRINCIPAL` = 'S' ) )
+WHERE ACTIVO_ARTICULO = 'S'
+ORDER BY`fza_articulos`.`ORDEN_ARTICULO` ;
+
+-- ----------------------------
 -- View structure for vi_articulos_proveedores
 -- ----------------------------
 DROP VIEW IF EXISTS `vi_articulos_proveedores`;
@@ -4260,7 +4314,51 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vi_articulos_proveedores
 -- View structure for vi_articulos_tarifas
 -- ----------------------------
 DROP VIEW IF EXISTS `vi_articulos_tarifas`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vi_articulos_tarifas` AS select `fza_articulos_tarifas`.`CODIGO_ARTICULO_TARIFA` AS `CODIGO_ARTICULO_TARIFA`,`fza_articulos`.`DESCRIPCION_ARTICULO` AS `DESCRIPCION_ARTICULO`,`fza_articulos`.`TIPO_CANTIDAD_ARTICULO` AS `TIPO_CANTIDAD_ARTICULO`,`fza_ivas_tipos`.`NOMBRE_TIPO_IVA` AS `TIPO_IVA_ARTICULO`,`fza_articulos_tarifas`.`ACTIVO_TARIFA` AS `ACTIVO_TARIFA`,`fza_articulos_tarifas`.`CODIGO_TARIFA` AS `CODIGO_TARIFA`,`fza_tarifas`.`NOMBRE_TARIFA` AS `NOMBRE_TARIFA`,`fza_articulos_tarifas`.`FECHA_DESDE_TARIFA` AS `FECHA_DESDE_TARIFA`,`fza_articulos_tarifas`.`FECHA_HASTA_TARIFA` AS `FECHA_HASTA_TARIFA`,`fza_articulos_tarifas`.`PRECIOFINAL_TARIFA` AS `PRECIOFINAL`,`fza_articulos_tarifas`.`PRECIOSALIDA_TARIFA` AS `PRECIOSALIDA`,`fza_articulos_tarifas`.`PORCEN_DTO_TARIFA` AS `PORCEN_DTO_TARIFA`,`fza_articulos_tarifas`.`PRECIO_DTO_TARIFA` AS `PRECIO_DTO_TARIFA`,`fza_articulos_proveedores`.`CODIGO_PROVEEDOR_ARTICULO_PROVEEDOR` AS `CODIGO_PROVEEDOR`,`fza_proveedores`.`RAZONSOCIAL_PROVEEDOR` AS `RAZONSOCIAL_PROVEEDOR`,`fza_articulos_proveedores`.`PRECIO_ULT_COMPRA_ARTICULO_PROVEEDOR` AS `PRECIO_ULT_COMPRA`,`fza_articulos_proveedores`.`FECHA_VALIDEZ_ARTICULO_PROVEEDOR` AS `FECHA_VALIDEZ`,`fza_articulos`.`CODIGO_FAMILIA_ARTICULO` AS `CODIGO_FAMILIA_ARTICULO`,`fza_articulos_familias`.`DESCRIPCION_FAMILIA` AS `DESCRIPCION_FAMILIA`,`fza_articulos_tarifas`.`INSTANTEALTA` AS `INSTANTEALTA`,`fza_articulos_tarifas`.`INSTANTEMODIF` AS `INSTANTEMODIF`,`fza_articulos_tarifas`.`USUARIOALTA` AS `USUARIOALTA`,`fza_articulos_tarifas`.`USUARIOMODIF` AS `USUARIOMODIF` from ((((((`fza_articulos_tarifas` left join `fza_articulos_proveedores` on(((`fza_articulos_tarifas`.`CODIGO_ARTICULO_TARIFA` = `fza_articulos_proveedores`.`CODIGO_ARTICULO_ARTICULO_PROVEEDOR`) and (`fza_articulos_proveedores`.`ESPROVEEDORPRINCIPAL_ARTICULO_PROVEEDOR` = 'S')))) left join `fza_tarifas` on((`fza_articulos_tarifas`.`CODIGO_TARIFA` = `fza_tarifas`.`CODIGO_TARIFA`))) left join `fza_articulos` on((`fza_articulos_tarifas`.`CODIGO_ARTICULO_TARIFA` = `fza_articulos`.`CODIGO_ARTICULO`))) left join `fza_articulos_familias` on((`fza_articulos`.`CODIGO_FAMILIA_ARTICULO` = `fza_articulos_familias`.`CODIGO_FAMILIA`))) left join `fza_proveedores` on((`fza_articulos_proveedores`.`CODIGO_PROVEEDOR_ARTICULO_PROVEEDOR` = `fza_proveedores`.`CODIGO_PROVEEDOR`))) left join `fza_ivas_tipos` on((`fza_articulos`.`TIPOIVA_ARTICULO` = `fza_ivas_tipos`.`CODIGO_ABREVIATURA_TIPO_IVA`))) ;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vi_articulos_tarifas` AS SELECT
+  `fza_articulos_tarifas`.`CODIGO_UNICO_TARIFA` AS `CODIGO_UNICO_TARIFA`,
+	`fza_articulos_tarifas`.`CODIGO_ARTICULO_TARIFA` AS `CODIGO_ARTICULO_TARIFA`,
+	`fza_articulos`.`DESCRIPCION_ARTICULO` AS `DESCRIPCION_ARTICULO`,
+	`fza_articulos`.`TIPO_CANTIDAD_ARTICULO` AS `TIPO_CANTIDAD_ARTICULO`,
+	`fza_ivas_tipos`.`NOMBRE_TIPO_IVA` AS `TIPO_IVA_ARTICULO`,
+	`fza_articulos_tarifas`.`ACTIVO_TARIFA` AS `ACTIVO_TARIFA`,
+	`fza_articulos_tarifas`.`CODIGO_TARIFA` AS `CODIGO_TARIFA`,
+	`fza_tarifas`.`NOMBRE_TARIFA` AS `NOMBRE_TARIFA`,
+	`fza_articulos_tarifas`.`FECHA_DESDE_TARIFA` AS `FECHA_DESDE_TARIFA`,
+	`fza_articulos_tarifas`.`FECHA_HASTA_TARIFA` AS `FECHA_HASTA_TARIFA`,
+	`fza_articulos_tarifas`.`PRECIOFINAL_TARIFA` AS `PRECIOFINAL`,
+	`fza_articulos_tarifas`.`PRECIOSALIDA_TARIFA` AS `PRECIOSALIDA`,
+	`fza_articulos_tarifas`.`PORCEN_DTO_TARIFA` AS `PORCEN_DTO_TARIFA`,
+	`fza_articulos_tarifas`.`PRECIO_DTO_TARIFA` AS `PRECIO_DTO_TARIFA`,
+	`fza_articulos_proveedores`.`CODIGO_PROVEEDOR_ARTICULO_PROVEEDOR` AS `CODIGO_PROVEEDOR`,
+	`fza_proveedores`.`RAZONSOCIAL_PROVEEDOR` AS `RAZONSOCIAL_PROVEEDOR`,
+	`fza_articulos_proveedores`.`PRECIO_ULT_COMPRA_ARTICULO_PROVEEDOR` AS `PRECIO_ULT_COMPRA`,
+	`fza_articulos_proveedores`.`FECHA_VALIDEZ_ARTICULO_PROVEEDOR` AS `FECHA_VALIDEZ`,
+	`fza_articulos`.`CODIGO_FAMILIA_ARTICULO` AS `CODIGO_FAMILIA_ARTICULO`,
+	`fza_articulos_familias`.`DESCRIPCION_FAMILIA` AS `DESCRIPCION_FAMILIA`,
+	`fza_articulos_tarifas`.`INSTANTEALTA` AS `INSTANTEALTA`,
+	`fza_articulos_tarifas`.`INSTANTEMODIF` AS `INSTANTEMODIF`,
+	`fza_articulos_tarifas`.`USUARIOALTA` AS `USUARIOALTA`,
+	`fza_articulos_tarifas`.`USUARIOMODIF` AS `USUARIOMODIF` 
+FROM
+	(
+		(
+			(
+				(
+					(
+						(
+							`fza_articulos_tarifas`
+							LEFT JOIN `fza_articulos_proveedores` ON ( ( ( `fza_articulos_tarifas`.`CODIGO_ARTICULO_TARIFA` = `fza_articulos_proveedores`.`CODIGO_ARTICULO_ARTICULO_PROVEEDOR` ) AND ( `fza_articulos_proveedores`.`ESPROVEEDORPRINCIPAL_ARTICULO_PROVEEDOR` = 'S' ) ) ) 
+						)
+						LEFT JOIN `fza_tarifas` ON ( ( `fza_articulos_tarifas`.`CODIGO_TARIFA` = `fza_tarifas`.`CODIGO_TARIFA` ) ) 
+					)
+					LEFT JOIN `fza_articulos` ON ( ( `fza_articulos_tarifas`.`CODIGO_ARTICULO_TARIFA` = `fza_articulos`.`CODIGO_ARTICULO` ) ) 
+				)
+				LEFT JOIN `fza_articulos_familias` ON ( ( `fza_articulos`.`CODIGO_FAMILIA_ARTICULO` = `fza_articulos_familias`.`CODIGO_FAMILIA` ) ) 
+			)
+			LEFT JOIN `fza_proveedores` ON ( ( `fza_articulos_proveedores`.`CODIGO_PROVEEDOR_ARTICULO_PROVEEDOR` = `fza_proveedores`.`CODIGO_PROVEEDOR` ) ) 
+		)
+	LEFT JOIN `fza_ivas_tipos` ON ( ( `fza_articulos`.`TIPOIVA_ARTICULO` = `fza_ivas_tipos`.`CODIGO_ABREVIATURA_TIPO_IVA` ) ) 
+	) ;
 
 -- ----------------------------
 -- View structure for vi_art_busquedas

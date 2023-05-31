@@ -1008,13 +1008,13 @@ begin
          ParamByName('pidcodarticulo').AsString :=  VarToStr(e.EditingValue);
          ExecProc;
          dmmFacturas.unqryLinFac.FindField('CODIGO_ARTICULO_LINEA').AsString :=
-                                                         VarToStr(e.EditingValue);
+                                                       VarToStr(e.EditingValue);
          dmmFacturas.unqryLinFac.FindField(
-                                         'DESCRIPCION_ARTICULO_LINEA').AsString :=
-                                           ParamByName('pidnomarticulo').AsString;
+                                       'DESCRIPCION_ARTICULO_LINEA').AsString :=
+                                         ParamByName('pidnomarticulo').AsString;
          dmmFacturas.unqryLinFac.FindField(
-                                          'PRECIOVENTA_ARTICULO_LINEA').AsFloat :=
-                                            ParamByName('pidprecioventa').AsFloat;
+                                        'PRECIOVENTA_ARTICULO_LINEA').AsFloat :=
+                                          ParamByName('pidprecioventa').AsFloat;
        end;
     end;
 end;

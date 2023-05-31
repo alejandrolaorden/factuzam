@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils, System.Classes, UniDataGen, Data.DB, MemDS, DBAccess,
-  Uni, inLibUser, inMtoPrincipal, UniDataConn;
+  Uni, inLibUser, inMtoPrincipal, UniDataConn,  cxListView, Vcl.ComCtrls;
 
 type
   TdmArticulos = class(TdmBase)
@@ -21,11 +21,14 @@ type
     dsProveedores: TDataSource;
     unqryTiposIVA: TUniQuery;
     dsTiposIVA: TDataSource;
+    unqryTarifas: TUniQuery;
+    dsTarifas: TDataSource;
     procedure unqryTablaGAfterInsert(DataSet: TDataSet);
     procedure DataModuleCreate(Sender: TObject);
     procedure unqryTablaGBeforePost(DataSet: TDataSet);
     procedure unqryTablaGAfterDelete(DataSet: TDataSet);
     procedure unqryProveedoresArticulosBeforePost(DataSet: TDataSet);
+    procedure unqryTarifasArticulosBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -33,7 +36,7 @@ type
     function ArticuloTieneProvPrin(sArt:String):Boolean;
     procedure CopiarProveedoraArticulo(dtProveedores:TDataset);
     function GetDefaultFamilia:String;
-    //procedure GetCodigoAutoRetencion;
+    procedure FillTarifas(lst:TcxListView);
   end;
 
 var
@@ -82,7 +85,8 @@ begin
                                     'asociado a este Artículos.',
                                        [FindField('CODIGO_ARTICULO').AsString]);
       Abort;
-    end
+    end;
+  (Self.Owner.Owner as TfrmOpenApp).FDmConn.ActualizarUserTimeModif(DataSet);
 end;
 
 procedure TdmArticulos.unqryTablaGAfterDelete(DataSet: TDataSet);
@@ -97,13 +101,13 @@ begin
                 '  FROM fza_articulos_proveedores ' +
                 ' WHERE CODIGO_ARTICULO_ARTICULO_PROVEEDOR = :Articulo ;';
     Params.ParamByName('Articulo').AsString :=
-                             unqryTablaG.FieldByName('CODIGO_ARTICULO').AsString;
+                            unqryTablaG.FieldByName('CODIGO_ARTICULO').AsString;
     ExecSQL;
     SQL.Text := 'DELETE ' +
                 '  FROM fza_articulos_tarifas ' +
                 ' WHERE CODIGO_ARTICULO_TARIFA = :Articulo ;';
     Params.ParamByName('Articulo').AsString :=
-                             unqryTablaG.FieldByName('CODIGO_ARTICULO').AsString;
+                            unqryTablaG.FieldByName('CODIGO_ARTICULO').AsString;
     ExecSQL;
     Free;
   end;
@@ -149,11 +153,32 @@ begin
   unqryLinFacturasArticulos.Connection := oConn;
   unqryProveedores.Connection := oConn;
   unqryTiposIVA.Connection := oConn;
+  unqryTarifas.Connection := oConn;
   unqryTiposIVA.Open;
   unqryFamiliaArticulos.Open;
   unqryTarifasArticulos.Open;
   unqryProveedoresArticulos.Open;
   unqryLinFacturasArticulos.Open;
+end;
+
+procedure TdmArticulos.FillTarifas(lst: TcxListView);
+var
+  Itm: TListItem;
+begin
+  lst.Clear;
+  with unqryTarifas do
+  begin
+    Open;
+    First;
+    while not (Eof) do
+    begin
+      Itm := lst.Items.Add;
+      Itm.Caption := FindField('CODIGO_TARIFA').AsString;
+      Itm.SubItems.Add(FindField('NOMBRE_TARIFA').AsString);
+      Next;
+    end;
+    Close;
+  end;
 end;
 
 procedure TdmArticulos.GetCodigoAutoArticulo;
@@ -197,7 +222,7 @@ begin
   unqrySol := TUniQuery.Create(Self);
   unqrySol.Connection := oConn;
   unqrySol.SQL.Text := 'SELECT CODIGO_FAMILIA ' +
-                       '  FROM vi_articulos_familias ' +
+                       '  FROM vi_articulos_familias_list ' +
                        ' WHERE ESDEFAULT_FAMILIA = ' + QuotedStr('S');
   unqrySol.Open;
   if unqrySol.RecordCount = 0 then
@@ -229,6 +254,12 @@ begin
     else
       GetCodigoAutoArticulo;
   end;
+end;
+
+procedure TdmArticulos.unqryTarifasArticulosBeforePost(DataSet: TDataSet);
+begin
+  inherited;
+  (Self.Owner.Owner as TfrmOpenApp).FDmConn.ActualizarUserTimeModif(DataSet);
 end;
 
 end.
