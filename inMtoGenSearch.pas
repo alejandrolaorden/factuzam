@@ -87,6 +87,7 @@ end;
 procedure TfrmMtoSearch.FormCreate(Sender: TObject);
 begin
   //inherited;
+  Self.Position := poScreenCenter;
   sUso := 'Busq';
 end;
 

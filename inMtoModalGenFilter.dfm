@@ -9,7 +9,7 @@ inherited frmModalGenFilter: TfrmModalGenFilter
   ExplicitWidth = 835
   ExplicitHeight = 631
   PixelsPerInch = 96
-  TextHeight = 21
+  TextHeight = 19
   object pnl1: TPanel [0]
     Left = 0
     Top = 561
@@ -54,7 +54,7 @@ inherited frmModalGenFilter: TfrmModalGenFilter
       Properties.CustomButtons.Buttons = <>
       ClientRectBottom = 559
       ClientRectRight = 827
-      ClientRectTop = 32
+      ClientRectTop = 30
       object tsProveedores: TcxTabSheet
         Caption = '&1_Proveedores'
         ImageIndex = 0
@@ -62,7 +62,7 @@ inherited frmModalGenFilter: TfrmModalGenFilter
           Left = 0
           Top = 0
           Width = 827
-          Height = 527
+          Height = 529
           Align = alClient
           Items = <>
           ParentColor = False

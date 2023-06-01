@@ -205,6 +205,7 @@ end;
 procedure TfrmPrint.FormCreate(Sender: TObject);
 begin
   inherited;
+  Self.Position := poScreenCenter;
   unqryPerfiles.ParamByName('FormName').AsString := Self.Name;
   unqryPerfiles.ParamByName('Usuario').AsString := oUser;
   unqryPerfiles.ParamByName('Grupo').AsString := oGroup;

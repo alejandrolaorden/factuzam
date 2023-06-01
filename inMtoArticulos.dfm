@@ -2,37 +2,37 @@ inherited frmMtoArticulos: TfrmMtoArticulos
   Left = 5
   Top = 4
   Caption = 'Articulos'
-  ClientHeight = 631
-  ClientWidth = 1001
+  ClientHeight = 650
+  ClientWidth = 969
   FormStyle = fsMDIChild
-  ExplicitWidth = 1017
-  ExplicitHeight = 670
+  ExplicitWidth = 985
+  ExplicitHeight = 689
   PixelsPerInch = 96
   TextHeight = 19
   inherited pButtonPage: TPanel
-    Width = 861
-    Height = 631
+    Width = 829
+    Height = 650
     TabOrder = 0
-    ExplicitWidth = 861
-    ExplicitHeight = 631
+    ExplicitWidth = 829
+    ExplicitHeight = 650
     inherited pcPantalla: TcxPageControl
-      Width = 859
-      Height = 589
+      Width = 827
+      Height = 608
       TabOrder = 1
       Properties.ActivePage = tsFicha
-      ExplicitWidth = 859
-      ExplicitHeight = 589
-      ClientRectBottom = 589
-      ClientRectRight = 859
+      ExplicitWidth = 827
+      ExplicitHeight = 608
+      ClientRectBottom = 608
+      ClientRectRight = 827
       inherited tsLista: TcxTabSheet
         ExplicitTop = 30
-        ExplicitWidth = 859
-        ExplicitHeight = 559
+        ExplicitWidth = 827
+        ExplicitHeight = 578
         inherited cxGrdPrincipal: TcxGrid
-          Width = 859
-          Height = 559
-          ExplicitWidth = 859
-          ExplicitHeight = 559
+          Width = 827
+          Height = 578
+          ExplicitWidth = 827
+          ExplicitHeight = 578
           inherited cxGrdDBTabPrin: TcxGridDBTableView
             object cxgrdbclmnGrdDBTabPrinCODIGO_ARTICULO: TcxGridDBColumn
               DataBinding.FieldName = 'CODIGO_ARTICULO'
@@ -78,12 +78,12 @@ inherited frmMtoArticulos: TfrmMtoArticulos
       end
       inherited tsFicha: TcxTabSheet
         ExplicitTop = 30
-        ExplicitWidth = 859
-        ExplicitHeight = 559
+        ExplicitWidth = 827
+        ExplicitHeight = 578
         object pnl1: TPanel
           Left = 0
           Top = 0
-          Width = 859
+          Width = 827
           Height = 145
           Align = alTop
           TabOrder = 0
@@ -115,7 +115,7 @@ inherited frmMtoArticulos: TfrmMtoArticulos
           object Panel1: TPanel
             Left = 1
             Top = 1
-            Width = 857
+            Width = 825
             Height = 145
             Align = alTop
             TabOrder = 0
@@ -217,21 +217,21 @@ inherited frmMtoArticulos: TfrmMtoArticulos
         object pnl2: TPanel
           Left = 0
           Top = 153
-          Width = 859
-          Height = 406
+          Width = 827
+          Height = 425
           Align = alClient
           TabOrder = 1
           object pcPestana: TcxPageControl
             Left = 1
             Top = 1
-            Width = 857
-            Height = 404
+            Width = 825
+            Height = 423
             Align = alClient
             TabOrder = 0
-            Properties.ActivePage = tsTarifas
+            Properties.ActivePage = tsProveedores
             Properties.CustomButtons.Buttons = <>
-            ClientRectBottom = 404
-            ClientRectRight = 857
+            ClientRectBottom = 423
+            ClientRectRight = 825
             ClientRectTop = 30
             object tsTarifas: TcxTabSheet
               Caption = '&1_Tarifas'
@@ -239,8 +239,8 @@ inherited frmMtoArticulos: TfrmMtoArticulos
               object cxgrdTarifas: TcxGrid
                 Left = 0
                 Top = 0
-                Width = 741
-                Height = 374
+                Width = 709
+                Height = 393
                 Margins.Left = 4
                 Margins.Top = 4
                 Margins.Right = 4
@@ -293,7 +293,7 @@ inherited frmMtoArticulos: TfrmMtoArticulos
                   OptionsBehavior.GoToNextCellOnEnter = True
                   OptionsBehavior.IncSearch = True
                   OptionsCustomize.ColumnHiding = True
-                  OptionsData.Appending = True
+                  OptionsData.Inserting = False
                   OptionsView.GroupByBox = False
                   OptionsView.Indicator = True
                   object cxgrdbclmnTarifasCODIGO_TARIFA: TcxGridDBColumn
@@ -322,23 +322,28 @@ inherited frmMtoArticulos: TfrmMtoArticulos
                     Visible = False
                     VisibleForCustomization = False
                   end
-                  object cxgrdbclmnTarifasPRECIOSALIDA: TcxGridDBColumn
+                  object dbcTarifasPRECIOSALIDA: TcxGridDBColumn
                     DataBinding.FieldName = 'PRECIOSALIDA'
                     PropertiesClassName = 'TcxCurrencyEditProperties'
-                    Properties.OnChange = cxgrdbclmnTarifasPRECIOSALIDAPropertiesChange
+                    Properties.OnEditValueChanged = dbcTarifasPRECIOSALIDAPropertiesEditValueChanged
                   end
-                  object cxgrdbclmnTarifasPORCEN_DTO_TARIFA: TcxGridDBColumn
+                  object dbcTarifasPORCEN_DTO_TARIFA: TcxGridDBColumn
                     DataBinding.FieldName = 'PORCEN_DTO_TARIFA'
-                    PropertiesClassName = 'TcxCurrencyEditProperties'
-                    Properties.OnEditValueChanged = cxgrdbclmnTarifasPORCEN_DTO_TARIFAPropertiesEditValueChanged
+                    PropertiesClassName = 'TcxSpinEditProperties'
+                    Properties.DisplayFormat = '#.## %'
+                    Properties.EditFormat = '#,## %'
+                    Properties.OnEditValueChanged = dbcTarifasPORCEN_DTO_TARIFAPropertiesEditValueChanged
+                    Width = 79
                   end
-                  object cxgrdbclmnTarifasPRECIO_DTO_TARIFA: TcxGridDBColumn
+                  object dbcTarifasPRECIO_DTO_TARIFA: TcxGridDBColumn
                     DataBinding.FieldName = 'PRECIO_DTO_TARIFA'
                     PropertiesClassName = 'TcxCurrencyEditProperties'
+                    Properties.OnEditValueChanged = dbcTarifasPRECIO_DTO_TARIFAPropertiesEditValueChanged
                   end
-                  object cxgrdbclmnTarifasPRECIOFINAL: TcxGridDBColumn
+                  object dbcTarifasPRECIOFINAL: TcxGridDBColumn
                     DataBinding.FieldName = 'PRECIOFINAL'
                     PropertiesClassName = 'TcxCurrencyEditProperties'
+                    Properties.OnEditValueChanged = dbcTarifasPRECIOFINALPropertiesEditValueChanged
                   end
                   object cxgrdbclmnTarifasTIPO_IVA_ARTICULO: TcxGridDBColumn
                     DataBinding.FieldName = 'TIPO_IVA_ARTICULO'
@@ -403,10 +408,10 @@ inherited frmMtoArticulos: TfrmMtoArticulos
                 end
               end
               object pnlFacturaOpts2: TPanel
-                Left = 741
+                Left = 709
                 Top = 0
                 Width = 116
-                Height = 374
+                Height = 393
                 Align = alRight
                 TabOrder = 1
                 object btIraTarifa: TcxButton
@@ -441,14 +446,11 @@ inherited frmMtoArticulos: TfrmMtoArticulos
             object tsProveedores: TcxTabSheet
               Caption = '&2_Proveedores'
               ImageIndex = 2
-              ExplicitTop = 0
-              ExplicitWidth = 0
-              ExplicitHeight = 0
               object cxgrdProveedores: TcxGrid
                 Left = 0
                 Top = 0
-                Width = 736
-                Height = 374
+                Width = 704
+                Height = 393
                 Margins.Left = 4
                 Margins.Top = 4
                 Margins.Right = 4
@@ -501,7 +503,9 @@ inherited frmMtoArticulos: TfrmMtoArticulos
                   OptionsBehavior.GoToNextCellOnEnter = True
                   OptionsBehavior.IncSearch = True
                   OptionsCustomize.ColumnHiding = True
-                  OptionsData.Appending = True
+                  OptionsData.CancelOnExit = False
+                  OptionsData.DeletingConfirmation = False
+                  OptionsData.Inserting = False
                   OptionsView.GroupByBox = False
                   OptionsView.Indicator = True
                   object cxgrdbclmnProveedoresCODIGO_PROVEEDOR: TcxGridDBColumn
@@ -562,10 +566,10 @@ inherited frmMtoArticulos: TfrmMtoArticulos
                 end
               end
               object pnlFacturaOpts1: TPanel
-                Left = 736
+                Left = 704
                 Top = 0
                 Width = 121
-                Height = 374
+                Height = 393
                 Align = alRight
                 TabOrder = 1
                 object btIraProveedor: TcxButton
@@ -600,14 +604,11 @@ inherited frmMtoArticulos: TfrmMtoArticulos
             object tsLineasFactura: TcxTabSheet
               Caption = '&3_Lineas de Facturas'
               ImageIndex = 3
-              ExplicitTop = 0
-              ExplicitWidth = 0
-              ExplicitHeight = 0
               object cxgrdLinFac: TcxGrid
                 Left = 0
                 Top = 0
-                Width = 744
-                Height = 374
+                Width = 712
+                Height = 393
                 Margins.Left = 4
                 Margins.Top = 4
                 Margins.Right = 4
@@ -670,7 +671,11 @@ inherited frmMtoArticulos: TfrmMtoArticulos
                   OptionsBehavior.GoToNextCellOnEnter = True
                   OptionsBehavior.IncSearch = True
                   OptionsCustomize.ColumnHiding = True
-                  OptionsData.Appending = True
+                  OptionsData.CancelOnExit = False
+                  OptionsData.Deleting = False
+                  OptionsData.DeletingConfirmation = False
+                  OptionsData.Editing = False
+                  OptionsData.Inserting = False
                   OptionsView.Footer = True
                   OptionsView.GroupByBox = False
                   OptionsView.Indicator = True
@@ -739,10 +744,10 @@ inherited frmMtoArticulos: TfrmMtoArticulos
                 end
               end
               object pnlFacturaOpts: TPanel
-                Left = 744
+                Left = 712
                 Top = 0
                 Width = 113
-                Height = 374
+                Height = 393
                 Align = alRight
                 TabOrder = 1
                 object btIraFactura: TcxButton
@@ -786,8 +791,8 @@ inherited frmMtoArticulos: TfrmMtoArticulos
               ImageIndex = 3
               object pnl3: TPanel
                 Left = 0
-                Top = 295
-                Width = 857
+                Top = 314
+                Width = 825
                 Height = 79
                 Align = alBottom
                 TabOrder = 0
@@ -933,7 +938,7 @@ inherited frmMtoArticulos: TfrmMtoArticulos
         object cxspltr1: TcxSplitter
           Left = 0
           Top = 145
-          Width = 859
+          Width = 827
           Height = 8
           HotZoneClassName = 'TcxMediaPlayer9Style'
           AlignSplitter = salTop
@@ -941,36 +946,36 @@ inherited frmMtoArticulos: TfrmMtoArticulos
         end
       end
       inherited tsPerfil: TcxTabSheet
-        ExplicitWidth = 859
-        ExplicitHeight = 559
+        ExplicitWidth = 827
+        ExplicitHeight = 578
         inherited pnl4: TPanel
-          Width = 859
-          ExplicitWidth = 859
+          Width = 827
+          ExplicitWidth = 827
           inherited edtPerfilBusq: TcxTextEdit
             ExplicitHeight = 27
           end
         end
         inherited pnl5: TPanel
-          Width = 859
-          Height = 502
-          ExplicitWidth = 859
-          ExplicitHeight = 502
+          Width = 827
+          Height = 521
+          ExplicitWidth = 827
+          ExplicitHeight = 521
           inherited cxgrdPerfil: TcxGrid
-            Width = 857
-            Height = 500
-            ExplicitWidth = 857
-            ExplicitHeight = 500
+            Width = 825
+            Height = 519
+            ExplicitWidth = 825
+            ExplicitHeight = 519
           end
         end
       end
     end
     inherited pnlTopPage: TPanel
-      Width = 859
+      Width = 827
       TabOrder = 0
-      ExplicitWidth = 859
+      ExplicitWidth = 827
       inherited pnlTopGrid: TPanel
-        Width = 857
-        ExplicitWidth = 857
+        Width = 825
+        ExplicitWidth = 825
         inherited edtBusqGlobal: TcxTextEdit
           ExplicitHeight = 27
         end
@@ -978,14 +983,14 @@ inherited frmMtoArticulos: TfrmMtoArticulos
     end
   end
   inherited pButtonRightBar: TPanel
-    Left = 861
-    Height = 631
+    Left = 829
+    Height = 650
     TabOrder = 1
-    ExplicitLeft = 861
-    ExplicitHeight = 631
+    ExplicitLeft = 829
+    ExplicitHeight = 650
     inherited pButtonGen: TPanel
-      Top = 432
-      ExplicitTop = 432
+      Top = 451
+      ExplicitTop = 451
     end
     object btnNuevoArticulo: TcxButton
       Left = 1

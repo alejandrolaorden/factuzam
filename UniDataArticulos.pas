@@ -4,7 +4,8 @@ interface
 
 uses
   System.SysUtils, System.Classes, UniDataGen, Data.DB, MemDS, DBAccess,
-  Uni, inLibUser, inMtoPrincipal, UniDataConn,  cxListView, Vcl.ComCtrls;
+  Uni, inLibUser, inMtoPrincipal, UniDataConn,  cxListView, Vcl.Forms,
+  Vcl.ComCtrls, Winapi.Windows;
 
 type
   TdmArticulos = class(TdmBase)
@@ -93,23 +94,29 @@ procedure TdmArticulos.unqryTablaGAfterDelete(DataSet: TDataSet);
 var
   qryBorrarLineas : TUniQuery;
 begin
-  qryBorrarLineas := TUniQuery.Create(Self);
   with qryBorrarLineas do
   begin
-    Connection := inLibGlobalVar.oConn;
-    SQL.Text := 'DELETE ' +
-                '  FROM fza_articulos_proveedores ' +
-                ' WHERE CODIGO_ARTICULO_ARTICULO_PROVEEDOR = :Articulo ;';
-    Params.ParamByName('Articulo').AsString :=
-                            unqryTablaG.FieldByName('CODIGO_ARTICULO').AsString;
-    ExecSQL;
-    SQL.Text := 'DELETE ' +
-                '  FROM fza_articulos_tarifas ' +
-                ' WHERE CODIGO_ARTICULO_TARIFA = :Articulo ;';
-    Params.ParamByName('Articulo').AsString :=
-                            unqryTablaG.FieldByName('CODIGO_ARTICULO').AsString;
-    ExecSQL;
-    Free;
+  if not( Application.MessageBox(  '¿Desea borrar también tarifas y ' +
+                                   'proveedores de la ficha del artículo?',
+                                   'Mensaje Advertencia',
+                                   MB_YESNO ) = ID_YES ) then
+    begin
+      qryBorrarLineas := TUniQuery.Create(Self);
+      Connection := inLibGlobalVar.oConn;
+      SQL.Text := 'DELETE ' +
+                  '  FROM fza_articulos_proveedores ' +
+                  ' WHERE CODIGO_ARTICULO_ARTICULO_PROVEEDOR = :Articulo ;';
+      Params.ParamByName('Articulo').AsString :=
+                              unqryTablaG.FieldByName('CODIGO_ARTICULO').AsString;
+      ExecSQL;
+      SQL.Text := 'DELETE ' +
+                  '  FROM fza_articulos_tarifas ' +
+                  ' WHERE CODIGO_ARTICULO_TARIFA = :Articulo ;';
+      Params.ParamByName('Articulo').AsString :=
+                              unqryTablaG.FieldByName('CODIGO_ARTICULO').AsString;
+      ExecSQL;
+      Free;
+    end;
   end;
 end;
 
@@ -130,10 +137,10 @@ procedure TdmArticulos.CopiarProveedoraArticulo(dtProveedores: TDataset);
 begin
   with unqryProveedoresArticulos do
   begin
-     if ( (State <> dsEdit) and
-          (State <> dsInsert)
-        ) then
-       Edit;
+    if ( (State <> dsEdit) and
+         (State <> dsInsert)
+       ) then
+               Edit;
     FindField('CODIGO_PROVEEDOR').AsString :=
                            dtProveedores.FindField('CODIGO_PROVEEDOR').AsString;
     FindField('RAZONSOCIAL_PROVEEDOR').AsString :=

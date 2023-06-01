@@ -109,6 +109,7 @@ procedure TfrmLogon.FormCreate(Sender: TObject);
 var
  sFolder, sUser:String;
 begin
+  Self.Position := poScreenCenter;
   Self.Width := 338;
   edtUser.Text := '';
   leerini;

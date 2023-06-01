@@ -125,10 +125,10 @@ type
     cxgrdbclmnTarifasCODIGO_TARIFA: TcxGridDBColumn;
     cxgrdbclmnTarifasFECHA_DESDE_TARIFA: TcxGridDBColumn;
     cxgrdbclmnTarifasFECHA_HASTA_TARIFA: TcxGridDBColumn;
-    cxgrdbclmnTarifasPRECIOFINAL: TcxGridDBColumn;
-    cxgrdbclmnTarifasPRECIOSALIDA: TcxGridDBColumn;
-    cxgrdbclmnTarifasPORCEN_DTO_TARIFA: TcxGridDBColumn;
-    cxgrdbclmnTarifasPRECIO_DTO_TARIFA: TcxGridDBColumn;
+    dbcTarifasPRECIOFINAL: TcxGridDBColumn;
+    dbcTarifasPRECIOSALIDA: TcxGridDBColumn;
+    dbcTarifasPORCEN_DTO_TARIFA: TcxGridDBColumn;
+    dbcTarifasPRECIO_DTO_TARIFA: TcxGridDBColumn;
     cxgrdbclmnTarifasCODIGO_PROVEEDOR: TcxGridDBColumn;
     cxgrdbclmnTarifasRAZONSOCIAL_PROVEEDOR: TcxGridDBColumn;
     cxgrdbclmnTarifasPRECIO_ULT_COMPRA: TcxGridDBColumn;
@@ -160,8 +160,13 @@ type
     procedure btExportarTarifaClick(Sender: TObject);
     procedure btExportarProveedorClick(Sender: TObject);
     procedure btIraTarifaClick(Sender: TObject);
-    procedure cxgrdbclmnTarifasPRECIOSALIDAPropertiesChange(Sender: TObject);
-    procedure cxgrdbclmnTarifasPORCEN_DTO_TARIFAPropertiesEditValueChanged(
+    procedure dbcTarifasPORCEN_DTO_TARIFAPropertiesEditValueChanged(
+      Sender: TObject);
+    procedure dbcTarifasPRECIOSALIDAPropertiesEditValueChanged(
+      Sender: TObject);
+    procedure dbcTarifasPRECIO_DTO_TARIFAPropertiesEditValueChanged(
+      Sender: TObject);
+    procedure dbcTarifasPRECIOFINALPropertiesEditValueChanged(
       Sender: TObject);
   private
      procedure BuscarProveedores;
@@ -296,9 +301,6 @@ end;
 
 procedure TfrmMtoArticulos.btAddProveedorClick(Sender: TObject);
 begin
-  if ((dmmArticulos.unqryProveedoresArticulos.State <> dsInsert)
-     ) then
-    dmmArticulos.unqryProveedoresArticulos.Insert;
   BuscarProveedores;
 end;
 
@@ -401,7 +403,7 @@ var
 begin
   formulario := TfrmMtoModalArtTar.Create(Self.Owner);
   formulario.Name := 'frmMtoModalArtTar';
-  formulario.Caption := 'Seleccionar Tarifas a incorporar';
+  formulario.Caption := 'Seleccione Tarifas a incorporar al artículo';
   try
     dmmArticulos.FillTarifas(formulario.lstTarifas);
     formulario.ShowModal;
@@ -457,7 +459,11 @@ begin
   finally
       inherited;
       if formulario.sFicha = 'S' then
+      begin
+        if (dmmArticulos.unqryProveedoresArticulos.State = dsBrowse) then
+          dmmArticulos.unqryProveedoresArticulos.Insert;
         dmmArticulos.CopiarProveedoraArticulo(dmmArticulos.unqryProveedores);
+      end;
       formulario.dsTablaG.DataSet.Close;
       FreeAndNil(formulario);
   end;
@@ -472,9 +478,6 @@ begin
   tvProveedores.DataController.DataSource :=
                                             dmmArticulos.dsProveedoresArticulos;
   tvLinFac.DataController.DataSource := dmmArticulos.dsLinFacturasArticulos;
-//TcxLookupComboBoxProperties(
-//             cxgrdbclmnGrdDBTabPrinTIPOIVA_ARTICULO.Properties).ListSource :=
-//                                                      dmmArticulos.dsTiposIVA;
   pcPestana.ActivePage := tsTarifas;
 end;
 
@@ -486,7 +489,8 @@ begin
   BuscarProveedores;
 end;
 
-procedure TfrmMtoArticulos.cxgrdbclmnTarifasPORCEN_DTO_TARIFAPropertiesEditValueChanged(
+procedure TfrmMtoArticulos.
+                          dbcTarifasPORCEN_DTO_TARIFAPropertiesEditValueChanged(
   Sender: TObject);
 var
     e: TcxCustomEdit;
@@ -500,13 +504,49 @@ begin
         e := Sender as TcxCustomEdit;
         FindField('PORCEN_DTO_TARIFA').AsString := VarToStr(e.EditingValue);
         FindField('PRECIO_DTO_TARIFA').AsFloat :=
-                                FindField('PRECIOSALIDA').AsFloat *
-                                (FindField('PORCEN_DTO_TARIFA').AsFloat / 100);
+                               (FindField('PRECIOSALIDA').AsFloat * (
+                                FindField('PORCEN_DTO_TARIFA').AsFloat / 100));
+        FindField('PRECIOFINAL').AsFloat :=
+                                       ( FindField('PRECIOSALIDA').AsFloat -
+                                         FindField('PRECIO_DTO_TARIFA').AsFloat
+                                       );
       end;
     end;
 end;
 
-procedure TfrmMtoArticulos.cxgrdbclmnTarifasPRECIOSALIDAPropertiesChange(
+procedure TfrmMtoArticulos.dbcTarifasPRECIOFINALPropertiesEditValueChanged(
+  Sender: TObject);
+var
+    e: TcxCustomEdit;
+  begin
+  inherited;
+  if (dmmArticulos <> nil) then
+    with dmmArticulos.unqryTarifasArticulos do
+    begin
+      if ((State = dsInsert) or (State = dsEdit)) then
+      begin
+        e := Sender as TcxCustomEdit;
+        FindField('PRECIOFINAL').AsString := VarToStr(e.EditingValue);
+        if (FindField('PORCEN_DTO_TARIFA').AsFloat <> 0) then
+        begin
+          FindField('PRECIO_DTO_TARIFA').AsFloat :=
+                                (FindField('PRECIOFINAL').AsFloat * (
+                                 FindField('PORCEN_DTO_TARIFA').AsFloat / 100));
+          FindField('PRECIOSALIDA').AsFloat := FindField('PRECIOFINAL').AsFloat
+                                       - FindField('PRECIO_DTO_TARIFA').AsFloat;
+        end
+        else
+        begin
+          FindField('PRECIOSALIDA').AsString :=
+                                              FindField('PRECIOFINAL').AsString;
+          FindField('PRECIO_DTO_TARIFA').AsFloat := 0;
+          FindField('PORCEN_DTO_TARIFA').AsFloat := 0;
+        end;
+      end;
+    end;
+end;
+
+procedure TfrmMtoArticulos.dbcTarifasPRECIOSALIDAPropertiesEditValueChanged(
   Sender: TObject);
 var
     e: TcxCustomEdit;
@@ -523,6 +563,34 @@ begin
                                        ( FindField('PRECIOSALIDA').AsFloat -
                                          FindField('PRECIO_DTO_TARIFA').AsFloat
                                        );
+      end;
+    end;
+end;
+
+procedure TfrmMtoArticulos.
+                          dbcTarifasPRECIO_DTO_TARIFAPropertiesEditValueChanged(
+  Sender: TObject);
+var
+    e: TcxCustomEdit;
+begin
+  inherited;
+  if (dmmArticulos <> nil) then
+    with dmmArticulos.unqryTarifasArticulos do
+    begin
+      if ((State = dsInsert) or (State = dsEdit)) then
+      begin
+        e := Sender as TcxCustomEdit;
+        FindField('PRECIO_DTO_TARIFA').AsString := VarToStr(e.EditingValue);
+        if (FindField('PRECIOSALIDA').AsFloat <> 0) then
+        begin
+          FindField('PORCEN_DTO_TARIFA').AsFloat :=
+                               ((FindField('PRECIO_DTO_TARIFA').AsFloat /
+                                 FindField('PRECIOSALIDA').AsFloat) * 100);
+          FindField('PRECIOFINAL').AsFloat :=
+                                       ( FindField('PRECIOSALIDA').AsFloat -
+                                         FindField('PRECIO_DTO_TARIFA').AsFloat
+                                       );
+        end;
       end;
     end;
 end;

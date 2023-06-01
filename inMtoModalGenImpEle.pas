@@ -32,6 +32,7 @@ type
     procedure btnUsarOriginalClick(Sender: TObject);
     procedure btnDeleteFormatoClick(Sender: TObject);
     procedure btnSalirClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -85,6 +86,12 @@ procedure TfrmMtoModalGenImpEle.FormClose(Sender: TObject;
 begin
   inherited;
   Action := caFree;
+end;
+
+procedure TfrmMtoModalGenImpEle.FormCreate(Sender: TObject);
+begin
+  inherited;
+  Self.Position := poScreenCenter;
 end;
 
 end.

@@ -23,6 +23,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnGuardarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -55,6 +56,12 @@ procedure TfrmModalGenImpSave.FormClose(Sender: TObject;
 begin
   inherited;
   Action := caFree;
+end;
+
+procedure TfrmModalGenImpSave.FormCreate(Sender: TObject);
+begin
+  inherited;
+  Self.Position := poScreenCenter;
 end;
 
 end.

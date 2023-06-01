@@ -9,7 +9,7 @@ inherited frmModalGenPass: TfrmModalGenPass
   ExplicitWidth = 427
   ExplicitHeight = 218
   PixelsPerInch = 96
-  TextHeight = 21
+  TextHeight = 19
   object edtUsuario: TcxTextEdit [0]
     Left = 163
     Top = 24

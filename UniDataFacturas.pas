@@ -134,9 +134,9 @@ begin
   with unqrySol do
   begin
     Connection := inLibGlobalVar.oConn;
-    SQL.Text := 'DROP VIEW IF EXISTS vi_fac_comboseries ';
+    SQL.Text := 'DROP TABLE IF EXISTS tmpfac_comboseries ';
     Execute;
-    SQL.Text := 'CREATE VIEW vi_fac_comboseries   AS   ' +
+    SQL.Text := 'CREATE TEMPORARY TABLE tmpfac_comboseries       ' +
                 'SELECT SERIE_CONTADOR_CLIENTE AS SERIE_CONTADOR ' +
                 '  FROM vi_clientes                              ' +
                 ' WHERE SERIE_CONTADOR_CLIENTE IS NOT NULL       ' +
@@ -147,17 +147,7 @@ begin
                 ' WHERE CODIGO_EMPRESA_SERIE = :EMPRESA          ' +
                 '   AND (FECHA_DESDE_SERIE <= :FECHA             ' +
                 '        AND (FECHA_HASTA_SERIE >= :FECHA        ' +
-                '             OR FECHA_HASTA_SERIE IS NULL ))    ' +
-                ' UNION                                          ' +
-                'SELECT SERIE_CONTADOR_EMPRESA AS SERIE_CONTADOR ' +
-                '  FROM vi_empresas                              ' +
-                ' WHERE SERIE_CONTADOR_EMPRESA IS NOT NULL       ' +
-                '   AND  CODIGO_EMPRESA = :EMPRESA               ' +
-                ' UNION                                          ' +
-                ' SELECT SERIE_CONTADOR                          ' +
-                '   FROM vi_contadores                           ' +
-                '  WHERE tipodoc_contador = ' + QuotedStr('FC') +
-                '    AND ACTIVO_CONTADOR = ' + QuotedStr('S') ;
+                '             OR FECHA_HASTA_SERIE IS NULL ))    ' ;
     Params.ParamByName('EMPRESA').AsSTring := sEmpresa;
     Params.ParamByName('FECHA').AsDateTime := dtFecha;
     Params.ParamByName('CLIENTE').AsString := sCliente;

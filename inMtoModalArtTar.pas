@@ -20,6 +20,7 @@ type
     procedure btnAceptarClick(Sender: TObject);
     procedure btnCancelar1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     InitializeNewForm: TListItem;
@@ -54,6 +55,12 @@ procedure TfrmMtoModalArtTar.FormClose(Sender: TObject;
 begin
   inherited;
   Action := caFree;
+end;
+
+procedure TfrmMtoModalArtTar.FormCreate(Sender: TObject);
+begin
+  inherited;
+  Self.Position := poScreenCenter;
 end;
 
 end.

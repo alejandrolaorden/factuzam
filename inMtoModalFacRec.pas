@@ -137,6 +137,7 @@ end;
 
 procedure TfrmGenFacRec.FormCreate(Sender: TObject);
 begin
+  Self.Position := poScreenCenter;
   cmbSerieFactura.Properties.ListSource := dmmFacturas.dsSeries;
   edtNumFacOrigen.Text :=
                      dmmFacturas.unqryTablaG.findField('NRO_FACTURA').AsString;
