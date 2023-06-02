@@ -46,17 +46,6 @@ type
     lblUsuarioModif: TcxLabel;
     lblDescripcion: TcxLabel;
     chkActivo: TcxDBCheckBox;
-    cxgrdbclmnPerfilUSUARIO_GRUPO_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilKEY_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilSUBKEY_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilVALUE_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilVALUE_TEXT_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilTYPE_BLOB_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilVALUE_BLOB_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilINSTANTEMODIF: TcxGridDBColumn;
-    cxgrdbclmnPerfilINSTANTEALTA: TcxGridDBColumn;
-    cxgrdbclmnPerfilUSUARIOALTA: TcxGridDBColumn;
-    cxgrdbclmnPerfilUSUARIOMODIF: TcxGridDBColumn;
     cxgrdbclmnGrdDBTabPrinCODIGO_FAMILIA: TcxGridDBColumn;
     cxgrdbclmnGrdDBTabPrinNOMBRE_FAMILIA: TcxGridDBColumn;
     cxgrdbclmnGrdDBTabPrinDESCRIPCION_FAMILIA: TcxGridDBColumn;
@@ -97,10 +86,18 @@ type
     Action1: TAction;
     Action2: TAction;
     Action3: TAction;
+    btnNuevaFamilia: TcxButton;
+    dbcGrdDBTabPrinESDEFAULT_FAMILIA: TcxGridDBColumn;
+    dbcGrdDBTabPrinCODIGO_SUBFAMILIA: TcxGridDBColumn;
+    dbcGrdDBTabPrinNOMBRE_SUBFAMILIA: TcxGridDBColumn;
+    cbbFamilia: TcxDBLookupComboBox;
+    cxlbllbl1: TcxLabel;
+    chkDEFAULT_FAMILIA: TcxDBCheckBox;
     procedure btnGrabarClick(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
     procedure Action2Execute(Sender: TObject);
     procedure Action3Execute(Sender: TObject);
+    procedure btnNuevaFamiliaClick(Sender: TObject);
   public
     procedure CrearTablaPrincipal; override;
   end;
@@ -129,25 +126,33 @@ procedure ShowMtoFamilias(Owner       : TComponent); overload;
 var
   frmMtoFamilias : TfrmMtoFamilias;
 begin
-  if not(IsOpenMDI('frmMtoFamilias', Owner)) then
-  begin
-    frmMtoFamilias := TfrmMtoFamilias.Create(Owner);
-    //Application.CreateForm(TfrmMtoFamilias, frmMtoFamilias);
-    frmMtoFamilias.edtBusqGlobal.SetFocus;
-  end;
+  frmMtoFamilias := TfrmMtoFamilias(FindMDIChildOpen((Owner as TfrmOpenApp),
+                                        TfrmMtoFamilias,
+                                        'frmMtoFamilias'));
+    if (frmMtoFamilias = nil) then
+    begin
+      frmMtoFamilias := TfrmMtoFamilias.Create(Owner);
+    end;
+    frmMtoFamilias.BringToFront;
 end;
 
 procedure ShowMtoFamilias(Owner       : TComponent; sOdon: String); overload;
 var
   frmMtoFamilias : TfrmMtoFamilias;
 begin
-  if not(IsOpenMDI('frmMtoFamilias', Owner)) then
+  frmMtoFamilias := TfrmMtoFamilias(FindMDIChildOpen((Owner as TfrmOpenApp),
+                                        TfrmMtoFamilias,
+                                        'frmMtoFamilias'));
+  if (frmMtoFamilias = nil) then
   begin
-    Application.CreateForm(TfrmMtoFamilias, frmMtoFamilias);
-    frmMtoFamilias.Show;
-    //dmmClientes.unqryClientes.Locate(pkFieldName, sOdon, []);
-    frmMtoFamilias.edtBusqGlobal.SetFocus;
+    frmMtoFamilias := TfrmMtoFamilias.Create(Owner);
   end;
+  frmMtoFamilias.BringToFront;
+  if not (frmMtoFamilias.tdmDataModule.unqryTablaG.Locate(pkFieldName,
+                                                    sOdon, [])) then
+    ShowMessage('Familia no encontrada')
+  else
+    frmMtoFamilias.pcPantalla.ActivePage := frmMtoFamilias.tsFicha;
 end;
 
 procedure TfrmMtoFamilias.Action1Execute(Sender: TObject);
@@ -200,10 +205,28 @@ begin
   end;
 end;
 
+procedure TfrmMtoFamilias.btnNuevaFamiliaClick(Sender: TObject);
+begin
+  inherited;
+  if ( (dmmFamilias.unqryTablaG.State = dsInsert) or
+       (dmmFamilias.unqryTablaG.State = dsEdit)) then
+  begin
+    dmmFamilias.unqryTablaG.Post;
+  end;
+  dmmFamilias.unqryTablaG.Insert;
+  pcPantalla.Properties.ActivePage := tsFicha;
+  tsFicha.SetFocus;
+  pcPestana.Properties.ActivePage := tsMasDatos;
+  txtNOMBRE_FAMILIA.SetFocus;
+end;
+
 procedure TfrmMtoFamilias.CrearTablaPrincipal;
 begin
   inherited;
   dmmFamilias := TdmFamilias.Create(Self);
+  tvArticulos.DataController.DataSource := dmmFamilias.dsArticulosFamilias;
+  cbbFamilia.Properties.ListSource := dmmFamilias.dsSubfamilias;
+  pcPestana.ActivePage := tsMasDatos;
 end;
 
 end.

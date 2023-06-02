@@ -5,7 +5,7 @@ inherited dmFamilias: TdmFamilias
     Connection = dmConn.conUni
     SQL.Strings = (
       'SELECT *  '
-      '  FROM fza_articulos_familias'
+      '  FROM vi_articulos_familias'
       '')
     Active = True
     AfterInsert = unqryTablaGAfterInsert
@@ -77,7 +77,6 @@ inherited dmFamilias: TdmFamilias
     MasterSource = frmMtoFamilias.dsTablaG
     MasterFields = 'CODIGO_FAMILIA'
     DetailFields = 'CODIGO_FAMILIA_ARTICULO'
-    Active = True
     BeforeInsert = unqryTablaGBeforeInsert
     AfterInsert = unqryTablaGAfterInsert
     BeforePost = unqryTablaGBeforePost
@@ -94,6 +93,19 @@ inherited dmFamilias: TdmFamilias
   object dsArticulosFamilias: TDataSource
     DataSet = unqryArticulosFamilias
     Left = 192
+    Top = 80
+  end
+  object unqrySubFamilias: TUniQuery
+    Connection = dmConn.conUni
+    SQL.Strings = (
+      'select *'
+      'from vi_articulos_familias_list')
+    Left = 312
+    Top = 24
+  end
+  object dsSubFamilias: TDataSource
+    DataSet = unqrySubFamilias
+    Left = 312
     Top = 80
   end
 end

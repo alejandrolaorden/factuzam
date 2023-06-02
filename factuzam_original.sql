@@ -11,7 +11,7 @@
  Target Server Version : 101002
  File Encoding         : 65001
 
- Date: 01/06/2023 13:57:54
+ Date: 02/06/2023 13:37:56
 */
 
 SET NAMES utf8mb4;
@@ -58,6 +58,7 @@ CREATE TABLE `fza_articulos_familias`  (
   `ACTIVO_FAMILIA` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT 'S',
   `ORDEN_FAMILIA` int(11) NULL DEFAULT NULL,
   `ESDEFAULT_FAMILIA` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT NULL,
+  `CODIGO_SUBFAMILIA` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT NULL,
   `NOMBRE_FAMILIA` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT NULL,
   `DESCRIPCION_FAMILIA` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT NULL,
   `INSTANTEMODIF` timestamp(0) NOT NULL DEFAULT current_timestamp ON UPDATE CURRENT_TIMESTAMP,
@@ -69,12 +70,13 @@ CREATE TABLE `fza_articulos_familias`  (
 -- ----------------------------
 -- Records of fza_articulos_familias
 -- ----------------------------
-INSERT INTO `fza_articulos_familias` VALUES ('CER', 'S', 1, NULL, 'CEREALES', 'Cereales como trigo, cebada, avena....', '2022-11-02 16:02:56', '2022-11-02 16:02:48', 'Administrador', 'Administrador');
-INSERT INTO `fza_articulos_familias` VALUES ('HUE', 'S', 2, NULL, 'HUERTA', 'Productos de la huerta como tomates, lechugas, espinacas....', '2022-11-02 16:03:46', '2022-11-02 16:03:39', 'Administrador', 'Administrador');
-INSERT INTO `fza_articulos_familias` VALUES ('APE', 'S', 3, NULL, 'APEROS', 'Aperos de labranza como empacadora, arados, susoladora', '2022-11-02 16:05:05', '2022-11-02 16:04:57', 'Adminstrador', 'Administrador');
-INSERT INTO `fza_articulos_familias` VALUES ('MAQ', 'S', 4, NULL, 'MAQUINARIA', 'Maquinaria pesada para el cultivo como tractor, remolque', '2022-11-02 16:05:40', '2022-11-02 16:05:34', 'Administrador', 'Administrador');
-INSERT INTO `fza_articulos_familias` VALUES ('ANI', 'S', 5, NULL, 'ANIMALES', 'Animales de granja como gallinas, conejos, cerdos', '2022-11-02 16:06:06', '2022-11-02 16:05:59', 'Administrador', 'Administrador');
-INSERT INTO `fza_articulos_familias` VALUES ('OTR', 'S', 6, 'S', 'OTROS', 'Otros articulos agrícolas', '2023-05-25 12:28:16', '2022-11-02 16:06:31', 'Administrador', 'Administrador');
+INSERT INTO `fza_articulos_familias` VALUES ('CER', 'S', 1, NULL, NULL, 'CEREALES', 'Cereales como trigo, cebada, avena....', '2022-11-02 16:02:56', '2022-11-02 16:02:48', 'Administrador', 'Administrador');
+INSERT INTO `fza_articulos_familias` VALUES ('HUE', 'S', 2, NULL, NULL, 'HUERTA', 'Productos de la huerta como tomates, lechugas, espinacas....', '2022-11-02 16:03:46', '2022-11-02 16:03:39', 'Administrador', 'Administrador');
+INSERT INTO `fza_articulos_familias` VALUES ('APE', 'S', 3, NULL, NULL, 'APEROS', 'Aperos de labranza como empacadora, arados, susoladora', '2022-11-02 16:05:05', '2022-11-02 16:04:57', 'Adminstrador', 'Administrador');
+INSERT INTO `fza_articulos_familias` VALUES ('MAQ', 'S', 4, NULL, NULL, 'MAQUINARIA', 'Maquinaria pesada para el cultivo como tractor, remolque', '2022-11-02 16:05:40', '2022-11-02 16:05:34', 'Administrador', 'Administrador');
+INSERT INTO `fza_articulos_familias` VALUES ('ANI', 'S', 5, NULL, NULL, 'ANIMALES', 'Animales de granja como gallinas, conejos, cerdos', '2022-11-02 16:06:06', '2022-11-02 16:05:59', 'Administrador', 'Administrador');
+INSERT INTO `fza_articulos_familias` VALUES ('OTR', 'S', 6, 'S', NULL, 'OTROS', 'Otros articulos agrícolas', '2023-05-25 12:28:16', '2022-11-02 16:06:31', 'Administrador', 'Administrador');
+INSERT INTO `fza_articulos_familias` VALUES ('001', 'S', 10, 'S', 'OTR', 'OTRA SUBFAMILIA', NULL, '2023-06-02 13:35:29', '2023-06-02 13:04:22', 'Administrador', 'Administrador');
 
 -- ----------------------------
 -- Table structure for fza_articulos_proveedores
@@ -213,6 +215,7 @@ INSERT INTO `fza_contadores` VALUES ('CO', '-', 6, 'S', 3, 'S', '2023-05-22 13:0
 INSERT INTO `fza_contadores` VALUES ('EM', '-', 10, 'S', 3, 'S', '2023-05-20 12:39:14', '0000-00-00 00:00:00', 'Administrador', 'Administrador');
 INSERT INTO `fza_contadores` VALUES ('EO', '-', 4, 'S', 3, 'S', '2023-05-22 12:49:39', '2023-05-19 15:02:02', 'Administrador', 'Administrador');
 INSERT INTO `fza_contadores` VALUES ('ES', '-', 5, 'S', 3, 'S', '2023-06-01 13:44:51', '2023-05-13 12:25:25', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('FA', '-', 2, 'S', 3, 'S', '2023-06-02 13:04:22', '2023-06-02 13:04:22', 'Administrador', 'Administrador');
 INSERT INTO `fza_contadores` VALUES ('FC', 'A1', 25, 'S', 8, 'S', '2023-05-15 14:30:15', '2022-09-13 15:47:45', 'Administrador', 'Administrador');
 INSERT INTO `fza_contadores` VALUES ('FC', 'A3', 0, 'N', 8, 'S', '2023-05-12 12:24:33', '2023-05-12 12:24:25', 'Administrador', 'Administrador');
 INSERT INTO `fza_contadores` VALUES ('FC', 'AGRO', 2, 'N', 6, 'S', '2023-06-01 13:45:24', '2023-06-01 13:45:24', 'Administrador', 'Administrador');
@@ -628,7 +631,7 @@ CREATE TABLE `fza_metadatos`  (
   `NOMBRE_METADATO` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `PARENT_METADATO` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   PRIMARY KEY (`CODIGO_METADATO`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 119 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_spanish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 97 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_spanish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fza_metadatos
@@ -679,42 +682,41 @@ INSERT INTO `fza_metadatos` VALUES (48, 'vi_emp_busquedas', '2');
 INSERT INTO `fza_metadatos` VALUES (49, 'vi_facturas', '2');
 INSERT INTO `fza_metadatos` VALUES (50, 'vi_facturas_lineas', '2');
 INSERT INTO `fza_metadatos` VALUES (51, 'vi_fac_busquedas', '2');
-INSERT INTO `fza_metadatos` VALUES (52, 'vi_fac_comboseries', '2');
-INSERT INTO `fza_metadatos` VALUES (53, 'vi_fac_lin_busquedas', '2');
-INSERT INTO `fza_metadatos` VALUES (54, 'vi_formapago', '2');
-INSERT INTO `fza_metadatos` VALUES (55, 'vi_fza_articulos', '2');
-INSERT INTO `fza_metadatos` VALUES (56, 'vi_ivas', '2');
-INSERT INTO `fza_metadatos` VALUES (57, 'vi_ivas_empresa', '2');
-INSERT INTO `fza_metadatos` VALUES (58, 'vi_ivas_grupos', '2');
-INSERT INTO `fza_metadatos` VALUES (59, 'vi_ivas_zonas', '2');
-INSERT INTO `fza_metadatos` VALUES (60, 'vi_proveedores', '2');
-INSERT INTO `fza_metadatos` VALUES (61, 'vi_proveedores_articulos', '2');
-INSERT INTO `fza_metadatos` VALUES (62, 'vi_recibos', '2');
-INSERT INTO `fza_metadatos` VALUES (63, 'vi_tarifas', '2');
-INSERT INTO `fza_metadatos` VALUES (64, 'vi_usuarios', '2');
-INSERT INTO `fza_metadatos` VALUES (65, 'vi_usuarios_grupos', '2');
-INSERT INTO `fza_metadatos` VALUES (66, 'vi_usuarios_perfiles', '2');
-INSERT INTO `fza_metadatos` VALUES (98, 'GET_NEXT_CONT', '3');
-INSERT INTO `fza_metadatos` VALUES (99, 'PRC_CALCULAR_FACTURA_NETOS', '3');
-INSERT INTO `fza_metadatos` VALUES (100, 'PRC_CREAR_ACTUALIZAR_CLIENTE', '3');
-INSERT INTO `fza_metadatos` VALUES (101, 'PRC_CREAR_ACTUALIZAR_EMPRESA', '3');
-INSERT INTO `fza_metadatos` VALUES (102, 'PRC_CREAR_ACTUALIZAR_KEY', '3');
-INSERT INTO `fza_metadatos` VALUES (103, 'PRC_CREAR_FACTURA_ABONO', '3');
-INSERT INTO `fza_metadatos` VALUES (104, 'PRC_CREAR_FACTURA_DUPLICADA', '3');
-INSERT INTO `fza_metadatos` VALUES (105, 'PRC_CREAR_METADATOS', '3');
-INSERT INTO `fza_metadatos` VALUES (106, 'PRC_CREAR_RECIBOS_FACTURA', '3');
-INSERT INTO `fza_metadatos` VALUES (107, 'PRC_FNC_GET_NEXT_LINEA_FACTURA', '3');
-INSERT INTO `fza_metadatos` VALUES (108, 'PRC_FNC_GET_NEXT_LINEA_PRESUPUESTO', '3');
-INSERT INTO `fza_metadatos` VALUES (109, 'PRC_FNC_GET_NEXT_NRO_DOC', '3');
-INSERT INTO `fza_metadatos` VALUES (110, 'PRC_FNC_GET_SERIE_TIPODOC', '3');
-INSERT INTO `fza_metadatos` VALUES (111, 'PRC_GET_DATA_ARTICULO', '3');
-INSERT INTO `fza_metadatos` VALUES (112, 'PRC_GET_DATA_CLIENTE', '3');
-INSERT INTO `fza_metadatos` VALUES (113, 'PRC_GET_IVA_ZONA_FECHA', '3');
-INSERT INTO `fza_metadatos` VALUES (114, 'PRC_GET_NEXT_CONT', '3');
-INSERT INTO `fza_metadatos` VALUES (115, 'PRC_GET_NEXT_CONT_FACT_SERIE', '3');
-INSERT INTO `fza_metadatos` VALUES (116, 'PRC_GET_NEXT_CONT_SERIE', '3');
-INSERT INTO `fza_metadatos` VALUES (117, 'PRC_GET_NUMEROS_A_LETRAS', '3');
-INSERT INTO `fza_metadatos` VALUES (118, 'PRC_GET_NUMERO_MENOR_MIL', '3');
+INSERT INTO `fza_metadatos` VALUES (52, 'vi_fac_lin_busquedas', '2');
+INSERT INTO `fza_metadatos` VALUES (53, 'vi_formapago', '2');
+INSERT INTO `fza_metadatos` VALUES (54, 'vi_fza_articulos', '2');
+INSERT INTO `fza_metadatos` VALUES (55, 'vi_ivas', '2');
+INSERT INTO `fza_metadatos` VALUES (56, 'vi_ivas_empresa', '2');
+INSERT INTO `fza_metadatos` VALUES (57, 'vi_ivas_grupos', '2');
+INSERT INTO `fza_metadatos` VALUES (58, 'vi_ivas_zonas', '2');
+INSERT INTO `fza_metadatos` VALUES (59, 'vi_proveedores', '2');
+INSERT INTO `fza_metadatos` VALUES (60, 'vi_proveedores_articulos', '2');
+INSERT INTO `fza_metadatos` VALUES (61, 'vi_recibos', '2');
+INSERT INTO `fza_metadatos` VALUES (62, 'vi_tarifas', '2');
+INSERT INTO `fza_metadatos` VALUES (63, 'vi_usuarios', '2');
+INSERT INTO `fza_metadatos` VALUES (64, 'vi_usuarios_grupos', '2');
+INSERT INTO `fza_metadatos` VALUES (65, 'vi_usuarios_perfiles', '2');
+INSERT INTO `fza_metadatos` VALUES (66, 'GET_NEXT_CONT', '3');
+INSERT INTO `fza_metadatos` VALUES (67, 'PRC_CALCULAR_FACTURA_NETOS', '3');
+INSERT INTO `fza_metadatos` VALUES (68, 'PRC_CREAR_ACTUALIZAR_CLIENTE', '3');
+INSERT INTO `fza_metadatos` VALUES (69, 'PRC_CREAR_ACTUALIZAR_EMPRESA', '3');
+INSERT INTO `fza_metadatos` VALUES (70, 'PRC_CREAR_ACTUALIZAR_KEY', '3');
+INSERT INTO `fza_metadatos` VALUES (71, 'PRC_CREAR_FACTURA_ABONO', '3');
+INSERT INTO `fza_metadatos` VALUES (72, 'PRC_CREAR_FACTURA_DUPLICADA', '3');
+INSERT INTO `fza_metadatos` VALUES (73, 'PRC_CREAR_METADATOS', '3');
+INSERT INTO `fza_metadatos` VALUES (74, 'PRC_CREAR_RECIBOS_FACTURA', '3');
+INSERT INTO `fza_metadatos` VALUES (75, 'PRC_FNC_GET_NEXT_LINEA_FACTURA', '3');
+INSERT INTO `fza_metadatos` VALUES (76, 'PRC_FNC_GET_NEXT_LINEA_PRESUPUESTO', '3');
+INSERT INTO `fza_metadatos` VALUES (77, 'PRC_FNC_GET_NEXT_NRO_DOC', '3');
+INSERT INTO `fza_metadatos` VALUES (78, 'PRC_FNC_GET_SERIE_TIPODOC', '3');
+INSERT INTO `fza_metadatos` VALUES (79, 'PRC_GET_DATA_ARTICULO', '3');
+INSERT INTO `fza_metadatos` VALUES (80, 'PRC_GET_DATA_CLIENTE', '3');
+INSERT INTO `fza_metadatos` VALUES (81, 'PRC_GET_IVA_ZONA_FECHA', '3');
+INSERT INTO `fza_metadatos` VALUES (82, 'PRC_GET_NEXT_CONT', '3');
+INSERT INTO `fza_metadatos` VALUES (83, 'PRC_GET_NEXT_CONT_FACT_SERIE', '3');
+INSERT INTO `fza_metadatos` VALUES (84, 'PRC_GET_NEXT_CONT_SERIE', '3');
+INSERT INTO `fza_metadatos` VALUES (85, 'PRC_GET_NUMEROS_A_LETRAS', '3');
+INSERT INTO `fza_metadatos` VALUES (86, 'PRC_GET_NUMERO_MENOR_MIL', '3');
 
 -- ----------------------------
 -- Table structure for fza_proveedores
@@ -832,8 +834,8 @@ CREATE TABLE `fza_tarifas`  (
 -- ----------------------------
 -- Records of fza_tarifas
 -- ----------------------------
-INSERT INTO `fza_tarifas` VALUES ('0', 'S', NULL, 'PVP', '2022-09-05', NULL, 'S', 'S', '2022-10-24 15:32:21', '2022-09-05 09:30:49', 'Administrador', 'Administrador');
-INSERT INTO `fza_tarifas` VALUES ('1', 'S', NULL, 'VENTA MAYOR', '2022-09-05', NULL, 'N', NULL, '2022-09-05 09:31:36', '2022-09-05 09:31:19', 'Administrador', 'Administrador');
+INSERT INTO `fza_tarifas` VALUES ('0', 'S', 1, 'PVP', '2022-09-05', NULL, 'S', 'S', '2023-06-02 11:46:56', '2022-09-05 09:30:49', 'Administrador', 'Administrador');
+INSERT INTO `fza_tarifas` VALUES ('1', 'S', 2, 'VENTA MAYOR', '2022-09-05', NULL, 'N', NULL, '2023-06-02 11:47:00', '2022-09-05 09:31:19', 'Administrador', 'Administrador');
 
 -- ----------------------------
 -- Table structure for fza_tipos_documentos
@@ -880,7 +882,7 @@ CREATE TABLE `fza_usuarios`  (
 -- ----------------------------
 -- Records of fza_usuarios
 -- ----------------------------
-INSERT INTO `fza_usuarios` VALUES ('Administrador', '4F8239A5B05A0E22D3DD4D7853808AF3', 'Administradores', '1', '2023-06-01 13:43:41', '2023-06-01 13:43:41', '2021-05-14 19:54:29', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios` VALUES ('Administrador', '4F8239A5B05A0E22D3DD4D7853808AF3', 'Administradores', '1', '2023-06-02 13:35:14', '2023-06-02 13:35:14', '2021-05-14 19:54:29', 'Administrador', 'Administrador');
 
 -- ----------------------------
 -- Table structure for fza_usuarios_grupos
@@ -931,7 +933,9 @@ INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmArticulos', 'unqryPerfil
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmArticulos', 'unqryProveedores', 'SQL', 'select *\r\nfrom vi_proveedores\r\n', NULL, NULL, '2023-05-24 13:10:44', '2023-05-24 13:10:44', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmArticulos', 'unqryProveedoresArticulos', 'SQL', 'select *\r\nfrom vi_articulos_proveedores\r\n', NULL, NULL, '2023-05-24 13:10:44', '2023-05-24 13:10:44', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmArticulos', 'unqryTablaG', 'SQL', 'SELECT *  \r\n  FROM vi_articulos \r\n\r\n', NULL, NULL, '2023-05-25 12:43:10', '2023-05-24 13:10:44', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmArticulos', 'unqryTarifas', 'SQL', 'SELECT CODIGO_TARIFA, NOMBRE_TARIFA \r\nFROM fza_tarifas \r\nWHERE CODIGO_TARIFA NOT IN ( SELECT CODIGO_TARIFA \r\n                               FROM fza_articulos_tarifas \r\n                              WHERE CODIGO_ARTICULO_TARIFA = :CODIGO_ARTICULO)\r\nAND ACTIVO_TARIFA =\'S\'\r\nORDER BY ORDEN_TARIFA\r\n', NULL, NULL, '2023-06-02 11:44:43', '2023-06-02 11:44:43', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmArticulos', 'unqryTarifasArticulos', 'SQL', 'select *\r\nfrom vi_articulos_tarifas\r\n', NULL, NULL, '2023-05-24 13:10:44', '2023-05-24 13:10:44', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmArticulos', 'unqryTiposIVA', 'SQL', 'select *\r\nfrom fza_ivas_tipos\r\n', NULL, NULL, '2023-06-02 11:44:43', '2023-06-02 11:44:43', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmArticulos', 'unstrdprcContador', 'Procedure', 'PRC_GET_NEXT_CONT', NULL, NULL, '2023-05-25 12:55:50', '2023-05-24 13:10:44', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmClientes', 'unqryFacturasClientes', 'SQL', 'select * from vi_fac_busquedas\r\n', NULL, NULL, '2023-05-22 14:50:50', '2023-01-31 09:49:09', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmClientes', 'unqryFacturasLineasClientes', 'SQL', 'select *\r\nfrom vi_fac_lin_busquedas l\r\ninner join vi_fac_busquedas f\r\non l.NRO_FACTURA_LINEA = F.NRO_FACTURA\r\nAND l.SERIE_FACTURA_LINEA = F.SERIE_FACTURA\r\n\r\n', NULL, NULL, '2023-05-22 14:51:07', '2023-01-31 09:49:09', 'Administrador', 'Administrador');
@@ -969,6 +973,10 @@ INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmFacturas', 'unstrdprcGet
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmFacturas', 'unstrdprcGetDataArticulo', 'Procedure', 'PRC_GET_DATA_ARTICULO', NULL, NULL, '2023-02-01 14:08:58', '2023-01-30 18:08:27', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmFacturas', 'unstrdprcGetDataCliente', 'Procedure', 'PRC_GET_DATA_CLIENTE', NULL, NULL, '2023-02-01 14:08:58', '2023-01-30 18:08:27', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmFacturas', 'unstrdprcGetRecibos', 'Procedure', 'PRC_CREAR_RECIBOS_FACTURA', NULL, NULL, '2023-02-01 14:08:58', '2023-01-30 18:08:27', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmFamilias', 'unqryArticulosFamilias', 'SQL', 'SELECT *  \r\n  FROM vi_art_busquedas\r\n\r\n', NULL, NULL, '2023-06-02 12:03:13', '2023-06-02 12:03:13', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmFamilias', 'unqryPerfiles', 'SQL', 'select *\r\nfrom fza_usuarios_perfiles\r\nwhere (KEY_PERFILES = \'dmFamilias\' \r\nOR KEY_PERFILES=\'frmMtoFamilias\')\r\n', NULL, NULL, '2023-06-02 12:03:13', '2023-06-02 12:03:13', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmFamilias', 'unqryTablaG', 'SQL', 'SELECT *  \r\n  FROM vi_articulos_familias\r\n\r\n', NULL, NULL, '2023-06-02 13:11:48', '2023-06-02 12:03:13', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmFamilias', 'unstrdprcContador', 'Procedure', 'PRC_GET_NEXT_CONT', NULL, NULL, '2023-06-02 12:03:13', '2023-06-02 12:03:13', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmFormasdePago', 'unqryFacturas', 'SQL', 'select * from vi_fac_busquedas\r\n', NULL, NULL, '2023-04-26 13:19:08', '2023-04-26 13:19:08', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmFormasdePago', 'unqryFacturasLineas', 'SQL', 'select *\r\nfrom vi_fac_lin_busquedas l\r\ninner join vi_fac_busquedas f\r\non l.NRO_FACTURA_LINEA = F.NRO_FACTURA\r\nAND l.SERIE_FACTURA_LINEA = F.SERIE_FACTURA\r\n\r\n', NULL, NULL, '2023-04-26 13:19:08', '2023-04-26 13:19:08', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'dmFormasdePago', 'unqryPerfiles', 'SQL', 'select *\r\nfrom fza_usuarios_perfiles\r\nwhere (KEY_PERFILES = \'dmFormasdePago\' \r\nOR KEY_PERFILES=\'frmMtoFormasdePago\')\r\n', NULL, NULL, '2023-04-26 13:19:08', '2023-04-26 13:19:08', 'Administrador', 'Administrador');
@@ -1068,6 +1076,7 @@ INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'btnCarg
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'btnCargarColumnas_Caption', '&Cargar columnas', '', NULL, NULL, '2023-05-24 13:10:43', '2023-05-24 13:10:43', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'btnCargarVblesGlob_Caption', '&Cargar Vbles Globales', '', NULL, NULL, '2023-05-24 13:10:43', '2023-05-24 13:10:43', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'btnGrabar_Caption', '&Grabar', '', NULL, NULL, '2023-05-24 13:10:43', '2023-05-24 13:10:43', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'btnNuevoArticulo_Caption', '&Nuevo Artículo', '', NULL, NULL, '2023-06-02 11:44:36', '2023-06-02 11:44:36', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'btnSalir_Caption', '&Salir', '', NULL, NULL, '2023-05-24 13:10:43', '2023-05-24 13:10:43', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'chkACTIVO_ARTICULO_Caption', 'Es Activo fijo --Es Maquinaria o Aperos-- (Sólo REAGP)', '', NULL, NULL, '2023-05-24 13:10:43', '2023-05-24 13:10:43', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'chkActivo_Caption', 'Activo', '', NULL, NULL, '2023-05-24 13:10:43', '2023-05-24 13:10:43', 'Administrador', 'Administrador');
@@ -1103,7 +1112,7 @@ INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'lblInst
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'lblInstanteModif_Caption', 'Instante Modificación', '', NULL, NULL, '2023-05-24 13:10:43', '2023-05-24 13:10:43', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'lblNombre_Caption', 'Nombre', '', NULL, NULL, '2023-05-24 13:10:43', '2023-05-24 13:10:43', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'lblNombre1_Caption', 'Tipo de Cantidad', '', NULL, NULL, '2023-05-24 13:10:43', '2023-05-24 13:10:43', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'lblTablaOrigen_Caption', 'vi_fza_articulos', '', NULL, NULL, '2023-05-24 13:10:43', '2023-05-24 13:10:43', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'lblTablaOrigen_Caption', 'vi_articulos', '', NULL, NULL, '2023-06-02 11:44:36', '2023-05-24 13:10:43', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'lblTextoaBuscar_Caption', 'Texto a buscar', '', NULL, NULL, '2023-05-24 13:10:43', '2023-05-24 13:10:43', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'lblTextoaBuscarPerfil_Caption', 'Texto a buscar', '', NULL, NULL, '2023-05-24 13:10:43', '2023-05-24 13:10:43', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoArticulos', 'lblTextoLegal11_Caption', 'Orden en Listados', '', NULL, NULL, '2023-05-24 13:10:43', '2023-05-24 13:10:43', 'Administrador', 'Administrador');
@@ -3448,39 +3457,200 @@ INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFacturas', 'tvRecibo
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFacturas', 'tvRecibos_STADO_RECIBO_Index', '6', '', NULL, NULL, '2023-05-09 13:15:14', '2023-05-09 13:15:14', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFacturas', 'tvRecibos_STADO_RECIBO_Visible', 'True', '', NULL, NULL, '2023-05-09 13:15:14', '2023-05-09 13:15:14', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFacturas', 'tvRecibos_STADO_RECIBO_Width', '130', '', NULL, NULL, '2023-05-09 13:15:14', '2023-05-09 13:15:14', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'btnCancelar_Caption', '&Cancelar', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'btnCargarCaptions_Caption', '&Cargar captions', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'btnCargarColumnas_Caption', '&Cargar columnas', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'btnCargarVblesGlob_Caption', '&Cargar Vbles Globales', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'btnGrabar_Caption', '&Grabar', '', NULL, NULL, '2023-06-02 12:33:02', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'btnSalir_Caption', '&Salir', '', NULL, NULL, '2023-06-02 12:48:31', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'chkActivo_Caption', 'Activo', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin__oApplyWidth', 'True', NULL, NULL, NULL, '2023-06-02 12:03:06', '2023-06-02 12:03:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_ACTIVO_FAMILIA_Caption', 'Es Familia activa', '', NULL, NULL, '2023-01-22 08:39:39', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_ACTIVO_FAMILIA_Index', '1', '', NULL, NULL, '2023-01-22 08:39:39', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_ACTIVO_FAMILIA_Visible', 'True', '', NULL, NULL, '2023-01-22 08:39:38', '2023-01-22 08:39:38', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_ACTIVO_FAMILIA_Width', '133', '', NULL, NULL, '2023-01-22 08:39:39', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_ACTIVO_FAMILIA_Width', '162', '', NULL, NULL, '2023-06-02 12:02:36', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_CODIGO_FAMILIA_Caption', 'Código Familia', '', NULL, NULL, '2023-01-22 08:39:35', '2023-01-22 08:39:35', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_CODIGO_FAMILIA_Index', '0', '', NULL, NULL, '2023-01-22 08:39:32', '2023-01-22 08:39:32', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_CODIGO_FAMILIA_Visible', 'True', '', NULL, NULL, '2023-01-22 08:39:31', '2023-01-22 08:39:31', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_CODIGO_FAMILIA_Width', '126', '', NULL, NULL, '2023-01-22 08:39:34', '2023-01-22 08:39:34', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_CODIGO_FAMILIA_Width', '140', '', NULL, NULL, '2023-06-02 12:02:36', '2023-01-22 08:39:34', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_DESCRIPCION_FAMILIA_Caption', 'Descripción', '', NULL, NULL, '2023-01-22 08:39:39', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_DESCRIPCION_FAMILIA_Index', '4', '', NULL, NULL, '2023-01-22 08:39:39', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_DESCRIPCION_FAMILIA_Visible', 'True', '', NULL, NULL, '2023-01-22 08:39:39', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_DESCRIPCION_FAMILIA_Width', '440', '', NULL, NULL, '2023-01-22 08:39:39', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_DESCRIPCION_FAMILIA_Width', '496', '', NULL, NULL, '2023-06-02 12:02:36', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_NOMBRE_FAMILIA_Caption', 'Nombre Familia', '', NULL, NULL, '2023-01-22 08:39:39', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_NOMBRE_FAMILIA_Index', '3', '', NULL, NULL, '2023-01-22 08:39:39', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_NOMBRE_FAMILIA_Visible', 'True', '', NULL, NULL, '2023-01-22 08:39:39', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_NOMBRE_FAMILIA_Width', '215', '', NULL, NULL, '2023-01-22 08:39:39', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_NOMBRE_FAMILIA_Width', '172', '', NULL, NULL, '2023-06-02 12:02:36', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_ORDEN_FAMILIA_Caption', 'Orden en listados', '', NULL, NULL, '2023-01-22 08:39:39', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_ORDEN_FAMILIA_Index', '2', '', NULL, NULL, '2023-01-22 08:39:39', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_ORDEN_FAMILIA_Visible', 'True', '', NULL, NULL, '2023-01-22 08:39:39', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_ORDEN_FAMILIA_Width', '140', '', NULL, NULL, '2023-01-22 08:39:39', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'cxGrdDBTabPrin_ORDEN_FAMILIA_Width', '164', '', NULL, NULL, '2023-06-02 12:02:36', '2023-01-22 08:39:39', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'lblCodigo_Caption', 'Código', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'lblDescripcion_Caption', 'Descipción', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'lblEditMode_Caption', 'Navegando', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'lblInstanteAlta_Caption', 'Instante Alta', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'lblInstanteModif_Caption', 'Instante Modif.', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'lblNombre_Caption', 'Nombre', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'lblOrden_Caption', 'Orden en Listados', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'lblTablaOrigen_Caption', 'fza_articulos_familias', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'lblTextoaBuscar_Caption', 'Texto a buscar', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'lblTextoaBuscarPerfil_Caption', 'Texto a buscar', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'lblUsuarioAlta_Caption', 'Usuario Alta', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'lblUsuarioModif_Caption', 'Usuario Últ. Modif', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'oApplySkin', 'False', '', NULL, NULL, '2023-06-02 12:03:13', '2023-06-02 12:03:13', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'oApplyWidth', 'True', '', NULL, NULL, '2023-06-02 12:03:13', '2023-06-02 12:03:13', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'oBusqGlobal', 'Grid', '', NULL, NULL, '2023-06-02 12:03:13', '2023-06-02 12:03:13', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'oCreateItems', 'False', '', NULL, NULL, '2023-06-02 12:03:13', '2023-06-02 12:03:13', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'oRenameComponents', 'False', '', NULL, NULL, '2023-06-02 12:48:42', '2023-06-02 12:27:47', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'oSkin', 'cxPCPainter', '', NULL, NULL, '2023-06-02 12:03:13', '2023-06-02 12:03:13', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tsArticulos_Caption', '&2_Articulos', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tsFicha_Caption', '&Ficha', '', NULL, NULL, '2023-06-02 12:03:11', '2023-06-02 12:03:11', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tsLista_Caption', '&Lista', '', NULL, NULL, '2023-06-02 12:03:11', '2023-06-02 12:03:11', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tsMasDatos_Caption', '&1_Más Datos', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tsOtros_Caption', '&3_Otros', '', NULL, NULL, '2023-06-02 12:03:12', '2023-06-02 12:03:12', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tsPerfil_Caption', 'Perfil', '', NULL, NULL, '2023-06-02 12:03:11', '2023-06-02 12:03:11', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos__oApplyWidth', 'True', NULL, NULL, NULL, '2023-06-02 12:15:47', '2023-06-02 12:15:47', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_CODIGO_ARTICULO_Caption', 'Código Artículo', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_CODIGO_ARTICULO_Index', '0', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_CODIGO_ARTICULO_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_CODIGO_ARTICULO_Width', '147', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_CODIGO_PROVEEDOR_PRINCIPAL_Caption', 'Código Proveedor Prin.', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_CODIGO_PROVEEDOR_PRINCIPAL_Index', '2', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_CODIGO_PROVEEDOR_PRINCIPAL_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_CODIGO_PROVEEDOR_PRINCIPAL_Width', '206', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_DESCRIPCION_ARTICULO_Caption', 'Descripción', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_DESCRIPCION_ARTICULO_Index', '1', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_DESCRIPCION_ARTICULO_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_DESCRIPCION_ARTICULO_Width', '139', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_ESACTIVO_FIJO_ARTICULO_Caption', 'Activo Fijo', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_ESACTIVO_FIJO_ARTICULO_Index', '9', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_ESACTIVO_FIJO_ARTICULO_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_ESACTIVO_FIJO_ARTICULO_Width', '102', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_ESIMP_INCL_TARIFA_Caption', 'Tarifa Imp Incl', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_ESIMP_INCL_TARIFA_Index', '6', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_ESIMP_INCL_TARIFA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_ESIMP_INCL_TARIFA_Width', '146', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_NOMBRE_TARIFA_Caption', 'Tarifa', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_NOMBRE_TARIFA_Index', '4', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_NOMBRE_TARIFA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_NOMBRE_TARIFA_Width', '78', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_NOMBRE_TIPO_IVA_Caption', 'Tipo de IVA', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_NOMBRE_TIPO_IVA_Index', '7', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_NOMBRE_TIPO_IVA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_NOMBRE_TIPO_IVA_Width', '114', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_PRECIOFINAL_TARIFA_Caption', 'Precio Salida', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_PRECIOFINAL_TARIFA_Index', '5', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_PRECIOFINAL_TARIFA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_PRECIOFINAL_TARIFA_Width', '127', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_RAZON_SOCIAL_PROVEEDOR_PRINCIPAL_Caption', 'Razón Social Proveedor Principal', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_RAZON_SOCIAL_PROVEEDOR_PRINCIPAL_Index', '3', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_RAZON_SOCIAL_PROVEEDOR_PRINCIPAL_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_RAZON_SOCIAL_PROVEEDOR_PRINCIPAL_Width', '277', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_TIPO_CANTIDAD_ARTICULO_Caption', 'Tipo Cantidad', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_TIPO_CANTIDAD_ARTICULO_Index', '8', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_TIPO_CANTIDAD_ARTICULO_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvArticulos_TIPO_CANTIDAD_ARTICULO_Width', '131', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_CANTIDAD_FACTURA_LINEA_Caption', 'Cantidad', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_CANTIDAD_FACTURA_LINEA_Index', '4', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_CANTIDAD_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_CANTIDAD_FACTURA_LINEA_Width', '84', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_CODIGO_ARTICULO_FACTURA_LINEA_Caption', 'Código Tratamiento', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_CODIGO_ARTICULO_FACTURA_LINEA_Index', '1', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_CODIGO_ARTICULO_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_CODIGO_ARTICULO_FACTURA_LINEA_Width', '164', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_DESCRIPCION_ARTICULO_FACTURA_LINEA_Caption', 'Descripción Tratamiento', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_DESCRIPCION_ARTICULO_FACTURA_LINEA_Index', '2', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_DESCRIPCION_ARTICULO_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_DESCRIPCION_ARTICULO_FACTURA_LINEA_Width', '162', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_FECHA_ENTREGA_FACTURA_LINEA_Caption', 'Fecha de Entrega', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_FECHA_ENTREGA_FACTURA_LINEA_Index', '9', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_FECHA_ENTREGA_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_FECHA_ENTREGA_FACTURA_LINEA_Width', '64', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_LINEA_FACTURA_LINEA_Caption', 'LINEA_FACTURA_LINEA', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_LINEA_FACTURA_LINEA_Index', '0', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_LINEA_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_LINEA_FACTURA_LINEA_Width', '28', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_PORCEN_IVA_FACTURA_LINEA_Caption', 'Porcentaje IVA', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_PORCEN_IVA_FACTURA_LINEA_Index', '6', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_PORCEN_IVA_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_PORCEN_IVA_FACTURA_LINEA_Width', '64', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_PRECIOVENTA_CIVA_ARTICULO_FACTURA_LINEA_Caption', 'Precio', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_PRECIOVENTA_CIVA_ARTICULO_FACTURA_LINEA_Index', '7', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_PRECIOVENTA_CIVA_ARTICULO_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_PRECIOVENTA_CIVA_ARTICULO_FACTURA_LINEA_Width', '84', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_PRECIOVENTA_SIVA_ARTICULO_FACTURA_LINEA_Caption', 'PRECIOVENTA_SIVA_ARTICULO_FACTURA_LINEA', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_PRECIOVENTA_SIVA_ARTICULO_FACTURA_LINEA_Index', '5', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_PRECIOVENTA_SIVA_ARTICULO_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_PRECIOVENTA_SIVA_ARTICULO_FACTURA_LINEA_Width', '64', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_TIPO_CANTIDAD_ARTICULO_FACTURA_LINEA_Caption', 'TIPO_CANTIDAD_ARTICULO_FACTURA_LINEA', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_TIPO_CANTIDAD_ARTICULO_FACTURA_LINEA_Index', '3', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_TIPO_CANTIDAD_ARTICULO_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_TIPO_CANTIDAD_ARTICULO_FACTURA_LINEA_Width', '64', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_TIPOIVA_ARTICULO_FACTURA_LINEA_Caption', 'TIPOIVA_ARTICULO_FACTURA_LINEA', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_TIPOIVA_ARTICULO_FACTURA_LINEA_Index', '10', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_TIPOIVA_ARTICULO_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_TIPOIVA_ARTICULO_FACTURA_LINEA_Width', '64', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_TOTAL_FACTURA_LINEA_Caption', 'Total', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_TOTAL_FACTURA_LINEA_Index', '8', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_TOTAL_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvLineasFacturacion_TOTAL_FACTURA_LINEA_Width', '84', '', NULL, NULL, '2023-06-02 12:02:38', '2023-06-02 12:02:38', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_INSTANTEALTA_Caption', 'INSTANTEALTA', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_INSTANTEALTA_Index', '15', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_INSTANTEALTA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_INSTANTEALTA_Width', '202', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_INSTANTEMODIF_Caption', 'INSTANTEMODIF', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_INSTANTEMODIF_Index', '14', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_INSTANTEMODIF_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_INSTANTEMODIF_Width', '202', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_KEY_PERFILES_Caption', 'KEY_PERFILES', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_KEY_PERFILES_Index', '8', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_KEY_PERFILES_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_KEY_PERFILES_Width', '112', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_SUBKEY_PERFILES_Caption', 'SUBKEY_PERFILES', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_SUBKEY_PERFILES_Index', '9', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_SUBKEY_PERFILES_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_SUBKEY_PERFILES_Width', '291', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_TYPE_BLOB_PERFILES_Caption', 'TYPE_BLOB_PERFILES', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_TYPE_BLOB_PERFILES_Index', '12', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_TYPE_BLOB_PERFILES_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_TYPE_BLOB_PERFILES_Width', '114', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_USUARIO_GRUPO_PERFILES_Caption', 'USUARIO_GRUPO_PERFILES', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_USUARIO_GRUPO_PERFILES_Index', '7', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_USUARIO_GRUPO_PERFILES_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_USUARIO_GRUPO_PERFILES_Width', '167', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_USUARIOALTA_Caption', 'USUARIOALTA', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_USUARIOALTA_Index', '16', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_USUARIOALTA_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_USUARIOALTA_Width', '88', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_USUARIOMODIF_Caption', 'USUARIOMODIF', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_USUARIOMODIF_Index', '17', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_USUARIOMODIF_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_USUARIOMODIF_Width', '96', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:37', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_VALUE_BLOB_PERFILES_Caption', 'VALUE_BLOB_PERFILES', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_VALUE_BLOB_PERFILES_Index', '13', '', NULL, NULL, '2023-06-02 12:02:37', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_VALUE_BLOB_PERFILES_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_VALUE_BLOB_PERFILES_Width', '114', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_VALUE_PERFILES_Caption', 'VALUE_PERFILES', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_VALUE_PERFILES_Index', '10', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_VALUE_PERFILES_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_VALUE_PERFILES_Width', '188', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_VALUE_TEXT_PERFILES_Caption', 'VALUE_TEXT_PERFILES', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_VALUE_TEXT_PERFILES_Index', '11', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_VALUE_TEXT_PERFILES_Visible', 'True', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFamilias', 'tvPerfil_VALUE_TEXT_PERFILES_Width', '114', '', NULL, NULL, '2023-06-02 12:02:36', '2023-06-02 12:02:36', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin__oApplyWidth', 'True', NULL, NULL, NULL, '2023-04-26 13:19:42', '2023-04-26 13:19:42', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_ACTIVO_FORMAPAGO_Caption', 'Activo', '', NULL, NULL, '2023-04-26 13:18:22', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_ACTIVO_FORMAPAGO_Index', '1', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_ACTIVO_FORMAPAGO_Visible', 'True', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_ACTIVO_FORMAPAGO_Width', '91', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_ACTIVO_FORMAPAGO_Width', '57', '', NULL, NULL, '2023-06-01 14:12:39', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_CODIGO_FORMAPAGO_Caption', 'Código', '', NULL, NULL, '2023-04-26 13:18:26', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_CODIGO_FORMAPAGO_Index', '0', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_CODIGO_FORMAPAGO_Visible', 'True', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_CODIGO_FORMAPAGO_Width', '196', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_CODIGO_FORMAPAGO_Width', '91', '', NULL, NULL, '2023-06-01 14:12:39', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_DESCRIPCION_FORMAPAGO_Caption', 'Descripción', '', NULL, NULL, '2023-04-26 13:18:29', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_DESCRIPCION_FORMAPAGO_Index', '3', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_DESCRIPCION_FORMAPAGO_Visible', 'True', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_DESCRIPCION_FORMAPAGO_Width', '231', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_DESCRIPCION_FORMAPAGO_Width', '166', '', NULL, NULL, '2023-06-01 14:12:39', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_DIAS_ENTRE_PLAZOS_FORMAPAGO_Caption', 'Días entre plazos', '', NULL, NULL, '2023-04-26 13:18:33', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_DIAS_ENTRE_PLAZOS_FORMAPAGO_Index', '5', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_DIAS_ENTRE_PLAZOS_FORMAPAGO_Visible', 'True', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
@@ -3488,19 +3658,23 @@ INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGr
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_ESDEFAULT_FORMAPAGO_Caption', 'PorDefecto', '', NULL, NULL, '2023-04-26 13:18:38', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_ESDEFAULT_FORMAPAGO_Index', '6', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_ESDEFAULT_FORMAPAGO_Visible', 'True', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_ESDEFAULT_FORMAPAGO_Width', '159', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_ESDEFAULT_FORMAPAGO_Width', '95', '', NULL, NULL, '2023-06-01 14:12:39', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_N_DIAS_ENTRE_PLAZOS_FORMAPAGO_Caption', 'N_DIAS_ENTRE_PLAZOS_FORMAPAGO', '', NULL, NULL, '2023-06-01 14:12:39', '2023-06-01 14:12:39', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_N_DIAS_ENTRE_PLAZOS_FORMAPAGO_Index', '5', '', NULL, NULL, '2023-06-01 14:12:39', '2023-06-01 14:12:39', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_N_DIAS_ENTRE_PLAZOS_FORMAPAGO_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:39', '2023-06-01 14:12:39', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_N_DIAS_ENTRE_PLAZOS_FORMAPAGO_Width', '309', '', NULL, NULL, '2023-06-01 14:12:39', '2023-06-01 14:12:39', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_N_PLAZOS_FORMAPAGO_Caption', 'Número de plazos', '', NULL, NULL, '2023-04-26 13:18:42', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_N_PLAZOS_FORMAPAGO_Index', '4', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_N_PLAZOS_FORMAPAGO_Visible', 'True', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_N_PLAZOS_FORMAPAGO_Width', '114', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_N_PLAZOS_FORMAPAGO_Width', '158', '', NULL, NULL, '2023-06-01 14:12:39', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_ORDEN_FORMAPAGO_Caption', 'Orden en listados', '', NULL, NULL, '2023-04-26 13:18:46', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_ORDEN_FORMAPAGO_Index', '2', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_ORDEN_FORMAPAGO_Visible', 'True', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_ORDEN_FORMAPAGO_Width', '120', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_ORDEN_FORMAPAGO_Width', '153', '', NULL, NULL, '2023-06-01 14:12:39', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_PORCEN_ANTICIPO_FORMAPAGO_Caption', 'Porcentaje Anticipo', '', NULL, NULL, '2023-04-26 13:18:51', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_PORCEN_ANTICIPO_FORMAPAGO_Index', '7', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_PORCEN_ANTICIPO_FORMAPAGO_Visible', 'True', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_PORCEN_ANTICIPO_FORMAPAGO_Width', '114', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'cxGrdDBTabPrin_PORCEN_ANTICIPO_FORMAPAGO_Width', '167', '', NULL, NULL, '2023-06-01 14:12:39', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'oApplySkin', 'False', '', NULL, NULL, '2023-04-26 13:19:08', '2023-04-26 13:19:08', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'oApplyWidth', 'True', '', NULL, NULL, '2023-04-26 13:19:08', '2023-04-26 13:19:08', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'oBusqGlobal', 'Grid', '', NULL, NULL, '2023-04-26 13:19:08', '2023-04-26 13:19:08', 'Administrador', 'Administrador');
@@ -3508,85 +3682,277 @@ INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'oCre
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'oSkin', 'cxPCPainter', '', NULL, NULL, '2023-04-26 13:19:08', '2023-04-26 13:19:08', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion__oApplyWidth', 'True', NULL, NULL, NULL, '2023-05-08 13:47:44', '2023-05-08 13:47:33', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CODIGO_CLIENTE_FACTURA_Caption', 'Código Cliente', '', NULL, NULL, '2023-02-04 09:30:11', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CODIGO_CLIENTE_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CODIGO_CLIENTE_FACTURA_Index', '9', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CODIGO_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CODIGO_CLIENTE_FACTURA_Width', '103', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CODIGO_CLIENTE_FACTURA_Width', '131', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CODIGO_EMPRESA_FACTURA_Caption', 'CODIGO_EMPRESA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CODIGO_EMPRESA_FACTURA_Index', '53', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CODIGO_EMPRESA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CODIGO_EMPRESA_FACTURA_Width', '243', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_COMENTARIOS_FACTURA_Caption', 'Comentarios', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_COMENTARIOS_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_COMENTARIOS_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_COMENTARIOS_FACTURA_Width', '180', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CPOSTAL_CLIENTE_FACTURA_Caption', 'Código Postal Cliente', '', NULL, NULL, '2023-02-04 09:30:20', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CPOSTAL_CLIENTE_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CPOSTAL_CLIENTE_FACTURA_Index', '18', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CPOSTAL_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CPOSTAL_CLIENTE_FACTURA_Width', '139', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CPOSTAL_CLIENTE_FACTURA_Width', '186', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CPOSTAL_EMPRESA_FACTURA_Caption', 'CPOSTAL_EMPRESA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CPOSTAL_EMPRESA_FACTURA_Index', '63', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CPOSTAL_EMPRESA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_CPOSTAL_EMPRESA_FACTURA_Width', '247', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DESCRIPCION_ZONA_IVA_Caption', 'DESCRIPCION_ZONA_IVA', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DESCRIPCION_ZONA_IVA_EMPRESA_FACTURA_Caption', 'DESCRIPCION_ZONA_IVA_EMPRESA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DESCRIPCION_ZONA_IVA_EMPRESA_FACTURA_Index', '65', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DESCRIPCION_ZONA_IVA_EMPRESA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DESCRIPCION_ZONA_IVA_EMPRESA_FACTURA_Width', '378', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DESCRIPCION_ZONA_IVA_Index', '31', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DESCRIPCION_ZONA_IVA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DESCRIPCION_ZONA_IVA_Width', '209', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION1_CLIENTE_FACTURA_Caption', 'Dirección Cliente', '', NULL, NULL, '2023-02-04 09:30:26', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION1_CLIENTE_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION1_CLIENTE_FACTURA_Index', '14', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION1_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION1_CLIENTE_FACTURA_Width', '239', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION1_CLIENTE_FACTURA_Width', '150', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION1_EMPRESA_FACTURA_Caption', 'DIRECCION1_EMPRESA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION1_EMPRESA_FACTURA_Index', '58', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION1_EMPRESA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION1_EMPRESA_FACTURA_Width', '280', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION2_CLIENTE_FACTURA_Caption', 'Dirección Más Cliente', '', NULL, NULL, '2023-02-04 09:30:33', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION2_CLIENTE_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION2_CLIENTE_FACTURA_Index', '15', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION2_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION2_CLIENTE_FACTURA_Width', '239', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION2_CLIENTE_FACTURA_Width', '190', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION2_EMPRESA_FACTURA_Caption', 'DIRECCION2_EMPRESA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION2_EMPRESA_FACTURA_Index', '59', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION2_EMPRESA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_DIRECCION2_EMPRESA_FACTURA_Width', '280', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_EMAIL_CLIENTE_FACTURA_Caption', 'Email Cliente', '', NULL, NULL, '2023-02-04 09:30:37', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_EMAIL_CLIENTE_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_EMAIL_CLIENTE_FACTURA_Index', '13', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_EMAIL_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_EMAIL_CLIENTE_FACTURA_Width', '192', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_EMAIL_CLIENTE_FACTURA_Width', '115', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_EMAIL_EMPRESA_FACTURA_Caption', 'EMAIL_EMPRESA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_EMAIL_EMPRESA_FACTURA_Index', '57', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_EMAIL_EMPRESA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_EMAIL_EMPRESA_FACTURA_Width', '226', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESAPLICA_RE_ZONA_IVA_FACTURA_Caption', 'ESAPLICA_RE_ZONA_IVA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESAPLICA_RE_ZONA_IVA_FACTURA_Index', '28', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESAPLICA_RE_ZONA_IVA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESAPLICA_RE_ZONA_IVA_FACTURA_Width', '286', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIMP_INCL_TARIFA_CLIENTE_FACTURA_Caption', 'ESIMP_INCL_TARIFA_CLIENTE_FACTURA', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIMP_INCL_TARIFA_CLIENTE_FACTURA_Index', '25', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIMP_INCL_TARIFA_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIMP_INCL_TARIFA_CLIENTE_FACTURA_Width', '332', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESINTRACOMUNITARIO_CLIENTE_FACTURA_Caption', 'ESINTRACOMUNITARIO_CLIENTE_FACTURA', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESINTRACOMUNITARIO_CLIENTE_FACTURA_Index', '26', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESINTRACOMUNITARIO_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESINTRACOMUNITARIO_CLIENTE_FACTURA_Width', '361', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIRPF_IMP_INCL_ZONA_IVA_FACTURA_Caption', 'ESIRPF_IMP_INCL_ZONA_IVA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIRPF_IMP_INCL_ZONA_IVA_FACTURA_Index', '27', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIRPF_IMP_INCL_ZONA_IVA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIRPF_IMP_INCL_ZONA_IVA_FACTURA_Width', '324', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIVA_EXENTO_CLIENTE_FACTURA_Caption', 'ESIVA_EXENTO_CLIENTE_FACTURA', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIVA_EXENTO_CLIENTE_FACTURA_Index', '21', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIVA_EXENTO_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIVA_EXENTO_CLIENTE_FACTURA_Width', '287', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIVA_RECARGO_CLIENTE_FACTURA_Caption', 'ESIVA_RECARGO_CLIENTE_FACTURA', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIVA_RECARGO_CLIENTE_FACTURA_Index', '20', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIVA_RECARGO_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIVA_RECARGO_CLIENTE_FACTURA_Width', '300', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIVAAGRICOLA_ZONA_IVA_FACTURA_Caption', 'ESIVAAGRICOLA_ZONA_IVA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIVAAGRICOLA_ZONA_IVA_FACTURA_Index', '29', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIVAAGRICOLA_ZONA_IVA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESIVAAGRICOLA_ZONA_IVA_FACTURA_Width', '313', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESREGIMENESPECIALAGRICOLA_CLIENTE_FACTURA_Caption', 'ESREGIMENESPECIALAGRICOLA_CLIENTE_FACTURA', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESREGIMENESPECIALAGRICOLA_CLIENTE_FACTURA_Index', '22', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESREGIMENESPECIALAGRICOLA_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESREGIMENESPECIALAGRICOLA_CLIENTE_FACTURA_Width', '421', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESREGIMENESPECIALAGRICOLA_EMPRESA_FACTURA_Caption', 'ESREGIMENESPECIALAGRICOLA_EMPRESA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESREGIMENESPECIALAGRICOLA_EMPRESA_FACTURA_Index', '66', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESREGIMENESPECIALAGRICOLA_EMPRESA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESREGIMENESPECIALAGRICOLA_EMPRESA_FACTURA_Width', '428', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESRETENCIONES_CLIENTE_FACTURA_Caption', 'ESRETENCIONES_CLIENTE_FACTURA', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESRETENCIONES_CLIENTE_FACTURA_Index', '23', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESRETENCIONES_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESRETENCIONES_CLIENTE_FACTURA_Width', '299', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESRETENCIONES_EMPRESA_FACTURA_Caption', 'ESRETENCIONES_EMPRESA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESRETENCIONES_EMPRESA_FACTURA_Index', '64', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESRETENCIONES_EMPRESA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESRETENCIONES_EMPRESA_FACTURA_Width', '306', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESVENTA_ACTIVO_FIJO_FACTURA_Caption', 'ESVENTA_ACTIVO_FIJO_FACTURA', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESVENTA_ACTIVO_FIJO_FACTURA_Index', '32', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESVENTA_ACTIVO_FIJO_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_ESVENTA_ACTIVO_FIJO_FACTURA_Width', '277', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_FECHA_FACTURA_Caption', 'Fecha', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_FECHA_FACTURA_Index', '0', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_FECHA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_FECHA_FACTURA_Width', '94', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_FECHA_FACTURA_Width', '54', '', NULL, NULL, '2023-06-01 14:12:39', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_FORMA_PAGO_FACTURA_Caption', 'Forma de Pago', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_FORMA_PAGO_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_FORMA_PAGO_FACTURA_Index', '8', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_FORMA_PAGO_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_FORMA_PAGO_FACTURA_Width', '151', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_FORMA_PAGO_FACTURA_Width', '128', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_MOVIL_CLIENTE_FACTURA_Caption', 'Móvil Cliente', '', NULL, NULL, '2023-02-04 09:30:48', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_MOVIL_CLIENTE_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_MOVIL_CLIENTE_FACTURA_Index', '12', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_MOVIL_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_MOVIL_CLIENTE_FACTURA_Width', '196', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_MOVIL_CLIENTE_FACTURA_Width', '118', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_MOVIL_EMPRESA_FACTURA_Caption', 'MOVIL_EMPRESA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_MOVIL_EMPRESA_FACTURA_Index', '56', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_MOVIL_EMPRESA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_MOVIL_EMPRESA_FACTURA_Width', '230', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NIF_CLIENTE_FACTURA_Caption', 'Nif Cliente', '', NULL, NULL, '2023-02-04 09:30:52', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NIF_CLIENTE_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NIF_CLIENTE_FACTURA_Index', '11', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NIF_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NIF_CLIENTE_FACTURA_Width', '184', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NIF_CLIENTE_FACTURA_Width', '94', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NIF_EMPRESA_FACTURA_Caption', 'NIF_EMPRESA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NIF_EMPRESA_FACTURA_Index', '55', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NIF_EMPRESA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NIF_EMPRESA_FACTURA_Width', '203', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NOMBRE_TARIFA_CLIENTE_Caption', 'NOMBRE_TARIFA_CLIENTE', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NOMBRE_TARIFA_CLIENTE_Index', '24', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NOMBRE_TARIFA_CLIENTE_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NOMBRE_TARIFA_CLIENTE_Width', '221', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NRO_FACTURA_Caption', 'Nro Factura', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NRO_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NRO_FACTURA_Index', '1', '', NULL, NULL, '2023-06-01 14:12:39', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NRO_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NRO_FACTURA_Width', '99', '', NULL, NULL, '2023-02-05 08:21:26', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_NRO_FACTURA_Width', '102', '', NULL, NULL, '2023-06-01 14:12:39', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PAIS_CLIENTE_FACTURA_Caption', 'País Cliente', '', NULL, NULL, '2023-02-04 09:30:56', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PAIS_CLIENTE_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PAIS_CLIENTE_FACTURA_Index', '19', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PAIS_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PAIS_CLIENTE_FACTURA_Width', '191', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PAIS_CLIENTE_FACTURA_Width', '102', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PAIS_EMPRESA_FACTURA_Caption', 'PAIS_EMPRESA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PAIS_EMPRESA_FACTURA_Index', '62', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PAIS_EMPRESA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PAIS_EMPRESA_FACTURA_Width', '209', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PALABRA_REPORTS_ZONA_IVA_FACTURA_Caption', 'PALABRA_REPORTS_ZONA_IVA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PALABRA_REPORTS_ZONA_IVA_FACTURA_Index', '30', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PALABRA_REPORTS_ZONA_IVA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PALABRA_REPORTS_ZONA_IVA_FACTURA_Width', '334', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_POBLACION_CLIENTE_FACTURA_Caption', 'Población Cliente', '', NULL, NULL, '2023-02-04 09:31:02', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_POBLACION_CLIENTE_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_POBLACION_CLIENTE_FACTURA_Index', '16', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_POBLACION_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_POBLACION_CLIENTE_FACTURA_Width', '235', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_POBLACION_CLIENTE_FACTURA_Width', '152', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_POBLACION_EMPRESA_FACTURA_Caption', 'POBLACION_EMPRESA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_POBLACION_EMPRESA_FACTURA_Index', '60', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_POBLACION_EMPRESA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_POBLACION_EMPRESA_FACTURA_Width', '270', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAE_FACTURA_Caption', 'PORCEN_IVAE_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAE_FACTURA_Index', '48', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAE_FACTURA_Width', '203', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAN_FACTURA_Caption', 'PORCEN_IVAN_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAN_FACTURA_Index', '33', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAN_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAN_FACTURA_Width', '207', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAR_FACTURA_Caption', 'PORCEN_IVAR_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAR_FACTURA_Index', '38', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAR_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAR_FACTURA_Width', '205', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAS_FACTURA_Caption', 'PORCEN_IVAS_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAS_FACTURA_Index', '43', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAS_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_IVAS_FACTURA_Width', '203', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_REE_FACTURA_Caption', 'PORCEN_REE_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_REE_FACTURA_Index', '50', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_REE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_REE_FACTURA_Width', '195', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_REN_FACTURA_Caption', 'PORCEN_REN_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_REN_FACTURA_Index', '35', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_REN_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_REN_FACTURA_Width', '199', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_RER_FACTURA_Caption', 'PORCEN_RER_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_RER_FACTURA_Index', '40', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_RER_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_RER_FACTURA_Width', '197', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_RES_FACTURA_Caption', 'PORCEN_RES_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_RES_FACTURA_Index', '45', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_RES_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_RES_FACTURA_Width', '195', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_RETENCION_FACTURA_Caption', '% Retención IRPF', '', NULL, NULL, '2023-02-04 09:27:21', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_RETENCION_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_RETENCION_FACTURA_Index', '4', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_RETENCION_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_RETENCION_FACTURA_Width', '96', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PORCEN_RETENCION_FACTURA_Width', '145', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PROVINCIA_CLIENTE_FACTURA_Caption', 'Provincia Cliente', '', NULL, NULL, '2023-02-04 09:31:07', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PROVINCIA_CLIENTE_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PROVINCIA_CLIENTE_FACTURA_Index', '17', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PROVINCIA_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PROVINCIA_CLIENTE_FACTURA_Width', '241', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PROVINCIA_CLIENTE_FACTURA_Width', '146', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PROVINCIA_EMPRESA_FACTURA_Caption', 'PROVINCIA_EMPRESA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PROVINCIA_EMPRESA_FACTURA_Index', '61', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PROVINCIA_EMPRESA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_PROVINCIA_EMPRESA_FACTURA_Width', '266', '', NULL, NULL, '2023-06-01 14:12:42', '2023-06-01 14:12:42', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_RAZONSOCIAL_CLIENTE_FACTURA_Caption', 'Razón Social Cliente', '', NULL, NULL, '2023-02-04 09:31:12', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_RAZONSOCIAL_CLIENTE_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_RAZONSOCIAL_CLIENTE_FACTURA_Index', '10', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_RAZONSOCIAL_CLIENTE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_RAZONSOCIAL_CLIENTE_FACTURA_Width', '253', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_RAZONSOCIAL_CLIENTE_FACTURA_Width', '176', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_RAZONSOCIAL_EMPRESA_FACTURA_Caption', 'RAZONSOCIAL_EMPRESA_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_RAZONSOCIAL_EMPRESA_FACTURA_Index', '54', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_RAZONSOCIAL_EMPRESA_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_RAZONSOCIAL_EMPRESA_FACTURA_Width', '292', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_SERIE_FACTURA_Caption', 'Serie Factura', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_SERIE_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_SERIE_FACTURA_Index', '2', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_SERIE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_SERIE_FACTURA_Width', '107', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_SERIE_FACTURA_Width', '111', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAE_FACTURA_Caption', 'TOTAL_BASEI_IVAE_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAE_FACTURA_Index', '52', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAE_FACTURA_Width', '242', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAN_FACTURA_Caption', 'TOTAL_BASEI_IVAN_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAN_FACTURA_Index', '37', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAN_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAN_FACTURA_Width', '246', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAR_FACTURA_Caption', 'TOTAL_BASEI_IVAR_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAR_FACTURA_Index', '42', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAR_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAR_FACTURA_Width', '244', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAS_FACTURA_Caption', 'TOTAL_BASEI_IVAS_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAS_FACTURA_Index', '47', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAS_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASEI_IVAS_FACTURA_Width', '242', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASES_FACTURA_Caption', 'TOTAL_BASES_FACTURA', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASES_FACTURA_Index', '3', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASES_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_BASES_FACTURA_Width', '200', '', NULL, NULL, '2023-06-01 14:12:40', '2023-06-01 14:12:40', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IMPUESTOS_FACTURA_Caption', 'Total IVA', '', NULL, NULL, '2023-02-04 09:26:37', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IMPUESTOS_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IMPUESTOS_FACTURA_Index', '6', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IMPUESTOS_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IMPUESTOS_FACTURA_Width', '122', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IMPUESTOS_FACTURA_Width', '80', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAE_FACTURA_Caption', 'TOTAL_IVAE_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAE_FACTURA_Index', '49', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAE_FACTURA_Width', '189', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAN_FACTURA_Caption', 'TOTAL_IVAN_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAN_FACTURA_Index', '34', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAN_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAN_FACTURA_Width', '193', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAR_FACTURA_Caption', 'TOTAL_IVAR_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAR_FACTURA_Index', '39', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAR_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAR_FACTURA_Width', '191', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAS_FACTURA_Caption', 'TOTAL_IVAS_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAS_FACTURA_Index', '44', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAS_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_IVAS_FACTURA_Width', '189', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_LIQUIDO_FACTURA_Caption', 'Total Líquido', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_LIQUIDO_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_LIQUIDO_FACTURA_Index', '7', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_LIQUIDO_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_LIQUIDO_FACTURA_Width', '104', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_LIQUIDO_FACTURA_Width', '117', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_REE_FACTURA_Caption', 'TOTAL_REE_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_REE_FACTURA_Index', '51', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_REE_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_REE_FACTURA_Width', '181', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_REN_FACTURA_Caption', 'TOTAL_REN_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_REN_FACTURA_Index', '36', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_REN_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_REN_FACTURA_Width', '185', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_RER_FACTURA_Caption', 'TOTAL_RER_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_RER_FACTURA_Index', '41', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_RER_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_RER_FACTURA_Width', '183', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_RES_FACTURA_Caption', 'TOTAL_RES_FACTURA', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_RES_FACTURA_Index', '46', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_RES_FACTURA_Visible', 'True', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_RES_FACTURA_Width', '181', '', NULL, NULL, '2023-06-01 14:12:41', '2023-06-01 14:12:41', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_RETENCION_FACTURA_Caption', 'Total Retención IRPF', '', NULL, NULL, '2023-02-04 09:27:55', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_RETENCION_FACTURA_Index', '0', '', NULL, NULL, '2023-02-05 10:02:31', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_RETENCION_FACTURA_Index', '5', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_RETENCION_FACTURA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:25:46', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_RETENCION_FACTURA_Width', '168', '', NULL, NULL, '2023-02-05 08:21:26', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvFacturacion_TOTAL_RETENCION_FACTURA_Width', '176', '', NULL, NULL, '2023-06-01 14:12:40', '2023-02-04 09:25:46', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_CANTIDAD_FACTURA_LINEA_Caption', 'Cantidad', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_CANTIDAD_FACTURA_LINEA_Index', '3', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_CANTIDAD_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
@@ -3602,31 +3968,31 @@ INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLi
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_FECHA_ENTREGA_FACTURA_LINEA_Caption', 'Fecha de Entrega', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_FECHA_ENTREGA_FACTURA_LINEA_Index', '10', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_FECHA_ENTREGA_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_FECHA_ENTREGA_FACTURA_LINEA_Width', '166', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_FECHA_ENTREGA_FACTURA_LINEA_Width', '64', '', NULL, NULL, '2023-06-01 14:12:42', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_LINEA_FACTURA_LINEA_Caption', 'Nro Linea', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_LINEA_FACTURA_LINEA_Index', '0', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_LINEA_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_LINEA_FACTURA_LINEA_Width', '87', '', NULL, NULL, '2023-02-04 09:16:48', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_LINEA_FACTURA_LINEA_Width', '28', '', NULL, NULL, '2023-06-01 14:12:42', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_PORCEN_IVA_FACTURA_LINEA_Caption', 'Porcentaje IVA', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_PORCEN_IVA_FACTURA_LINEA_Index', '6', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_PORCEN_IVA_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_PORCEN_IVA_FACTURA_LINEA_Width', '125', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_PORCEN_IVA_FACTURA_LINEA_Width', '64', '', NULL, NULL, '2023-06-01 14:12:42', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_PRECIOVENTA_CIVA_ARTICULO_FACTURA_LINEA_Caption', 'Precio CIVA', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_PRECIOVENTA_CIVA_ARTICULO_FACTURA_LINEA_Index', '8', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_PRECIOVENTA_CIVA_ARTICULO_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_PRECIOVENTA_CIVA_ARTICULO_FACTURA_LINEA_Width', '99', '', NULL, NULL, '2023-02-04 09:20:11', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_PRECIOVENTA_CIVA_ARTICULO_FACTURA_LINEA_Width', '84', '', NULL, NULL, '2023-06-01 14:12:42', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_PRECIOVENTA_SIVA_ARTICULO_FACTURA_LINEA_Caption', 'Precio SIVA', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_PRECIOVENTA_SIVA_ARTICULO_FACTURA_LINEA_Index', '5', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_PRECIOVENTA_SIVA_ARTICULO_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_PRECIOVENTA_SIVA_ARTICULO_FACTURA_LINEA_Width', '94', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_PRECIOVENTA_SIVA_ARTICULO_FACTURA_LINEA_Width', '64', '', NULL, NULL, '2023-06-01 14:12:42', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_TIPO_CANTIDAD_ARTICULO_FACTURA_LINEA_Caption', 'Tipo Cantidad', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_TIPO_CANTIDAD_ARTICULO_FACTURA_LINEA_Index', '4', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_TIPO_CANTIDAD_ARTICULO_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_TIPO_CANTIDAD_ARTICULO_FACTURA_LINEA_Width', '184', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_TIPO_CANTIDAD_ARTICULO_FACTURA_LINEA_Width', '64', '', NULL, NULL, '2023-06-01 14:12:42', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_TIPOIVA_ARTICULO_FACTURA_LINEA_Caption', 'Tipo IVA', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_TIPOIVA_ARTICULO_FACTURA_LINEA_Index', '7', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_TIPOIVA_ARTICULO_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_TIPOIVA_ARTICULO_FACTURA_LINEA_Width', '87', '', NULL, NULL, '2023-02-04 09:20:11', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_TIPOIVA_ARTICULO_FACTURA_LINEA_Width', '64', '', NULL, NULL, '2023-06-01 14:12:42', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_TOTAL_FACTURA_LINEA_Caption', 'Total', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_TOTAL_FACTURA_LINEA_Index', '9', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLineasFacturacion_TOTAL_FACTURA_LINEA_Visible', 'True', '', NULL, NULL, '2023-02-04 09:16:06', '2023-02-04 09:16:06', 'Administrador', 'Administrador');
@@ -3634,7 +4000,7 @@ INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvLi
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvPerfil_KEY_PERFILES_Caption', 'KEY_PERFILES', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvPerfil_KEY_PERFILES_Index', '1', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvPerfil_KEY_PERFILES_Visible', 'True', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
-INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvPerfil_KEY_PERFILES_Width', '132', '', NULL, NULL, '2023-04-26 12:24:58', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvPerfil_KEY_PERFILES_Width', '194', '', NULL, NULL, '2023-06-01 14:12:39', '2023-04-26 12:24:58', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvPerfil_SUBKEY_PERFILES_Caption', 'SUBKEY_PERFILES', '', NULL, NULL, '2023-04-26 12:24:59', '2023-04-26 12:24:59', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvPerfil_SUBKEY_PERFILES_Index', '2', '', NULL, NULL, '2023-04-26 12:24:59', '2023-04-26 12:24:59', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoFormasdePago', 'tvPerfil_SUBKEY_PERFILES_Visible', 'True', '', NULL, NULL, '2023-04-26 12:24:59', '2023-04-26 12:24:59', 'Administrador', 'Administrador');
@@ -3763,6 +4129,58 @@ INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGeneradorProcesos', 
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGeneradorProcesos', 'tvPerfil_VALUE_TEXT_PERFILES_Index', '11', '', NULL, NULL, '2023-04-27 12:29:42', '2023-04-27 12:29:41', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGeneradorProcesos', 'tvPerfil_VALUE_TEXT_PERFILES_Visible', 'True', '', NULL, NULL, '2023-04-27 12:29:41', '2023-04-27 12:29:41', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGeneradorProcesos', 'tvPerfil_VALUE_TEXT_PERFILES_Width', '114', '', NULL, NULL, '2023-04-27 12:29:42', '2023-04-27 12:29:41', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'cxGrdDBTabPrin_ESGRUPOADMINISTRADOR_GRUPO_Caption', 'Es Grupo Administrador', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'cxGrdDBTabPrin_ESGRUPOADMINISTRADOR_GRUPO_Index', '1', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'cxGrdDBTabPrin_ESGRUPOADMINISTRADOR_GRUPO_Visible', 'True', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'cxGrdDBTabPrin_ESGRUPOADMINISTRADOR_GRUPO_Width', '212', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'cxGrdDBTabPrin_GRUPO_GRUPO_Caption', 'Nombre Grupo', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'cxGrdDBTabPrin_GRUPO_GRUPO_Index', '0', '', NULL, NULL, '2023-06-01 14:11:16', '2023-06-01 14:11:16', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'cxGrdDBTabPrin_GRUPO_GRUPO_Visible', 'True', '', NULL, NULL, '2023-06-01 14:11:16', '2023-06-01 14:11:16', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'cxGrdDBTabPrin_GRUPO_GRUPO_Width', '160', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_KEY_PERFILES_Caption', 'KEY_PERFILES', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_KEY_PERFILES_Index', '1', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_KEY_PERFILES_Visible', 'True', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_KEY_PERFILES_Width', '132', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_SUBKEY_PERFILES_Caption', 'SUBKEY_PERFILES', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_SUBKEY_PERFILES_Index', '2', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_SUBKEY_PERFILES_Visible', 'True', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_SUBKEY_PERFILES_Width', '190', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_TYPE_BLOB_PERFILES_Caption', 'TYPE_BLOB_PERFILES', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_TYPE_BLOB_PERFILES_Index', '5', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_TYPE_BLOB_PERFILES_Visible', 'True', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_TYPE_BLOB_PERFILES_Width', '114', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_USUARIO_GRUPO_PERFILES_Caption', 'USUARIO_GRUPO_PERFILES', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_USUARIO_GRUPO_PERFILES_Index', '0', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_USUARIO_GRUPO_PERFILES_Visible', 'True', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_USUARIO_GRUPO_PERFILES_Width', '167', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_VALUE_BLOB_PERFILES_Caption', 'VALUE_BLOB_PERFILES', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_VALUE_BLOB_PERFILES_Index', '6', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_VALUE_BLOB_PERFILES_Visible', 'True', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_VALUE_BLOB_PERFILES_Width', '114', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_VALUE_PERFILES_Caption', 'VALUE_PERFILES', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_VALUE_PERFILES_Index', '3', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_VALUE_PERFILES_Visible', 'True', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_VALUE_PERFILES_Width', '112', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_VALUE_TEXT_PERFILES_Caption', 'VALUE_TEXT_PERFILES', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_VALUE_TEXT_PERFILES_Index', '4', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_VALUE_TEXT_PERFILES_Visible', 'True', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvPerfil_VALUE_TEXT_PERFILES_Width', '140', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_EMPRESADEF_USUARIO_Caption', 'Empresa por defecto', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_EMPRESADEF_USUARIO_Index', '2', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_EMPRESADEF_USUARIO_Visible', 'True', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_EMPRESADEF_USUARIO_Width', '156', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_GRUPO_USUARIO_Caption', 'Grupo', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_GRUPO_USUARIO_Index', '1', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_GRUPO_USUARIO_Visible', 'True', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_GRUPO_USUARIO_Width', '140', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_ULTIMOLOGIN_USUARIO_Caption', 'Última conexión', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_ULTIMOLOGIN_USUARIO_Index', '3', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_ULTIMOLOGIN_USUARIO_Visible', 'True', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_ULTIMOLOGIN_USUARIO_Width', '177', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_USUARIO_USUARIO_Caption', 'Usuario', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_USUARIO_USUARIO_Index', '0', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_USUARIO_USUARIO_Visible', 'True', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoGrupos', 'tvUsuarios_USUARIO_USUARIO_Width', '133', '', NULL, NULL, '2023-06-01 14:11:17', '2023-06-01 14:11:17', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoIvas', 'btnCancelar_Caption', '&Cancelar', '', NULL, NULL, '2023-04-23 14:03:57', '2023-04-23 14:03:57', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoIvas', 'btnCargarCaptions_Caption', '&Cargar captions', '', NULL, NULL, '2023-04-23 14:03:57', '2023-04-23 14:03:57', 'Administrador', 'Administrador');
 INSERT INTO `fza_usuarios_perfiles` VALUES ('Todos', 'frmMtoIvas', 'btnCargarColumnas_Caption', '&Cargar columnas', '', NULL, NULL, '2023-04-23 14:03:57', '2023-04-23 14:03:57', 'Administrador', 'Administrador');
@@ -4323,6 +4741,8 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vi_articulos_familias` A
 	`fza_articulos_familias`.`ACTIVO_FAMILIA` AS `ACTIVO_FAMILIA`,
 	`fza_articulos_familias`.`ORDEN_FAMILIA` AS `ORDEN_FAMILIA`,
 	`fza_articulos_familias`.`ESDEFAULT_FAMILIA` AS `ESDEFAULT_FAMILIA`,
+	`fza_articulos_familias`.`CODIGO_SUBFAMILIA` AS `CODIGO_SUBFAMILIA`,
+	`fza_articulos_familias2`.`NOMBRE_FAMILIA` AS `NOMBRE_SUBFAMILIA`,
 	`fza_articulos_familias`.`NOMBRE_FAMILIA` AS `NOMBRE_FAMILIA`,
 	`fza_articulos_familias`.`DESCRIPCION_FAMILIA` AS `DESCRIPCION_FAMILIA`,
 	`fza_articulos_familias`.`INSTANTEMODIF` AS `INSTANTEMODIF`,
@@ -4330,7 +4750,9 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vi_articulos_familias` A
 	`fza_articulos_familias`.`USUARIOALTA` AS `USUARIOALTA`,
 	`fza_articulos_familias`.`USUARIOMODIF` AS `USUARIOMODIF` 
 FROM
-	`fza_articulos_familias` ;
+	`fza_articulos_familias` 
+LEFT JOIN `fza_articulos_familias`  `fza_articulos_familias2`
+ON `fza_articulos_familias`.CODIGO_SUBFAMILIA = `fza_articulos_familias2`.CODIGO_FAMILIA ;
 
 -- ----------------------------
 -- View structure for vi_articulos_familias_list
@@ -4341,6 +4763,7 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vi_articulos_familias_li
 	`fza_articulos_familias`.`ACTIVO_FAMILIA` AS `ACTIVO_FAMILIA`,
 	`fza_articulos_familias`.`ORDEN_FAMILIA` AS `ORDEN_FAMILIA`,
 	`fza_articulos_familias`.`ESDEFAULT_FAMILIA` AS `ESDEFAULT_FAMILIA`,
+  `fza_articulos_familias`.`CODIGO_SUBFAMILIA` AS `CODIGO_SUBFAMILIA`,
 	`fza_articulos_familias`.`NOMBRE_FAMILIA` AS `NOMBRE_FAMILIA`,
 	`fza_articulos_familias`.`DESCRIPCION_FAMILIA` AS `DESCRIPCION_FAMILIA`,
 	`fza_articulos_familias`.`INSTANTEMODIF` AS `INSTANTEMODIF`,
@@ -4435,7 +4858,8 @@ FROM
 			LEFT JOIN `fza_proveedores` ON ( ( `fza_articulos_proveedores`.`CODIGO_PROVEEDOR_ARTICULO_PROVEEDOR` = `fza_proveedores`.`CODIGO_PROVEEDOR` ) ) 
 		)
 	LEFT JOIN `fza_ivas_tipos` ON ( ( `fza_articulos`.`TIPOIVA_ARTICULO` = `fza_ivas_tipos`.`CODIGO_ABREVIATURA_TIPO_IVA` ) ) 
-	) ;
+	) 
+	ORDER BY fza_tarifas.ORDEN_TARIFA, fza_articulos.ORDEN_ARTICULO ;
 
 -- ----------------------------
 -- View structure for vi_art_busquedas
@@ -4809,7 +5233,24 @@ ORDER BY
 -- View structure for vi_tarifas
 -- ----------------------------
 DROP VIEW IF EXISTS `vi_tarifas`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vi_tarifas` AS select `fza_tarifas`.`CODIGO_TARIFA` AS `CODIGO_TARIFA`,`fza_tarifas`.`NOMBRE_TARIFA` AS `NOMBRE_TARIFA`,`fza_tarifas`.`ACTIVO_TARIFA` AS `ACTIVO_TARIFA`,`fza_tarifas`.`FECHA_DESDE_TARIFA` AS `FECHA_DESDE_TARIFA`,`fza_tarifas`.`FECHA_HASTA_TARIFA` AS `FECHA_HASTA_TARIFA`,`fza_tarifas`.`ESIMP_INCL_TARIFA` AS `ESIMP_INCL_TARIFA`,`fza_tarifas`.`ESDEFAULT_TARIFA` AS `ESDEFAULT_TARIFA`,`fza_tarifas`.`INSTANTEMODIF` AS `INSTANTEMODIF`,`fza_tarifas`.`INSTANTEALTA` AS `INSTANTEALTA`,`fza_tarifas`.`USUARIOALTA` AS `USUARIOALTA`,`fza_tarifas`.`USUARIOMODIF` AS `USUARIOMODIF` from `fza_tarifas` where `fza_tarifas`.`ACTIVO_TARIFA` = 'S' ;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vi_tarifas` AS SELECT
+	`fza_tarifas`.`CODIGO_TARIFA` AS `CODIGO_TARIFA`,
+	`fza_tarifas`.`NOMBRE_TARIFA` AS `NOMBRE_TARIFA`,
+	`fza_tarifas`.`ACTIVO_TARIFA` AS `ACTIVO_TARIFA`,
+	`fza_tarifas`.`ORDEN_TARIFA` AS `ORDEN_TARIFA`,
+	`fza_tarifas`.`FECHA_DESDE_TARIFA` AS `FECHA_DESDE_TARIFA`,
+	`fza_tarifas`.`FECHA_HASTA_TARIFA` AS `FECHA_HASTA_TARIFA`,
+	`fza_tarifas`.`ESIMP_INCL_TARIFA` AS `ESIMP_INCL_TARIFA`,
+	`fza_tarifas`.`ESDEFAULT_TARIFA` AS `ESDEFAULT_TARIFA`,
+	`fza_tarifas`.`INSTANTEMODIF` AS `INSTANTEMODIF`,
+	`fza_tarifas`.`INSTANTEALTA` AS `INSTANTEALTA`,
+	`fza_tarifas`.`USUARIOALTA` AS `USUARIOALTA`,
+	`fza_tarifas`.`USUARIOMODIF` AS `USUARIOMODIF` 
+FROM
+	`fza_tarifas` 
+WHERE
+	`fza_tarifas`.`ACTIVO_TARIFA` = 'S'
+ORDER BY fza_tarifas.ORDEN_TARIFA ;
 
 -- ----------------------------
 -- View structure for vi_usuarios

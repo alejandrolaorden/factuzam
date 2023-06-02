@@ -11,11 +11,11 @@ type
     unstrdprcContador: TUniStoredProc;
     unqryArticulosFamilias: TUniQuery;
     dsArticulosFamilias: TDataSource;
+    unqrySubFamilias: TUniQuery;
+    dsSubFamilias: TDataSource;
     procedure unqryTablaGAfterInsert(DataSet: TDataSet);
     procedure DataModuleCreate(Sender: TObject);
     procedure unqryTablaGBeforePost(DataSet: TDataSet);
-    procedure unqryRetencionesAfterInsert(DataSet: TDataSet);
-    procedure unqryRetencionesBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -35,18 +35,6 @@ uses
 
 {$R *.dfm}
 
-procedure TdmFamilias.unqryRetencionesAfterInsert(DataSet: TDataSet);
-begin
-  inherited;
-//  unqryRetenciones.FindField('CODIGO_RETENCION').AsString := '0';
-end;
-
-procedure TdmFamilias.unqryRetencionesBeforePost(DataSet: TDataSet);
-begin
-  inherited;
-  //GetCodigoAutoRetencion;
-end;
-
 procedure TdmFamilias.unqryTablaGAfterInsert(DataSet: TDataSet);
 begin
   inherited;
@@ -58,11 +46,15 @@ procedure TdmFamilias.DataModuleCreate(Sender: TObject);
 begin
   inherited;
   unstrdprcContador.Connection := oConn;
+  unqryArticulosFamilias.Connection := oConn;
+  unqrySubFamilias.Connection := oConn;
+  unqryArticulosFamilias.Open;
+  unqrySubFamilias.Open;
 end;
 
 procedure TdmFamilias.GetCodigoAutoFamilia;
 begin
-  if unqryTablaG.FindField('CODIGO_Familia').AsString = '0' then
+  if (unqryTablaG.FindField('CODIGO_Familia').AsString = '0') then
   begin
     with unstrdprcContador do
     begin
@@ -77,7 +69,7 @@ begin
                                                   ParamByName('pcont').AsString;
     end;
   end;
-    if unqryTablaG.FindField('ORDEN_Familia').AsString = '0' then
+  if (unqryTablaG.FindField('ORDEN_Familia').AsString = '0') then
   begin
     with unstrdprcContador do
     begin

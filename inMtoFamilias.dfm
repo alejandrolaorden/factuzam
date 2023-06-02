@@ -2,42 +2,43 @@ inherited frmMtoFamilias: TfrmMtoFamilias
   Left = 5
   Top = 4
   Caption = 'Familias'
-  ClientHeight = 610
-  ClientWidth = 865
+  ClientHeight = 631
+  ClientWidth = 896
   FormStyle = fsMDIChild
-  ExplicitWidth = 881
-  ExplicitHeight = 649
+  ExplicitWidth = 912
+  ExplicitHeight = 670
   PixelsPerInch = 96
-  TextHeight = 21
+  TextHeight = 19
   inherited pButtonPage: TPanel
-    Width = 725
-    Height = 610
+    Width = 756
+    Height = 631
     TabOrder = 0
     ExplicitWidth = 725
     ExplicitHeight = 610
     inherited pcPantalla: TcxPageControl
-      Width = 723
-      Height = 568
+      Width = 754
+      Height = 589
       TabOrder = 1
       Properties.ActivePage = tsFicha
       ExplicitWidth = 723
       ExplicitHeight = 568
-      ClientRectBottom = 568
-      ClientRectRight = 723
+      ClientRectBottom = 589
+      ClientRectRight = 754
       inherited tsLista: TcxTabSheet
-        ExplicitTop = 32
+        ExplicitTop = 30
         ExplicitWidth = 723
-        ExplicitHeight = 536
+        ExplicitHeight = 538
         inherited cxGrdPrincipal: TcxGrid
-          Width = 723
-          Height = 536
+          Width = 754
+          Height = 559
           ExplicitWidth = 723
-          ExplicitHeight = 536
+          ExplicitHeight = 538
           inherited cxGrdDBTabPrin: TcxGridDBTableView
             object cxgrdbclmnGrdDBTabPrinCODIGO_FAMILIA: TcxGridDBColumn
               Caption = 'C'#243'digo Familia'
               DataBinding.FieldName = 'CODIGO_FAMILIA'
-              Width = 126
+              Styles.Header = cxstyl
+              Width = 140
             end
             object cxgrdbclmnGrdDBTabPrinACTIVO_FAMILIA: TcxGridDBColumn
               Caption = 'Es Familia activa'
@@ -45,35 +46,57 @@ inherited frmMtoFamilias: TfrmMtoFamilias
               PropertiesClassName = 'TcxCheckBoxProperties'
               Properties.ValueChecked = 'S'
               Properties.ValueUnchecked = 'N'
-              Width = 136
+              Styles.Header = cxstyl
+              Width = 162
             end
-            object cxgrdbclmnGrdDBTabPrinORDEN_FAMILIA: TcxGridDBColumn
-              Caption = 'Orden en listados'
-              DataBinding.FieldName = 'ORDEN_FAMILIA'
-              Width = 142
+            object dbcGrdDBTabPrinESDEFAULT_FAMILIA: TcxGridDBColumn
+              Caption = 'Por Defecto'
+              DataBinding.FieldName = 'ESDEFAULT_FAMILIA'
+              Styles.Header = cxstyl
+              Width = 101
             end
             object cxgrdbclmnGrdDBTabPrinNOMBRE_FAMILIA: TcxGridDBColumn
               Caption = 'Nombre Familia'
               DataBinding.FieldName = 'NOMBRE_FAMILIA'
-              Width = 172
+              Styles.Header = cxstyl
+              Width = 191
+            end
+            object dbcGrdDBTabPrinCODIGO_SUBFAMILIA: TcxGridDBColumn
+              Caption = 'C'#243'digo Subfamilia'
+              DataBinding.FieldName = 'CODIGO_SUBFAMILIA'
+              Styles.Header = cxstyl
+              Width = 178
+            end
+            object dbcGrdDBTabPrinNOMBRE_SUBFAMILIA: TcxGridDBColumn
+              Caption = 'Nombre Subfamilia'
+              DataBinding.FieldName = 'NOMBRE_SUBFAMILIA'
+              Styles.Header = cxstyl
+              Width = 247
             end
             object cxgrdbclmnGrdDBTabPrinDESCRIPCION_FAMILIA: TcxGridDBColumn
               Caption = 'Descripci'#243'n'
               DataBinding.FieldName = 'DESCRIPCION_FAMILIA'
-              Width = 352
+              Styles.Header = cxstyl
+              Width = 496
+            end
+            object cxgrdbclmnGrdDBTabPrinORDEN_FAMILIA: TcxGridDBColumn
+              Caption = 'Orden en listados'
+              DataBinding.FieldName = 'ORDEN_FAMILIA'
+              Styles.Header = cxstyl
+              Width = 164
             end
           end
         end
       end
       inherited tsFicha: TcxTabSheet
-        ExplicitTop = 32
+        ExplicitTop = 30
         ExplicitWidth = 723
-        ExplicitHeight = 536
+        ExplicitHeight = 538
         object pnl1: TPanel
           Left = 0
           Top = 0
-          Width = 723
-          Height = 113
+          Width = 754
+          Height = 165
           Align = alTop
           TabOrder = 0
           object cxdbtxtdt1: TcxDBTextEdit
@@ -104,10 +127,11 @@ inherited frmMtoFamilias: TfrmMtoFamilias
           object Panel1: TPanel
             Left = 1
             Top = 1
-            Width = 721
-            Height = 111
+            Width = 752
+            Height = 163
             Align = alClient
             TabOrder = 0
+            ExplicitHeight = 114
             object txtCODIGO_FAMILIA: TcxDBTextEdit
               Left = 101
               Top = 13
@@ -138,7 +162,7 @@ inherited frmMtoFamilias: TfrmMtoFamilias
               Width = 322
             end
             object chkActivo: TcxDBCheckBox
-              Left = 79
+              Left = 97
               Top = 78
               Caption = 'Activo'
               DataBinding.DataField = 'ACTIVO_FAMILIA'
@@ -148,30 +172,80 @@ inherited frmMtoFamilias: TfrmMtoFamilias
               TabOrder = 4
               Transparent = True
             end
+            object cbbFamilia: TcxDBLookupComboBox
+              Left = 220
+              Top = 111
+              DataBinding.DataField = 'CODIGO_SUBFAMILIA'
+              DataBinding.DataSource = dsTablaG
+              Properties.KeyFieldNames = 'CODIGO_FAMILIA'
+              Properties.ListColumns = <
+                item
+                  Sorting = False
+                  Width = 100
+                  FieldName = 'CODIGO_FAMILIA'
+                end
+                item
+                  Sorting = False
+                  FieldName = 'NOMBRE_FAMILIA'
+                end>
+              Properties.ListOptions.ShowHeader = False
+              Properties.ListSource = dmFamilias.dsSubFamilias
+              TabOrder = 5
+              Width = 317
+            end
+            object cxlbllbl1: TcxLabel
+              Left = 97
+              Top = 112
+              Margins.Left = 4
+              Margins.Top = 4
+              Margins.Right = 4
+              Margins.Bottom = 4
+              Caption = 'Familia Padre'
+              Properties.Alignment.Horz = taRightJustify
+              Transparent = True
+              AnchorX = 213
+            end
+            object chkDEFAULT_FAMILIA: TcxDBCheckBox
+              Left = 249
+              Top = 82
+              Caption = 'Familia por defecto'
+              DataBinding.DataField = 'ESDEFAULT_FAMILIA'
+              DataBinding.DataSource = dsTablaG
+              Properties.ValueChecked = 'S'
+              Properties.ValueUnchecked = 'N'
+              Style.TransparentBorder = False
+              TabOrder = 7
+              Transparent = True
+            end
           end
         end
         object pnl2: TPanel
           Left = 0
-          Top = 121
-          Width = 723
-          Height = 415
+          Top = 173
+          Width = 754
+          Height = 386
           Align = alClient
           TabOrder = 1
+          ExplicitTop = 121
+          ExplicitHeight = 438
           object pcPestana: TcxPageControl
             Left = 1
             Top = 1
-            Width = 721
-            Height = 413
+            Width = 752
+            Height = 384
             Align = alClient
             TabOrder = 0
-            Properties.ActivePage = tsArticulos
+            Properties.ActivePage = tsMasDatos
             Properties.CustomButtons.Buttons = <>
-            ClientRectBottom = 413
-            ClientRectRight = 721
-            ClientRectTop = 32
+            ExplicitHeight = 436
+            ClientRectBottom = 384
+            ClientRectRight = 752
+            ClientRectTop = 30
             object tsMasDatos: TcxTabSheet
               Caption = '&1_M'#225's Datos'
               ImageIndex = 0
+              ExplicitWidth = 721
+              ExplicitHeight = 385
               object lblDescripcion: TcxLabel
                 Left = 33
                 Top = 19
@@ -191,17 +265,21 @@ inherited frmMtoFamilias: TfrmMtoFamilias
             object tsArticulos: TcxTabSheet
               Caption = '&2_Articulos'
               ImageIndex = 2
+              ExplicitWidth = 721
+              ExplicitHeight = 385
               object cxgrdArticulosFamilias: TcxGrid
                 Left = 0
                 Top = 0
-                Width = 721
-                Height = 381
+                Width = 752
+                Height = 354
                 Margins.Left = 4
                 Margins.Top = 4
                 Margins.Right = 4
                 Margins.Bottom = 4
                 Align = alClient
                 TabOrder = 0
+                ExplicitWidth = 721
+                ExplicitHeight = 385
                 object tvArticulos: TcxGridDBTableView
                   Navigator.Buttons.ConfirmDelete = True
                   Navigator.Buttons.CustomButtons = <>
@@ -380,13 +458,17 @@ inherited frmMtoFamilias: TfrmMtoFamilias
             object tsOtros: TcxTabSheet
               Caption = '&3_Otros'
               ImageIndex = 3
+              ExplicitWidth = 721
+              ExplicitHeight = 385
               object pnl3: TPanel
                 Left = 0
-                Top = 302
-                Width = 721
+                Top = 275
+                Width = 752
                 Height = 79
                 Align = alBottom
                 TabOrder = 0
+                ExplicitTop = 306
+                ExplicitWidth = 721
                 object cxdbtxtdtDIRECCION1_CLIENTE: TcxDBTextEdit
                   Left = 17
                   Top = 37
@@ -481,14 +563,14 @@ inherited frmMtoFamilias: TfrmMtoFamilias
                 end
               end
               object lblOrden: TcxLabel
-                Left = 372
-                Top = 160
+                Left = 20
+                Top = 24
                 Caption = 'Orden en Listados'
                 Transparent = True
               end
               object cxdbspndtORDEN_CLIENTE: TcxDBSpinEdit
-                Left = 531
-                Top = 159
+                Left = 179
+                Top = 23
                 DataBinding.DataField = 'ORDEN_FAMILIA'
                 DataBinding.DataSource = dsTablaG
                 TabOrder = 2
@@ -499,103 +581,70 @@ inherited frmMtoFamilias: TfrmMtoFamilias
         end
         object cxspltr1: TcxSplitter
           Left = 0
-          Top = 113
-          Width = 723
+          Top = 165
+          Width = 754
           Height = 8
           HotZoneClassName = 'TcxMediaPlayer9Style'
           AlignSplitter = salTop
           Control = pnl1
+          ExplicitTop = 113
+          ExplicitWidth = 723
         end
       end
       inherited tsPerfil: TcxTabSheet
         ExplicitWidth = 723
-        ExplicitHeight = 536
+        ExplicitHeight = 538
         inherited pnl4: TPanel
-          Width = 723
+          Width = 754
           ExplicitWidth = 723
-          inherited edtPerfilBusq: TcxTextEdit
-            ExplicitHeight = 29
-          end
         end
         inherited pnl5: TPanel
-          Width = 723
-          Height = 479
+          Width = 754
+          Height = 502
           ExplicitWidth = 723
-          ExplicitHeight = 479
+          ExplicitHeight = 481
           inherited cxgrdPerfil: TcxGrid
-            Width = 721
-            Height = 477
+            Width = 752
+            Height = 500
             ExplicitWidth = 721
-            ExplicitHeight = 477
-            inherited tvPerfil: TcxGridDBTableView
-              object cxgrdbclmnPerfilUSUARIO_GRUPO_PERFILES: TcxGridDBColumn
-                DataBinding.FieldName = 'USUARIO_GRUPO_PERFILES'
-                Width = 167
-              end
-              object cxgrdbclmnPerfilKEY_PERFILES: TcxGridDBColumn
-                DataBinding.FieldName = 'KEY_PERFILES'
-                Width = 112
-              end
-              object cxgrdbclmnPerfilSUBKEY_PERFILES: TcxGridDBColumn
-                DataBinding.FieldName = 'SUBKEY_PERFILES'
-                Width = 291
-              end
-              object cxgrdbclmnPerfilVALUE_PERFILES: TcxGridDBColumn
-                DataBinding.FieldName = 'VALUE_PERFILES'
-                Width = 188
-              end
-              object cxgrdbclmnPerfilVALUE_TEXT_PERFILES: TcxGridDBColumn
-                DataBinding.FieldName = 'VALUE_TEXT_PERFILES'
-                PropertiesClassName = 'TcxBlobEditProperties'
-                Properties.BlobEditKind = bekMemo
-              end
-              object cxgrdbclmnPerfilTYPE_BLOB_PERFILES: TcxGridDBColumn
-                DataBinding.FieldName = 'TYPE_BLOB_PERFILES'
-              end
-              object cxgrdbclmnPerfilVALUE_BLOB_PERFILES: TcxGridDBColumn
-                DataBinding.FieldName = 'VALUE_BLOB_PERFILES'
-              end
-              object cxgrdbclmnPerfilINSTANTEMODIF: TcxGridDBColumn
-                DataBinding.FieldName = 'INSTANTEMODIF'
-              end
-              object cxgrdbclmnPerfilINSTANTEALTA: TcxGridDBColumn
-                DataBinding.FieldName = 'INSTANTEALTA'
-              end
-              object cxgrdbclmnPerfilUSUARIOALTA: TcxGridDBColumn
-                DataBinding.FieldName = 'USUARIOALTA'
-                Width = 88
-              end
-              object cxgrdbclmnPerfilUSUARIOMODIF: TcxGridDBColumn
-                DataBinding.FieldName = 'USUARIOMODIF'
-                Width = 96
-              end
-            end
+            ExplicitHeight = 479
           end
         end
       end
     end
     inherited pnlTopPage: TPanel
-      Width = 723
+      Width = 754
       TabOrder = 0
       ExplicitWidth = 723
       inherited pnlTopGrid: TPanel
-        Width = 721
+        Width = 752
         ExplicitWidth = 721
-        inherited edtBusqGlobal: TcxTextEdit
-          ExplicitHeight = 29
-        end
       end
     end
   end
   inherited pButtonRightBar: TPanel
-    Left = 725
-    Height = 610
+    Left = 756
+    Height = 631
     TabOrder = 1
     ExplicitLeft = 725
     ExplicitHeight = 610
     inherited pButtonGen: TPanel
-      Top = 411
+      Top = 432
       ExplicitTop = 411
+      inherited btnGrabar: TcxButton
+        Font.Pitch = fpDefault
+        Font.Quality = fqClearTypeNatural
+        ParentFont = False
+      end
+    end
+    object btnNuevaFamilia: TcxButton
+      Left = 1
+      Top = 157
+      Width = 138
+      Height = 25
+      Caption = '&Nueva Familia'
+      TabOrder = 2
+      OnClick = btnNuevaFamiliaClick
     end
   end
   inherited cxlclzr1: TcxLocalizer

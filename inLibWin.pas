@@ -107,7 +107,6 @@ begin
     cb := SizeOf(TStartupInfo);
     wShowWindow := SW_HIDE;
   end;
-
   if CreateProcess(nil, pchar(tmpProgram), nil, nil, true, CREATE_NO_WINDOW,
     nil, nil, tmpStartupInfo, tmpProcessInformation) then
   begin
@@ -130,7 +129,6 @@ var
   NewDateTime: TSystemTime;
 begin
   FillChar(NewDateTime, SizeOf(NewDateTime), #0);
-
   NewDateTime.wYear := Year;
   NewDateTime.wMonth := Month;
   NewDateTime.wDay := Day;

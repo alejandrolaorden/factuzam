@@ -588,9 +588,6 @@ inherited dmArticulos: TdmArticulos
         '                              WHERE CODIGO_ARTICULO_TARIFA = :CO' +
         'DIGO_ARTICULO)'
       'AND ACTIVO_TARIFA ='#39'S'#39
-      'AND FECHA_DESDE_TARIFA <= CURRENT_DATE'
-      'AND (FECHA_HASTA_TARIFA >= CURRENT_DATE '
-      '     OR FECHA_HASTA_TARIFA IS NULL)'
       'ORDER BY ORDEN_TARIFA')
     MasterSource = frmMtoArticulos.dsTablaG
     ReadOnly = True

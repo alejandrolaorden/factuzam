@@ -256,6 +256,7 @@ begin
   with (Self.Owner as TfrmOpenApp).FdmDataPerfiles do
   begin
     GrabarPerfil('Todos', Self.Name, 'oSkin', 'cxPCPainter' );
+    GrabarPerfil('Todos', Self.Name, 'oRenameComponents', 'False' );
     GrabarPerfil('Todos', Self.Name, 'oCreateItems', 'False' );
     GrabarPerfil('Todos', Self.Name, 'oBusqGlobal', 'Grid' );
     GrabarPerfil('Todos', Self.Name, 'oApplySkin', 'False' );

@@ -208,6 +208,7 @@ begin
     Username := sUser;
     Password := sPassword;
     Port := StrToIntDef(sPort, 3307);
+    SpecificOptions.Values['MySQL.UseUnicode'] := 'True';
   end;
 end;
 

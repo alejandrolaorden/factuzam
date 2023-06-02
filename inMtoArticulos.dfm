@@ -167,8 +167,14 @@ inherited frmMtoArticulos: TfrmMtoArticulos
               Properties.KeyFieldNames = 'CODIGO_FAMILIA'
               Properties.ListColumns = <
                 item
-                  FieldName = 'DESCRIPCION_FAMILIA'
+                  Sorting = False
+                  FieldName = 'CODIGO_FAMILIA'
+                end
+                item
+                  Sorting = False
+                  FieldName = 'NOMBRE_FAMILIA'
                 end>
+              Properties.ListOptions.ShowHeader = False
               Properties.ListSource = dmArticulos.dsFamiliaArticulos
               TabOrder = 5
               Width = 322
@@ -951,9 +957,6 @@ inherited frmMtoArticulos: TfrmMtoArticulos
         inherited pnl4: TPanel
           Width = 827
           ExplicitWidth = 827
-          inherited edtPerfilBusq: TcxTextEdit
-            ExplicitHeight = 27
-          end
         end
         inherited pnl5: TPanel
           Width = 827
@@ -976,9 +979,6 @@ inherited frmMtoArticulos: TfrmMtoArticulos
       inherited pnlTopGrid: TPanel
         Width = 825
         ExplicitWidth = 825
-        inherited edtBusqGlobal: TcxTextEdit
-          ExplicitHeight = 27
-        end
       end
     end
   end
