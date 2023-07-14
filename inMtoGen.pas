@@ -40,16 +40,16 @@ type
     dsTablaG: TDataSource;
     pnlTopPage: TPanel;
     pnlTopGrid: TPanel;
-    dxbvl1: TdxBevel;
+    bvTop: TdxBevel;
     sbExportExcel: TSpeedButton;
     edtBusqGlobal: TcxTextEdit;
     nvNavegador: TcxDBNavigator;
     lblTextoaBuscar: TcxLabel;
     tsPerfil: TcxTabSheet;
-    pnl4: TPanel;
+    pnlPerfilTop: TPanel;
     edtPerfilBusq: TcxTextEdit;
     lblTextoaBuscarPerfil: TcxLabel;
-    pnl5: TPanel;
+    pnlPerfilDetail: TPanel;
     cxgrdPerfil: TcxGrid;
     tvPerfil: TcxGridDBTableView;
     cxgrdlvlPerfil: TcxGridLevel;
@@ -64,7 +64,6 @@ type
     tvPerfilTYPE_BLOB_PERFILES: TcxGridDBColumn;
     tvPerfilVALUE_BLOB_PERFILES: TcxGridDBColumn;
     rbBBDD: TcxRadioButton;
-    cxRadioButton2: TcxRadioButton;
     rbGrid: TcxRadioButton;
     cxstylrpstry: TcxStyleRepository;
     cxstyl: TcxStyle;

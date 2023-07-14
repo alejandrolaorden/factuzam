@@ -35,7 +35,6 @@ inherited frmMtoFacturas: TfrmMtoFacturas
         Margins.Top = 5
         Margins.Right = 5
         Margins.Bottom = 5
-        ExplicitTop = 30
         ExplicitWidth = 966
         ExplicitHeight = 720
         inherited cxGrdPrincipal: TcxGrid
@@ -422,7 +421,6 @@ inherited frmMtoFacturas: TfrmMtoFacturas
         Margins.Top = 5
         Margins.Right = 5
         Margins.Bottom = 5
-        ExplicitTop = 30
         ExplicitWidth = 966
         ExplicitHeight = 720
         object pnl1: TPanel
@@ -2194,24 +2192,16 @@ inherited frmMtoFacturas: TfrmMtoFacturas
       inherited tsPerfil: TcxTabSheet
         ExplicitWidth = 966
         ExplicitHeight = 720
-        inherited pnl4: TPanel
+        inherited pnlPerfilTop: TPanel
           Width = 966
           ExplicitWidth = 966
           inherited edtPerfilBusq: TcxTextEdit
-            ExplicitHeight = 27
+            ExplicitHeight = 21
           end
         end
-        inherited pnl5: TPanel
+        inherited pnlPerfilDetail: TPanel
           Width = 966
           Height = 663
-          ExplicitWidth = 966
-          ExplicitHeight = 663
-          inherited cxgrdPerfil: TcxGrid
-            Width = 964
-            Height = 661
-            ExplicitWidth = 964
-            ExplicitHeight = 661
-          end
         end
       end
     end
@@ -2224,7 +2214,6 @@ inherited frmMtoFacturas: TfrmMtoFacturas
         ExplicitWidth = 964
         inherited edtBusqGlobal: TcxTextEdit
           TabOrder = 1
-          ExplicitHeight = 27
         end
         inherited nvNavegador: TcxDBNavigator
           TabOrder = 2

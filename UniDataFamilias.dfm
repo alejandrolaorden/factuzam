@@ -2,12 +2,56 @@ inherited dmFamilias: TdmFamilias
   OldCreateOrder = True
   Width = 407
   inherited unqryTablaG: TUniQuery
+    SQLInsert.Strings = (
+      'INSERT INTO `fza_articulos_familias`'
+      
+        '  (`CODIGO_FAMILIA`, `ACTIVO_FAMILIA`, `ORDEN_FAMILIA`, `ESDEFAU' +
+        'LT_FAMILIA`, `CODIGO_SUBFAMILIA`, `NOMBRE_FAMILIA`, `DESCRIPCION' +
+        '_FAMILIA`, `INSTANTEMODIF`, `INSTANTEALTA`, `USUARIOALTA`, `USUA' +
+        'RIOMODIF`)'
+      'VALUES'
+      
+        '  (:`CODIGO_FAMILIA`, :`ACTIVO_FAMILIA`, :`ORDEN_FAMILIA`, :`ESD' +
+        'EFAULT_FAMILIA`, :`CODIGO_SUBFAMILIA`, :`NOMBRE_FAMILIA`, :`DESC' +
+        'RIPCION_FAMILIA`, :`INSTANTEMODIF`, :`INSTANTEALTA`, :`USUARIOAL' +
+        'TA`, :`USUARIOMODIF`)')
+    SQLDelete.Strings = (
+      'DELETE FROM `fza_articulos_familias`'
+      'WHERE'
+      '  `CODIGO_FAMILIA` = :`Old_CODIGO_FAMILIA`')
+    SQLUpdate.Strings = (
+      'UPDATE `fza_articulos_familias`'
+      'SET'
+      
+        '  `CODIGO_FAMILIA` = :`CODIGO_FAMILIA`, `ACTIVO_FAMILIA` = :`ACT' +
+        'IVO_FAMILIA`, `ORDEN_FAMILIA` = :`ORDEN_FAMILIA`, `ESDEFAULT_FAM' +
+        'ILIA` = :`ESDEFAULT_FAMILIA`, `CODIGO_SUBFAMILIA` = :`CODIGO_SUB' +
+        'FAMILIA`, `NOMBRE_FAMILIA` = :`NOMBRE_FAMILIA`, `DESCRIPCION_FAM' +
+        'ILIA` = :`DESCRIPCION_FAMILIA`, `INSTANTEMODIF` = :`INSTANTEMODI' +
+        'F`, `INSTANTEALTA` = :`INSTANTEALTA`, `USUARIOALTA` = :`USUARIOA' +
+        'LTA`, `USUARIOMODIF` = :`USUARIOMODIF`'
+      'WHERE'
+      '  `CODIGO_FAMILIA` = :`Old_CODIGO_FAMILIA`')
+    SQLLock.Strings = (
+      'SELECT * FROM fza_articulos_familias'
+      'WHERE'
+      '  `CODIGO_FAMILIA` = :`Old_CODIGO_FAMILIA`'
+      'FOR UPDATE')
+    SQLRefresh.Strings = (
+      
+        'SELECT `CODIGO_FAMILIA`, `ACTIVO_FAMILIA`, `ORDEN_FAMILIA`, `ESD' +
+        'EFAULT_FAMILIA`, `CODIGO_SUBFAMILIA`, `NOMBRE_FAMILIA`, `DESCRIP' +
+        'CION_FAMILIA`, `INSTANTEMODIF`, `INSTANTEALTA`, `USUARIOALTA`, `' +
+        'USUARIOMODIF` FROM `fza_articulos_familias`'
+      'WHERE'
+      '  `CODIGO_FAMILIA` = :`CODIGO_FAMILIA`')
+    SQLRecCount.Strings = (
+      'SELECT COUNT(*) FROM fza_articulos_familias')
     Connection = dmConn.conUni
     SQL.Strings = (
       'SELECT *  '
       '  FROM vi_articulos_familias'
       '')
-    Active = True
     AfterInsert = unqryTablaGAfterInsert
   end
   inherited unqryPerfiles: TUniQuery

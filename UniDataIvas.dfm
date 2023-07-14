@@ -75,7 +75,6 @@ inherited dmIvas: TdmIvas
     Connection = dmConn.conUni
     SQL.Strings = (
       'select * from vi_ivas')
-    Active = True
     AutoCalcFields = False
     AfterInsert = unqryTablaGAfterInsert
   end

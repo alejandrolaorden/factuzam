@@ -43,9 +43,9 @@ type
     cxgrdbclmnGrdDBTabPrinOBSERVACIONES_CLIENTE: TcxGridDBColumn;
     cxgrdbclmnGrdDBTabPrinREFERENCIA_CLIENTE: TcxGridDBColumn;
     cxgrdbclmnGrdDBTabPrinTELEFONO_CLIENTE: TcxGridDBColumn;
-    pnl1: TPanel;
+    pnlCabFicha: TPanel;
     cxdbtxtdtCODIGO_CLIENTE: TcxDBTextEdit;
-    lblCodigoCliente: TcxLabel;
+    lblCodigo: TcxLabel;
     txtRAZONSOCIAL_PROVEEDOR: TcxDBTextEdit;
     lblRazonSocial: TcxLabel;
     cxdbtxtdtTELEFONO2: TcxDBTextEdit;
@@ -54,7 +54,7 @@ type
     lblNif: TcxLabel;
     cxdbtxtdtNIF: TcxDBTextEdit;
     cxdbtxtdtMOVIL_CLIENTE: TcxDBTextEdit;
-    pnl2: TPanel;
+    pnlDetailFicha: TPanel;
     pcPestanas: TcxPageControl;
     tsDomicilioFiscal: TcxTabSheet;
     cxdbtxtdt7: TcxDBTextEdit;

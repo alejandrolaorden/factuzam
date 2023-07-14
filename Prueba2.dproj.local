@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/06/07 08:44:18.000.869,C:\DISCO DURO\proyectos\factuzam\Prueba2.dproj=C:\DISCO DURO\proyectos\Project1.dproj</Transaction>
+    <Transaction>2021/06/08 13:19:54.000.393,C:\DISCO DURO\proyectos\factuzam\Unit1.dfm=C:\DISCO DURO\proyectos\factuzam\UniDataGen.dfm</Transaction>
+    <Transaction>2021/06/08 13:29:06.000.696,C:\DISCO DURO\proyectos\factuzam\Unit1.dfm=C:\DISCO DURO\proyectos\factuzam\UniDataClientes2.dfm</Transaction>
+    <Transaction>2021/06/08 13:50:18.000.632,C:\DISCO DURO\proyectos\factuzam\Unit1.dfm=C:\DISCO DURO\proyectos\factuzam\UniDataEmpresas.dfm</Transaction>
+    <Transaction>2021/06/09 11:19:06.000.873,C:\DISCO DURO\proyectos\factuzam\inMtoContadores.dfm=C:\DISCO DURO\proyectos\factuzam\Unit1.dfm</Transaction>
+    <Transaction>2021/06/09 11:19:50.000.756,C:\DISCO DURO\proyectos\factuzam\UniDAtaContadores.dfm=C:\DISCO DURO\proyectos\factuzam\Unit1.dfm</Transaction>
+    <Transaction>2021/06/09 11:45:11.000.583,C:\DISCO DURO\proyectos\factuzam\UniDataIvas.dfm=C:\DISCO DURO\proyectos\factuzam\Unit2.dfm</Transaction>
+    <Transaction>2021/06/09 11:45:20.000.956,C:\DISCO DURO\proyectos\factuzam\inMtoIvas.dfm=C:\DISCO DURO\proyectos\factuzam\Unit1.dfm</Transaction>
+    <Transaction>2022/02/23 20:24:05.000.972,C:\DISCO DURO\proyectos\factuzam\inMtoGenSearch.dfm=C:\DISCO DURO\proyectos\factuzam\Unit1.dfm</Transaction>
+    <Transaction>2022/10/18 09:25:26.000.244,C:\DISCO DURO\proyectos\factuzam\Unit1.dfm=C:\DISCO DURO\proyectos\factuzam\inMtoModalImpFac.dfm</Transaction>
+    <Transaction>2022/10/27 14:47:43.000.400,C:\DISCO DURO\proyectos\factuzam\inm.pas=C:\DISCO DURO\proyectos\factuzam\Unit1.pas</Transaction>
+    <Transaction>2022/10/27 14:47:43.000.400,C:\DISCO DURO\proyectos\factuzam\inm.dfm=C:\DISCO DURO\proyectos\factuzam\Unit1.dfm</Transaction>
+    <Transaction>2022/10/27 15:09:26.000.335,C:\DISCO DURO\proyectos\factuzam\inMtoModalGenImpSave.dfm=C:\DISCO DURO\proyectos\factuzam\Unit2.dfm</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5"/>
+	</ActiveMobileDevice>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="inLibDevExp.pas"/>
+    <File Path="inLibDir.pas"/>
+    <File Path="inLibtb.pas"/>
+    <File Path="inLibUser.pas"/>
+    <File Path="inLibWin.pas"/>
+    <File Path="inMtoClientes2.pas"/>
+    <File Path="inMtoClientes2.dfm"/>
+    <File Path="inMtoEmpresas.pas"/>
+    <File Path="inMtoEmpresas.dfm"/>
+    <File Path="inMtoGen2.pas"/>
+    <File Path="inMtoGen2.dfm"/>
+    <File Path="inMtoFrmBase.pas"/>
+    <File Path="inMtoFrmBase.dfm"/>
+    <File Path="inMtoPrincipal.pas"/>
+    <File Path="inMtoPrincipal.dfm"/>
+    <File Path="UniDataClientes2.pas"/>
+    <File Path="UniDataClientes2.dfm"/>
+    <File Path="UniDataConn.pas"/>
+    <File Path="UniDataConn.dfm"/>
+    <File Path="UniDataEmpresas.pas"/>
+    <File Path="UniDataEmpresas.dfm"/>
+    <File Path="UniDataGen.pas"/>
+    <File Path="UniDataGen.dfm"/>
+    <File Path="UniDataPerfiles.pas"/>
+    <File Path="UniDataPerfiles.dfm"/>
+    <File Path="inMtoContadores.pas"/>
+    <File Path="inMtoContadores.dfm"/>
+    <File Path="UniDataIvas.pas"/>
+    <File Path="UniDataIvas.dfm"/>
+    <File Path="inMtoIvas.pas"/>
+    <File Path="inMtoIvas.dfm"/>
+    <File Path="inMtoProveedores.pas"/>
+    <File Path="inMtoProveedores.dfm"/>
+    <File Path="UniDataProveedores.pas"/>
+    <File Path="UniDataProveedores.dfm"/>
+    <File Path="UniDataContadores.pas"/>
+    <File Path="UniDataContadores.dfm"/>
+    <File Path="inMtoArticulos.pas"/>
+    <File Path="inMtoArticulos.dfm"/>
+    <File Path="UniDataArticulos.pas"/>
+    <File Path="UniDataArticulos.dfm"/>
+    <File Path="inMtoFamilias.pas"/>
+    <File Path="inMtoFamilias.dfm"/>
+    <File Path="UniDataFamilias.pas"/>
+    <File Path="UniDataFamilias.dfm"/>
+    <File Path="UniDataFac.pas"/>
+    <File Path="UniDataFac.dfm"/>
+    <File Path="inMtoFac.pas"/>
+    <File Path="inMtoFac.dfm"/>
+    <File Path="inMtoGenSearch.pas"/>
+    <File Path="inMtoGenSearch.dfm"/>
+    <File Path="inMtoIvasGrupos.pas"/>
+    <File Path="inMtoIvasGrupos.dfm"/>
+    <File Path="UniDataIvasGrupos.pas"/>
+    <File Path="UniDataIvasGrupos.dfm"/>
+    <File Path="inMtoModalFacRec.pas"/>
+    <File Path="inMtoModalFacRec.dfm"/>
+    <File Path="inMtoModalGenImp.pas"/>
+    <File Path="inMtoModalGenImp.dfm"/>
+    <File Path="inMtoModalImpFac.pas"/>
+    <File Path="inMtoModalImpFac.dfm"/>
+    <File Path="inMtoModalGenImpEle.pas"/>
+    <File Path="inMtoModalGenImpEle.dfm"/>
+    <File Path="inMtoModalGenImpSave.pas"/>
+    <File Path="inMtoModalGenImpSave.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>

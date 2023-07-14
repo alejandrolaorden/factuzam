@@ -23,7 +23,6 @@
       ClientRectBottom = 522
       ClientRectRight = 728
       inherited tsLista: TcxTabSheet
-        ExplicitTop = 30
         ExplicitWidth = 728
         ExplicitHeight = 492
         inherited cxGrdPrincipal: TcxGrid
@@ -173,10 +172,9 @@
         end
       end
       inherited tsFicha: TcxTabSheet
-        ExplicitTop = 30
         ExplicitWidth = 728
         ExplicitHeight = 492
-        object pnl1: TPanel
+        object pnlCabFicha: TPanel
           Left = 0
           Top = 0
           Width = 728
@@ -199,7 +197,7 @@
             TabOrder = 1
             Width = 149
           end
-          object lblCodigoCliente: TcxLabel
+          object lblCodigo: TcxLabel
             Left = 41
             Top = 7
             Margins.Left = 4
@@ -321,7 +319,7 @@
             Transparent = True
           end
         end
-        object pnl2: TPanel
+        object pnlDetailFicha: TPanel
           Left = 0
           Top = 145
           Width = 728
@@ -503,6 +501,9 @@
             object tsArticulos: TcxTabSheet
               Caption = '&2_Articulos'
               ImageIndex = 3
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object pnl6: TPanel
                 Left = 608
                 Top = 0
@@ -674,6 +675,9 @@
             object tsVentas: TcxTabSheet
               Caption = '&3_Ventas'
               ImageIndex = 4
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object cxgrdLinFac: TcxGrid
                 Left = 0
                 Top = 0
@@ -893,6 +897,9 @@
             object tsMasDatos: TcxTabSheet
               Caption = '&4_M'#225's datos'
               ImageIndex = 1
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object lblObservaciones: TcxLabel
                 Left = -8
                 Top = 105
@@ -1140,30 +1147,23 @@
           Height = 8
           HotZoneClassName = 'TcxMediaPlayer9Style'
           AlignSplitter = salTop
-          Control = pnl2
+          Control = pnlDetailFicha
+          ExplicitWidth = 8
         end
       end
       inherited tsPerfil: TcxTabSheet
         ExplicitWidth = 728
         ExplicitHeight = 492
-        inherited pnl4: TPanel
+        inherited pnlPerfilTop: TPanel
           Width = 728
           ExplicitWidth = 728
           inherited edtPerfilBusq: TcxTextEdit
-            ExplicitHeight = 27
+            ExplicitHeight = 21
           end
         end
-        inherited pnl5: TPanel
+        inherited pnlPerfilDetail: TPanel
           Width = 728
           Height = 435
-          ExplicitWidth = 728
-          ExplicitHeight = 435
-          inherited cxgrdPerfil: TcxGrid
-            Width = 726
-            Height = 433
-            ExplicitWidth = 726
-            ExplicitHeight = 433
-          end
         end
       end
     end
@@ -1174,13 +1174,8 @@
       inherited pnlTopGrid: TPanel
         Width = 726
         ExplicitWidth = 726
-        inherited dxbvl1: TdxBevel
-          Width = 827
-          ExplicitWidth = 827
-        end
         inherited edtBusqGlobal: TcxTextEdit
           TabOrder = 2
-          ExplicitHeight = 27
         end
         inherited nvNavegador: TcxDBNavigator
           Top = 5

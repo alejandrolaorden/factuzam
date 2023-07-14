@@ -25,7 +25,6 @@ inherited frmMtoFormasdePago: TfrmMtoFormasdePago
       ClientRectBottom = 568
       ClientRectRight = 723
       inherited tsLista: TcxTabSheet
-        ExplicitTop = 30
         ExplicitWidth = 723
         ExplicitHeight = 538
         inherited cxGrdPrincipal: TcxGrid
@@ -67,7 +66,6 @@ inherited frmMtoFormasdePago: TfrmMtoFormasdePago
         end
       end
       inherited tsFicha: TcxTabSheet
-        ExplicitTop = 30
         ExplicitWidth = 723
         ExplicitHeight = 538
         object pnl1: TPanel
@@ -223,6 +221,9 @@ inherited frmMtoFormasdePago: TfrmMtoFormasdePago
             object tsArticulos: TcxTabSheet
               Caption = '&2_Ventas'
               ImageIndex = 2
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object pnlFactura: TPanel
                 Left = 0
                 Top = 0
@@ -559,7 +560,6 @@ inherited frmMtoFormasdePago: TfrmMtoFormasdePago
                         item
                           FieldName = 'NOMBRE_TIPO_IVA'
                         end>
-                      Properties.ListSource = dmEmpresas.dsTiposIVA
                     end
                     object cxgrdbclmncxgrdbtblvwcxgrd1DBTableView1PRECIOVENTA_ARTICULO_LINEA: TcxGridDBColumn
                       Caption = 'Precio CIVA'
@@ -748,39 +748,22 @@ inherited frmMtoFormasdePago: TfrmMtoFormasdePago
           HotZoneClassName = 'TcxMediaPlayer9Style'
           AlignSplitter = salTop
           Control = pnl1
+          ExplicitWidth = 8
         end
       end
       inherited tsPerfil: TcxTabSheet
         ExplicitWidth = 723
         ExplicitHeight = 538
-        inherited pnl4: TPanel
+        inherited pnlPerfilTop: TPanel
           Width = 723
           ExplicitWidth = 723
           inherited edtPerfilBusq: TcxTextEdit
-            ExplicitHeight = 27
-          end
-          inherited lblTextoaBuscarPerfil: TcxLabel
-            Left = 161
-            ExplicitLeft = 161
-          end
-          inherited btnCargarColumnas: TcxButton
-            Left = 8
-            Width = 140
-            ExplicitLeft = 8
-            ExplicitWidth = 140
+            ExplicitHeight = 21
           end
         end
-        inherited pnl5: TPanel
+        inherited pnlPerfilDetail: TPanel
           Width = 723
           Height = 481
-          ExplicitWidth = 723
-          ExplicitHeight = 481
-          inherited cxgrdPerfil: TcxGrid
-            Width = 721
-            Height = 479
-            ExplicitWidth = 721
-            ExplicitHeight = 479
-          end
         end
       end
     end
@@ -791,9 +774,6 @@ inherited frmMtoFormasdePago: TfrmMtoFormasdePago
       inherited pnlTopGrid: TPanel
         Width = 721
         ExplicitWidth = 721
-        inherited edtBusqGlobal: TcxTextEdit
-          ExplicitHeight = 27
-        end
       end
     end
   end

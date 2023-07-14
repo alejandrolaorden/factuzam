@@ -25,7 +25,6 @@ inherited frmMtoFamilias: TfrmMtoFamilias
       ClientRectBottom = 589
       ClientRectRight = 754
       inherited tsLista: TcxTabSheet
-        ExplicitTop = 30
         ExplicitWidth = 723
         ExplicitHeight = 538
         inherited cxGrdPrincipal: TcxGrid
@@ -89,7 +88,6 @@ inherited frmMtoFamilias: TfrmMtoFamilias
         end
       end
       inherited tsFicha: TcxTabSheet
-        ExplicitTop = 30
         ExplicitWidth = 723
         ExplicitHeight = 538
         object pnl1: TPanel
@@ -131,7 +129,6 @@ inherited frmMtoFamilias: TfrmMtoFamilias
             Height = 163
             Align = alClient
             TabOrder = 0
-            ExplicitHeight = 114
             object txtCODIGO_FAMILIA: TcxDBTextEdit
               Left = 101
               Top = 13
@@ -244,6 +241,7 @@ inherited frmMtoFamilias: TfrmMtoFamilias
             object tsMasDatos: TcxTabSheet
               Caption = '&1_M'#225's Datos'
               ImageIndex = 0
+              ExplicitTop = 0
               ExplicitWidth = 721
               ExplicitHeight = 385
               object lblDescripcion: TcxLabel
@@ -265,6 +263,7 @@ inherited frmMtoFamilias: TfrmMtoFamilias
             object tsArticulos: TcxTabSheet
               Caption = '&2_Articulos'
               ImageIndex = 2
+              ExplicitTop = 0
               ExplicitWidth = 721
               ExplicitHeight = 385
               object cxgrdArticulosFamilias: TcxGrid
@@ -458,8 +457,6 @@ inherited frmMtoFamilias: TfrmMtoFamilias
             object tsOtros: TcxTabSheet
               Caption = '&3_Otros'
               ImageIndex = 3
-              ExplicitWidth = 721
-              ExplicitHeight = 385
               object pnl3: TPanel
                 Left = 0
                 Top = 275
@@ -467,8 +464,6 @@ inherited frmMtoFamilias: TfrmMtoFamilias
                 Height = 79
                 Align = alBottom
                 TabOrder = 0
-                ExplicitTop = 306
-                ExplicitWidth = 721
                 object cxdbtxtdtDIRECCION1_CLIENTE: TcxDBTextEdit
                   Left = 17
                   Top = 37
@@ -592,33 +587,31 @@ inherited frmMtoFamilias: TfrmMtoFamilias
         end
       end
       inherited tsPerfil: TcxTabSheet
-        ExplicitWidth = 723
-        ExplicitHeight = 538
-        inherited pnl4: TPanel
+        ExplicitWidth = 754
+        ExplicitHeight = 559
+        inherited pnlPerfilTop: TPanel
           Width = 754
-          ExplicitWidth = 723
+          ExplicitWidth = 754
+          inherited edtPerfilBusq: TcxTextEdit
+            ExplicitHeight = 21
+          end
         end
-        inherited pnl5: TPanel
+        inherited pnlPerfilDetail: TPanel
           Width = 754
           Height = 502
-          ExplicitWidth = 723
-          ExplicitHeight = 481
-          inherited cxgrdPerfil: TcxGrid
-            Width = 752
-            Height = 500
-            ExplicitWidth = 721
-            ExplicitHeight = 479
-          end
         end
       end
     end
     inherited pnlTopPage: TPanel
       Width = 754
       TabOrder = 0
-      ExplicitWidth = 723
+      ExplicitWidth = 754
       inherited pnlTopGrid: TPanel
         Width = 752
-        ExplicitWidth = 721
+        ExplicitWidth = 752
+        inherited edtBusqGlobal: TcxTextEdit
+          ExplicitHeight = 21
+        end
       end
     end
   end
@@ -626,8 +619,8 @@ inherited frmMtoFamilias: TfrmMtoFamilias
     Left = 756
     Height = 631
     TabOrder = 1
-    ExplicitLeft = 725
-    ExplicitHeight = 610
+    ExplicitLeft = 756
+    ExplicitHeight = 631
     inherited pButtonGen: TPanel
       Top = 432
       ExplicitTop = 411

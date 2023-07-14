@@ -2,6 +2,7 @@ program FactuZam;
 
 uses
   Vcl.Forms,
+  Vcl.Controls,
   inLibDevExp in 'inLibDevExp.pas',
   inLibDir in 'inLibDir.pas',
   inLibtb in 'inLibtb.pas',
@@ -63,5 +64,12 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmLogon, frmLogon);
+  if (frmLogon.ShowModal = mrOk) then
+  begin
+    frmLogon.Free;
+    Application.CreateForm(TfrmOpenApp, frmOpenApp);
+  end
+  else
+    frmLogon.Free;
   Application.Run;
 end.

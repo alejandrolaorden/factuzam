@@ -44,24 +44,16 @@ inherited frmMtoSearch: TfrmMtoSearch
         TabVisible = False
         ExplicitWidth = 498
         ExplicitHeight = 377
-        inherited pnl4: TPanel
+        inherited pnlPerfilTop: TPanel
           Width = 498
           ExplicitWidth = 498
+          inherited edtPerfilBusq: TcxTextEdit
+            ExplicitHeight = 21
+          end
         end
-        inherited pnl5: TPanel
+        inherited pnlPerfilDetail: TPanel
           Width = 498
           Height = 320
-          ExplicitWidth = 498
-          ExplicitHeight = 320
-          inherited cxgrdPerfil: TcxGrid
-            Width = 496
-            Height = 318
-            ExplicitWidth = 496
-            ExplicitHeight = 318
-            inherited tvPerfil: TcxGridDBTableView
-              DataController.DataSource = dsPerfiles
-            end
-          end
         end
       end
     end
@@ -73,6 +65,9 @@ inherited frmMtoSearch: TfrmMtoSearch
         ExplicitWidth = 496
         inherited sbExportExcel: TSpeedButton
           Visible = False
+        end
+        inherited edtBusqGlobal: TcxTextEdit
+          ExplicitHeight = 21
         end
         inherited nvNavegador: TcxDBNavigator
           Visible = False
@@ -144,7 +139,6 @@ inherited frmMtoSearch: TfrmMtoSearch
     Connection = dmConn.conUni
     SQL.Strings = (
       'SELECT * FROM fza_usuarios_perfiles ')
-    Active = True
     Left = 376
     Top = 440
   end

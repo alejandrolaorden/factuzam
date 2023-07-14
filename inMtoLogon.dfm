@@ -20,21 +20,21 @@ object frmLogon: TfrmLogon
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 19
-  object Label1: TLabel
+  object lblUsuario: TLabel
     Left = 47
     Top = 31
     Width = 66
     Height = 19
     Caption = 'Usuario'
   end
-  object Label2: TLabel
+  object lblContrasena: TLabel
     Left = 19
     Top = 113
     Width = 94
     Height = 19
     Caption = 'Contrase'#241'a'
   end
-  object Label3: TLabel
+  object lblHostBBDD: TLabel
     Left = 392
     Top = 19
     Width = 90
@@ -47,53 +47,54 @@ object frmLogon: TfrmLogon
     Width = 10
     Height = 153
   end
-  object Label4: TLabel
+  object lblNomBBDD: TLabel
     Left = 391
     Top = 83
     Width = 91
     Height = 19
     Caption = 'Nom BBDD'
   end
-  object Label5: TLabel
+  object lblUserBBDD: TLabel
     Left = 365
     Top = 115
     Width = 117
     Height = 19
     Caption = 'Usuario BBDD'
   end
-  object Label6: TLabel
+  object lblPasswordBBDD: TLabel
     Left = 351
     Top = 147
     Width = 131
     Height = 19
     Caption = 'Password BBDD'
   end
-  object Label7: TLabel
+  object lblPortHost: TLabel
     Left = 385
     Top = 50
     Width = 97
     Height = 19
     Caption = 'Puerto Host'
   end
-  object btAceptar: TcxButton
-    Left = 107
-    Top = 217
+  object btnAceptar: TcxButton
+    Left = 105
+    Top = 178
     Width = 89
     Height = 29
     Caption = '&Aceptar'
     ParentShowHint = False
     ShowHint = False
     TabOrder = 3
-    OnClick = btAceptarClick
+    OnClick = btnAceptarClick
   end
-  object btSalir: TcxButton
-    Left = 10
-    Top = 217
+  object btnSalir: TcxButton
+    Left = 8
+    Top = 178
     Width = 91
     Height = 29
     Caption = '&Salir'
+    ModalResult = 3
     TabOrder = 4
-    OnClick = btSalirClick
+    OnClick = btnSalirClick
   end
   object edtUser: TcxTextEdit
     Left = 119
@@ -117,8 +118,8 @@ object frmLogon: TfrmLogon
     Width = 41
   end
   object btnConf: TcxButton
-    Left = 202
-    Top = 217
+    Left = 200
+    Top = 178
     Width = 123
     Height = 29
     Caption = '&Conf BBDD ->'
@@ -184,14 +185,14 @@ object frmLogon: TfrmLogon
     TabOrder = 13
     OnClick = btnCopiaSeguridadClick
   end
-  object btRecover: TcxButton
+  object btnRecover: TcxButton
     Left = 628
     Top = 216
     Width = 109
     Height = 30
     Caption = 'Recuperar'
     TabOrder = 14
-    OnClick = btRecoverClick
+    OnClick = btnRecoverClick
   end
   object chkRememberPassword: TcxCheckBox
     Left = 119
@@ -206,8 +207,8 @@ object frmLogon: TfrmLogon
     TabOrder = 16
   end
   object MySQLUniProvider1: TMySQLUniProvider
-    Left = 672
-    Top = 96
+    Left = 752
+    Top = 72
   end
   object ucConexion: TUniConnection
     ProviderName = 'MySQL'
@@ -220,7 +221,7 @@ object frmLogon: TfrmLogon
     LoginPrompt = False
     OnError = ucConexionError
     Left = 664
-    Top = 152
+    Top = 72
     EncryptedPassword = 'CEFFB9FFC9FFA8FFC9FF96FFCEFF95FFCEFF'
   end
   object udDump: TUniDump
@@ -232,13 +233,13 @@ object frmLogon: TfrmLogon
       'MySQL.BackupViews=True'
       'MySQL.HexBlob=True')
     Options.QuoteNames = True
-    Left = 680
-    Top = 32
+    Left = 752
+    Top = 128
   end
   object tbUsers: TUniTable
     TableName = 'fza_usuarios'
     Connection = ucConexion
-    Left = 696
-    Top = 200
+    Left = 664
+    Top = 128
   end
 end

@@ -8,7 +8,7 @@ inherited frmMtoTarifas: TfrmMtoTarifas
   ExplicitWidth = 887
   ExplicitHeight = 692
   PixelsPerInch = 96
-  TextHeight = 21
+  TextHeight = 19
   inherited pButtonPage: TPanel
     Width = 731
     Height = 653
@@ -195,21 +195,23 @@ inherited frmMtoTarifas: TfrmMtoTarifas
           Left = 0
           Top = 121
           Width = 729
-          Height = 458
+          Height = 460
           Align = alClient
           TabOrder = 1
+          ExplicitHeight = 458
           object pcPestana: TcxPageControl
             Left = 1
             Top = 1
             Width = 727
-            Height = 456
+            Height = 458
             Align = alClient
             TabOrder = 0
             Properties.ActivePage = tsArticulos
             Properties.CustomButtons.Buttons = <>
-            ClientRectBottom = 456
+            ExplicitHeight = 456
+            ClientRectBottom = 458
             ClientRectRight = 727
-            ClientRectTop = 32
+            ClientRectTop = 30
             object tsArticulos: TcxTabSheet
               Caption = '&1_Art'#237'culos'
               ImageIndex = 0
@@ -489,13 +491,16 @@ inherited frmMtoTarifas: TfrmMtoTarifas
             object tsOtros: TcxTabSheet
               Caption = '&2_Otros'
               ImageIndex = 3
+              ExplicitTop = 32
+              ExplicitHeight = 424
               object pnl3: TPanel
                 Left = 0
-                Top = 345
+                Top = 349
                 Width = 727
                 Height = 79
                 Align = alBottom
                 TabOrder = 0
+                ExplicitTop = 345
                 object cxdbtxtdtDIRECCION1_CLIENTE: TcxDBTextEdit
                   Left = 17
                   Top = 37
@@ -649,68 +654,17 @@ inherited frmMtoTarifas: TfrmMtoTarifas
       end
       inherited tsPerfil: TcxTabSheet
         ExplicitWidth = 729
-        ExplicitHeight = 579
-        inherited pnl4: TPanel
+        ExplicitHeight = 581
+        inherited pnlPerfilTop: TPanel
           Width = 729
           ExplicitWidth = 729
           inherited edtPerfilBusq: TcxTextEdit
-            ExplicitHeight = 29
+            ExplicitHeight = 21
           end
         end
-        inherited pnl5: TPanel
+        inherited pnlPerfilDetail: TPanel
           Width = 729
-          Height = 522
-          ExplicitWidth = 729
-          ExplicitHeight = 522
-          inherited cxgrdPerfil: TcxGrid
-            Width = 727
-            Height = 520
-            ExplicitWidth = 727
-            ExplicitHeight = 520
-            inherited tvPerfil: TcxGridDBTableView
-              object cxgrdbclmnPerfilUSUARIO_GRUPO_PERFILES: TcxGridDBColumn
-                DataBinding.FieldName = 'USUARIO_GRUPO_PERFILES'
-                Width = 167
-              end
-              object cxgrdbclmnPerfilKEY_PERFILES: TcxGridDBColumn
-                DataBinding.FieldName = 'KEY_PERFILES'
-                Width = 112
-              end
-              object cxgrdbclmnPerfilSUBKEY_PERFILES: TcxGridDBColumn
-                DataBinding.FieldName = 'SUBKEY_PERFILES'
-                Width = 291
-              end
-              object cxgrdbclmnPerfilVALUE_PERFILES: TcxGridDBColumn
-                DataBinding.FieldName = 'VALUE_PERFILES'
-                Width = 188
-              end
-              object cxgrdbclmnPerfilVALUE_TEXT_PERFILES: TcxGridDBColumn
-                DataBinding.FieldName = 'VALUE_TEXT_PERFILES'
-                PropertiesClassName = 'TcxBlobEditProperties'
-                Properties.BlobEditKind = bekMemo
-              end
-              object cxgrdbclmnPerfilTYPE_BLOB_PERFILES: TcxGridDBColumn
-                DataBinding.FieldName = 'TYPE_BLOB_PERFILES'
-              end
-              object cxgrdbclmnPerfilVALUE_BLOB_PERFILES: TcxGridDBColumn
-                DataBinding.FieldName = 'VALUE_BLOB_PERFILES'
-              end
-              object cxgrdbclmnPerfilINSTANTEMODIF: TcxGridDBColumn
-                DataBinding.FieldName = 'INSTANTEMODIF'
-              end
-              object cxgrdbclmnPerfilINSTANTEALTA: TcxGridDBColumn
-                DataBinding.FieldName = 'INSTANTEALTA'
-              end
-              object cxgrdbclmnPerfilUSUARIOALTA: TcxGridDBColumn
-                DataBinding.FieldName = 'USUARIOALTA'
-                Width = 88
-              end
-              object cxgrdbclmnPerfilUSUARIOMODIF: TcxGridDBColumn
-                DataBinding.FieldName = 'USUARIOMODIF'
-                Width = 96
-              end
-            end
-          end
+          Height = 524
         end
       end
     end

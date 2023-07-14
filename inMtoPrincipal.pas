@@ -119,13 +119,27 @@ uses inLibUser,
 
 procedure ShowMtoPrin(Owner       : TComponent); overload;
 var
-  frmOpenPrincipal : TfrmOpenApp;
+  frmOpenApp : TfrmOpenApp;
 begin
-  Application.CreateForm(TfrmOpenApp, frmOpenPrincipal);
-  if (frmLogon <> nil) then
-  begin
-    frmLogon.Close;
-    FreeAndNil(frmLogon);
+  try
+    frmOpenApp := nil;
+    frmOpenApp := TfrmOpenApp.Create(nil);
+    //frmOpenApp.FormStyle := fsMDIForm;
+    frmOpenApp.Show();
+// Application.CreateForm(TfrmOpenApp, frmOpenPrincipal);
+    if (frmLogon <> nil) then
+    begin
+      frmLogon.Hide;
+      //FreeAndNil(frmLogon);
+    end;
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Error al crear la ventana principal. E:' + E.ClassName +
+                  ' Mensaje:' + E.Message);
+      raise;
+      Exit;
+    end;
   end;
 end;
 
@@ -192,6 +206,7 @@ var
   sDis : String;
 begin
   //oUser := rkUser.Caption;
+  FormStyle := fsMDIForm;
   Application.OnException := AppException;
   sDis := '';
   FdmConn := TdmConn.Create(Self);
@@ -201,12 +216,13 @@ begin
   oConn := FdmConn.conUni;
   FdmDataPerfiles.unqryPerfiles.Connection := FdmConn.ConUni;
   FdmDataPerfiles.unstdGrabarPerfil.connection := FdmConn.ConUni;
-  dxstsbr1.Panels[1].Text := FdmConn.conUni.Server + ':'+ IntToStr(fdmconn.conUni.Port)
-                        + ' (' + FdmConn.conUni.Database + ')';
+  dxstsbr1.Panels[1].Text :=  FdmConn.conUni.Server + ':'
+                            + IntToStr(fdmconn.conUni.Port)
+                            + ' (' + FdmConn.conUni.Database + ')';
   if oRootGroup = 'S' then
     sDis := ' ✪';
   dxstsbr1.Panels[2].Text := oUser + '  (' + oGroup + ')' + sDis;
-  frmOpenApp.Caption := oVersion;
+  frmOpenApp.Caption := oAppName + ' ' + oVersion;
 //  zqryPermisoMenu.Connection := FdmConn.ZconnGlent;
 //  zqryPermisoMenu.SQL.Text := 'SELECT Entidad, Menu, PermisoAcceso, PermisoListado, PermisoEscritura ' +
 //                         '  FROM glt_user_permisos ' +

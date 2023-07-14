@@ -7,7 +7,6 @@ inherited dmGrupos: TdmGrupos
       'SELECT *  '
       'FROM fza_usuarios_grupos'
       '')
-    Active = True
     Left = 24
   end
   inherited unqryPerfiles: TUniQuery

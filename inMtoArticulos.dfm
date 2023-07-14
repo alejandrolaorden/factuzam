@@ -25,7 +25,6 @@ inherited frmMtoArticulos: TfrmMtoArticulos
       ClientRectBottom = 608
       ClientRectRight = 827
       inherited tsLista: TcxTabSheet
-        ExplicitTop = 30
         ExplicitWidth = 827
         ExplicitHeight = 578
         inherited cxGrdPrincipal: TcxGrid
@@ -77,7 +76,6 @@ inherited frmMtoArticulos: TfrmMtoArticulos
         end
       end
       inherited tsFicha: TcxTabSheet
-        ExplicitTop = 30
         ExplicitWidth = 827
         ExplicitHeight = 578
         object pnl1: TPanel
@@ -242,6 +240,9 @@ inherited frmMtoArticulos: TfrmMtoArticulos
             object tsTarifas: TcxTabSheet
               Caption = '&1_Tarifas'
               ImageIndex = 1
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object cxgrdTarifas: TcxGrid
                 Left = 0
                 Top = 0
@@ -452,6 +453,9 @@ inherited frmMtoArticulos: TfrmMtoArticulos
             object tsProveedores: TcxTabSheet
               Caption = '&2_Proveedores'
               ImageIndex = 2
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object cxgrdProveedores: TcxGrid
                 Left = 0
                 Top = 0
@@ -610,6 +614,9 @@ inherited frmMtoArticulos: TfrmMtoArticulos
             object tsLineasFactura: TcxTabSheet
               Caption = '&3_Lineas de Facturas'
               ImageIndex = 3
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object cxgrdLinFac: TcxGrid
                 Left = 0
                 Top = 0
@@ -949,26 +956,22 @@ inherited frmMtoArticulos: TfrmMtoArticulos
           HotZoneClassName = 'TcxMediaPlayer9Style'
           AlignSplitter = salTop
           Control = pnl2
+          ExplicitWidth = 8
         end
       end
       inherited tsPerfil: TcxTabSheet
         ExplicitWidth = 827
         ExplicitHeight = 578
-        inherited pnl4: TPanel
+        inherited pnlPerfilTop: TPanel
           Width = 827
           ExplicitWidth = 827
+          inherited edtPerfilBusq: TcxTextEdit
+            ExplicitHeight = 21
+          end
         end
-        inherited pnl5: TPanel
+        inherited pnlPerfilDetail: TPanel
           Width = 827
           Height = 521
-          ExplicitWidth = 827
-          ExplicitHeight = 521
-          inherited cxgrdPerfil: TcxGrid
-            Width = 825
-            Height = 519
-            ExplicitWidth = 825
-            ExplicitHeight = 519
-          end
         end
       end
     end
@@ -979,6 +982,9 @@ inherited frmMtoArticulos: TfrmMtoArticulos
       inherited pnlTopGrid: TPanel
         Width = 825
         ExplicitWidth = 825
+        inherited edtBusqGlobal: TcxTextEdit
+          ExplicitHeight = 21
+        end
       end
     end
   end

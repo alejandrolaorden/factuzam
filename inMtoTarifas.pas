@@ -45,17 +45,6 @@ type
     cxdbtxtdtUSUARIOALTA1: TcxDBTextEdit;
     lblUsuarioModif: TcxLabel;
     chkActivo: TcxDBCheckBox;
-    cxgrdbclmnPerfilUSUARIO_GRUPO_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilKEY_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilSUBKEY_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilVALUE_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilVALUE_TEXT_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilTYPE_BLOB_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilVALUE_BLOB_PERFILES: TcxGridDBColumn;
-    cxgrdbclmnPerfilINSTANTEMODIF: TcxGridDBColumn;
-    cxgrdbclmnPerfilINSTANTEALTA: TcxGridDBColumn;
-    cxgrdbclmnPerfilUSUARIOALTA: TcxGridDBColumn;
-    cxgrdbclmnPerfilUSUARIOMODIF: TcxGridDBColumn;
     txtNOMBRE_FAMILIA: TcxDBTextEdit;
     cxgrdbclmnGrdDBTabPrinCODIGO_TARIFA: TcxGridDBColumn;
     cxgrdbclmnGrdDBTabPrinNOMBRE_TARIFA: TcxGridDBColumn;

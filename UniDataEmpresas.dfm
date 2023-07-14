@@ -69,7 +69,6 @@ inherited dmEmpresas: TdmEmpresas
       'SELECT *  '
       '  FROM vi_empresas '
       ' ORDER BY orden_empresa')
-    Active = True
     AfterInsert = unqryTablaGAfterInsert
     BeforeDelete = unqryTablaGBeforeDelete
     AfterDelete = unqryTablaGAfterDelete
@@ -190,7 +189,6 @@ inherited dmEmpresas: TdmEmpresas
       'FROM VI_IVAS_GRUPOS'
       '')
     DetailFields = 'GRUPO_ZONA_IVA'
-    Active = True
     AfterInsert = unqryRetencionesAfterInsert
     BeforePost = unqryRetencionesBeforePost
     Left = 384
@@ -324,7 +322,6 @@ inherited dmEmpresas: TdmEmpresas
     MasterFields = 'CODIGO_EMPRESA'
     DetailFields = 'CODIGO_EMPRESA_FACTURA'
     ReadOnly = True
-    Active = True
     Left = 625
     Top = 24
     ParamData = <
@@ -332,7 +329,7 @@ inherited dmEmpresas: TdmEmpresas
         DataType = ftWideString
         Name = 'CODIGO_EMPRESA'
         ParamType = ptInput
-        Value = '007'
+        Value = '1'
       end>
   end
   object unqrySeries: TUniQuery

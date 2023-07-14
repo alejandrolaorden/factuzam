@@ -22,38 +22,38 @@ type
   EInvalidUser = Class(Exception);
 
   TfrmLogon = class(TForm)
-    Label1: TLabel;
-    Label2: TLabel;
-    btAceptar: TcxButton;
-    btSalir: TcxButton;
+    lblUsuario: TLabel;
+    lblContrasena: TLabel;
+    btnAceptar: TcxButton;
+    btnSalir: TcxButton;
     edtUser: TcxTextEdit;
     edtPass: TcxTextEdit;
     edtGrupo: TcxTextEdit;
     btnConf: TcxButton;
     edtHostName: TcxTextEdit;
-    Label3: TLabel;
+    lblHostBBDD: TLabel;
     Bevel1: TBevel;
-    Label4: TLabel;
+    lblNomBBDD: TLabel;
     edtNomBD: TcxTextEdit;
-    Label5: TLabel;
+    lblUserBBDD: TLabel;
     edtUserBD: TcxTextEdit;
-    Label6: TLabel;
+    lblPasswordBBDD: TLabel;
     edtPassBD: TcxTextEdit;
     edtPortBD: TcxTextEdit;
-    Label7: TLabel;
+    lblPortHost: TLabel;
     btnTest: TcxButton;
     MySQLUniProvider1: TMySQLUniProvider;
     ucConexion: TUniConnection;
     btnSubirScript: TcxButton;
     btnCopiaSeguridad: TcxButton;
     udDump: TUniDump;
-    btRecover: TcxButton;
+    btnRecover: TcxButton;
     chkRememberPassword: TcxCheckBox;
     chkRememberUser: TcxCheckBox;
     tbUsers: TUniTable;
     procedure FormCreate(Sender: TObject);
-    procedure btSalirClick(Sender: TObject);
-    procedure btAceptarClick(Sender: TObject);
+    procedure btnSalirClick(Sender: TObject);
+    procedure btnAceptarClick(Sender: TObject);
     procedure edtUserExit(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -63,7 +63,7 @@ type
     procedure btnTestClick(Sender: TObject);
     procedure btnSubirScriptClick(Sender: TObject);
     procedure btnCopiaSeguridadClick(Sender: TObject);
-    procedure btRecoverClick(Sender: TObject);
+    procedure btnRecoverClick(Sender: TObject);
     procedure ucConexionError(Sender: TObject; E: EDAError; var Fail: Boolean);
   private
     procedure leerini;
@@ -72,9 +72,6 @@ type
     procedure GetIniValues;
     function ExisteUser(sNom:String; f:TUniConnection):Boolean;
     function LoginCorrecto(sNom, sPass:String; f:TUniConnection):Boolean;
-    //procedure GetUserData(f:TdmApi; sUser:String);
-    //procedure OpenData(f:TdmApi);
-    //procedure CloseData(f:TdmApi);
     function GetGrupo(sUser: String; conn:TUniConnection;
                                                var EsGrupoAdmin:String): String;
   public
@@ -82,6 +79,7 @@ type
     { Public declarations }
   end;
   procedure ShowMtoLogon(Owner       : TComponent);
+  //procedure ShowMtoPrin(Owner        : TComponent);
   //function sMD5(const texto:string):string;
 var
   frmLogon: TfrmLogon;
@@ -117,7 +115,7 @@ begin
   if ( (chkRememberUser.Checked = True) and
        (chkRememberPassword.Checked = True)
      ) then
-       btAceptarClick(Self);
+       btnAceptarClick(Self);
 end;
 
 procedure TfrmLogon.btnConfClick(Sender: TObject);
@@ -135,8 +133,13 @@ begin
   try
     sPass := DecriptAES(sPassEn);
   except
-    ShowMessage('Password erroneo.');
-    Exit;
+    on E: Exception do
+    begin
+      ShowMessage('Password erroneo. E:' + E.ClassName +
+                  ' Mensaje:' + E.Message);
+      raise;
+      Exit;
+    end;
   end;
   ConstruirConexion(ucConexion, edtUserBD.Text,
                                 sPass,
@@ -146,8 +149,13 @@ begin
   try
     ucConexion.Connect;
   except
-    ShowMessage('Conexión fallida. Revise conexíón BBDD');
-    Exit;
+    on E: Exception do
+    begin
+      ShowMessage('Conexión fallida. Revise conexíón BBDD E:' + E.ClassName +
+                  ' Mensaje:' + E.Message);
+      raise;
+      Exit;
+    end;
   end;
   savedialog := TSaveDialog.Create(Self);
   saveDialog.Title := 'Guardar copia de seguridad';
@@ -166,7 +174,8 @@ begin
     MyText.Free;
     ShowMessage('La copia se guardó exitosamente');
   end
-  else ShowMessage('La copia se canceló');
+  else
+    ShowMessage('La copia se canceló');
   FreeAndNil(savedialog);
   ucConexion.Disconnect;
 end;
@@ -183,8 +192,13 @@ begin
   try
     ucConexion.Connect;
   except
-      ShowMessage('Conexión fallida. Revise conexíón BBDD');
+    on E: Exception do
+    begin
+      ShowMessage('Conexión fallida. Revise conexíón BBDD E:' + E.ClassName +
+                  ' Mensaje:' + E.Message);
+      raise;
       Exit;
+    end;
   end;
   opendialog := TOpenDialog.Create(Self);
   opendialog.Title := 'Cargar script';
@@ -220,15 +234,20 @@ begin
   try
     ucConexion.Connect;
   except
-    ShowMessage('Error al conectar BBDD. Revise parámetros.');
-    Exit;
+    on E: Exception do
+    begin
+      ShowMessage('Error al conectar BBDD. Revise parámetros. E:'
+                  + E.ClassName + ' Mensaje:' + E.Message);
+      raise;
+      Exit;
+    end;
   end;
   ucConexion.DisConnect;
   ShowMessage('La conexión se estableció exitosamente. Arranque de nuevo.');
   Exit;
 end;
 
-procedure TfrmLogon.btRecoverClick(Sender: TObject);
+procedure TfrmLogon.btnRecoverClick(Sender: TObject);
 var
       openDialog : topendialog;
       MyText : TSTringList;
@@ -242,8 +261,13 @@ begin
   try
     ucConexion.Connect;
   except
-    ShowMessage('Error al conectar BBDD. Revise parámetros.');
-    Exit;
+    on E: Exception do
+    begin
+      ShowMessage('Error al conectar BBDD. Revise parámetros. E:'
+                  + E.ClassName + ' Mensaje: ' + E.Message );
+      raise;
+      Exit;
+    end;
   end;
   opendialog := TOpenDialog.Create(Self);
   opendialog.Title := 'Cargar copia';
@@ -258,8 +282,13 @@ begin
     try
       udDump.SQL.Text := DecriptAESPass(s, edtPassBD.Text);
     except
-      ShowMessage('Contraseña incorrecta.');
-      Exit;
+      on E: Exception do
+      begin
+        ShowMessage('Contraseña incorrecta.E:' + E.ClassName +
+                  ' Mensaje:' + E.Message);
+        raise;
+        Exit;
+      end;
     end;
     udDump.Restore;
     ShowMessage('El script se ejecutó exitosamente.');
@@ -270,7 +299,7 @@ begin
   ucConexion.Disconnect;
 end;
 
-procedure TfrmLogon.btSalirClick(Sender: TObject);
+procedure TfrmLogon.btnSalirClick(Sender: TObject);
 begin
   ModalResult := mrCancel;
   Close;
@@ -295,7 +324,7 @@ begin
   Result := sResult;
 end;
 
-procedure TfrmLogon.btAceptarClick(Sender: TObject);
+procedure TfrmLogon.btnAceptarClick(Sender: TObject);
 var
   sPassEn, sPass, sGrupoAdmin:String;
 begin
@@ -307,8 +336,13 @@ begin
       ShowMessage('No hay clave válida para esta conexión, ' +
                   ' inserte password en Password BBDD');
   except
-    ShowMessage('Clave no válida');
-    Exit;
+    on E: Exception do
+    begin
+      ShowMessage('Clave no válida. E:' + E.ClassName +
+                  ' Mensaje:' + E.Message);
+      raise;
+      Exit;
+    end;
   end;
   if (ucConexion.Connected = false) then
   begin
@@ -320,9 +354,14 @@ begin
     try
       ucConexion.Connect;
     except
-      ShowMessage('Conexión fallida. Usuario, password, ' +
-                  'host, puerto o Nombre de la BBDD no es válido.');
-      Exit;
+      on E: Exception do
+      begin
+        ShowMessage('Conexión fallida. Usuario, password, ' +
+                  'host, puerto o Nombre de la BBDD no es válido. E:' +
+                  E.ClassName + ' Mensaje: ' + E.Message);
+        raise;
+        Exit;
+      end;
     end;
   end;
   if not ExisteUser(edtUser.Text, ucConexion) then
@@ -345,8 +384,7 @@ begin
       oUser := edtUser.Text;
       oGroup := GetGrupo(edtUser.Text, ucConexion, sGrupoAdmin);
       orootGroup := sGrupoAdmin;
-      //Self.Hide;
-      ShowMtoPrin(Self);
+      ModalResult := mrOk;
     end;
 end;
 
@@ -404,11 +442,11 @@ procedure TfrmLogon.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if ( ((ORD(key) = VK_F12) or (ord(key) = VK_RETURN)) and
-       (btAceptar.Enabled = true) ) then
-    btAceptar.Click
+       (btnAceptar.Enabled = true) ) then
+    btnAceptar.Click
   else
     if ORD(key) = VK_ESCAPE then
-      btSalir.click;
+      btnSalir.click;
 end;
 
 procedure TfrmLogon.rfbAbrirCarpetaClick(Sender: TObject);

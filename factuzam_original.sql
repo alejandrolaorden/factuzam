@@ -11,7 +11,7 @@
  Target Server Version : 101002
  File Encoding         : 65001
 
- Date: 02/06/2023 13:37:56
+ Date: 14/07/2023 12:31:35
 */
 
 SET NAMES utf8mb4;
@@ -77,6 +77,7 @@ INSERT INTO `fza_articulos_familias` VALUES ('MAQ', 'S', 4, NULL, NULL, 'MAQUINA
 INSERT INTO `fza_articulos_familias` VALUES ('ANI', 'S', 5, NULL, NULL, 'ANIMALES', 'Animales de granja como gallinas, conejos, cerdos', '2022-11-02 16:06:06', '2022-11-02 16:05:59', 'Administrador', 'Administrador');
 INSERT INTO `fza_articulos_familias` VALUES ('OTR', 'S', 6, 'S', NULL, 'OTROS', 'Otros articulos agrícolas', '2023-05-25 12:28:16', '2022-11-02 16:06:31', 'Administrador', 'Administrador');
 INSERT INTO `fza_articulos_familias` VALUES ('001', 'S', 10, 'S', 'OTR', 'OTRA SUBFAMILIA', NULL, '2023-06-02 13:35:29', '2023-06-02 13:04:22', 'Administrador', 'Administrador');
+INSERT INTO `fza_articulos_familias` VALUES ('FRU', 'S', 1, 'N', 'HUE', 'ARBOLES FRUTALES', NULL, '2023-07-07 13:46:30', '2023-07-07 13:46:30', 'Administrador', 'Administrador');
 
 -- ----------------------------
 -- Table structure for fza_articulos_proveedores
@@ -194,6 +195,7 @@ DROP TABLE IF EXISTS `fza_contadores`;
 CREATE TABLE `fza_contadores`  (
   `TIPODOC_CONTADOR` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `SERIE_CONTADOR` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `EMPRESA_CONTADOR` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `CONTADOR_CONTADOR` bigint(20) NOT NULL,
   `DEFAULT_CONTADOR` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT 'N',
   `NUMDIGIT_CONTADOR` int(11) NOT NULL DEFAULT 0,
@@ -202,32 +204,33 @@ CREATE TABLE `fza_contadores`  (
   `INSTANTEALTA` timestamp(0) NOT NULL,
   `USUARIOALTA` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `USUARIOMODIF` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
-  PRIMARY KEY (`TIPODOC_CONTADOR`, `SERIE_CONTADOR`, `ACTIVO_CONTADOR`) USING BTREE
+  PRIMARY KEY (`TIPODOC_CONTADOR`, `SERIE_CONTADOR`, `EMPRESA_CONTADOR`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_spanish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fza_contadores
 -- ----------------------------
-INSERT INTO `fza_contadores` VALUES ('AO', '-', 2, 'S', 3, 'S', '2023-05-25 12:59:19', '2023-05-25 12:59:19', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('AR', '-', 4, 'S', 3, 'S', '2023-05-25 12:59:15', '2023-05-25 12:51:52', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('CL', '-', 294, 'S', 3, 'S', '2023-05-22 13:01:22', '0000-00-00 00:00:00', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('CO', '-', 6, 'S', 3, 'S', '2023-05-22 13:01:22', '2023-05-15 12:54:31', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('EM', '-', 10, 'S', 3, 'S', '2023-05-20 12:39:14', '0000-00-00 00:00:00', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('EO', '-', 4, 'S', 3, 'S', '2023-05-22 12:49:39', '2023-05-19 15:02:02', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('ES', '-', 5, 'S', 3, 'S', '2023-06-01 13:44:51', '2023-05-13 12:25:25', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('FA', '-', 2, 'S', 3, 'S', '2023-06-02 13:04:22', '2023-06-02 13:04:22', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('FC', 'A1', 25, 'S', 8, 'S', '2023-05-15 14:30:15', '2022-09-13 15:47:45', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('FC', 'A3', 0, 'N', 8, 'S', '2023-05-12 12:24:33', '2023-05-12 12:24:25', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('FC', 'AGRO', 2, 'N', 6, 'S', '2023-06-01 13:45:24', '2023-06-01 13:45:24', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('FC', 'ATIE', 2, 'N', 6, 'S', '2023-05-17 14:12:45', '2023-05-17 14:12:45', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('GP', '-', 7, 'S', 3, 'S', '2023-05-13 13:47:20', '2023-04-27 12:30:24', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('IG', '-', 3, 'S', 3, 'S', '2023-01-19 10:46:35', '2023-01-19 10:41:29', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('IV', '-', 17, 'S', 3, 'S', '2023-04-24 13:45:24', '2021-06-10 20:11:25', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('PV', '-', 25, 'S', 3, 'S', '2023-01-19 10:47:01', '2021-06-10 18:47:22', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('RE', '-', 12, 'S', 3, 'S', '2023-02-01 09:53:15', '2023-01-29 08:33:28', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('XX', '-', 1, 'S', 1, 'S', '2023-01-19 10:51:28', '2023-01-19 10:51:28', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('XY', '-', 4, 'S', 1, 'S', '2023-01-19 10:52:01', '2023-01-19 10:51:44', 'Administrador', 'Administrador');
-INSERT INTO `fza_contadores` VALUES ('ZZ', '-', 2, 'S', 3, 'S', '2023-01-19 10:52:21', '2023-01-19 10:52:21', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('AO', '-', '-', 2, 'S', 3, 'S', '2023-06-30 12:49:26', '2023-05-25 12:59:19', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('AR', '-', '-', 4, 'S', 3, 'S', '2023-06-30 12:49:26', '2023-05-25 12:51:52', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('CL', '-', '-', 294, 'S', 3, 'S', '2023-06-30 12:49:26', '0000-00-00 00:00:00', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('CO', '-', '-', 6, 'S', 3, 'S', '2023-06-30 12:49:26', '2023-05-15 12:54:31', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('EM', '-', '-', 10, 'S', 3, 'S', '2023-06-30 12:49:26', '0000-00-00 00:00:00', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('EO', '-', '-', 4, 'S', 3, 'S', '2023-06-30 12:49:26', '2023-05-19 15:02:02', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('ES', '-', '-', 5, 'S', 3, 'S', '2023-06-30 12:49:26', '2023-05-13 12:25:25', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('FA', '-', '-', 3, 'S', 3, 'S', '2023-07-07 13:54:00', '2023-06-02 13:04:22', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('FC', 'A1', '-', 25, 'S', 8, 'S', '2023-06-30 12:49:26', '2022-09-13 15:47:45', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('FC', 'A3', '-', 0, 'N', 8, 'S', '2023-06-30 12:49:26', '2023-05-12 12:24:25', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('FC', 'AGRO', '-', 2, 'N', 6, 'S', '2023-06-30 12:49:26', '2023-06-01 13:45:24', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('FC', 'ATIE', '-', 2, 'N', 6, 'S', '2023-06-30 12:49:26', '2023-05-17 14:12:45', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('FO', '-', '-', 2, 'S', 3, 'S', '2023-07-07 13:54:00', '2023-07-07 13:54:00', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('GP', '-', '-', 7, 'S', 3, 'S', '2023-06-30 12:49:26', '2023-04-27 12:30:24', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('IG', '-', '-', 3, 'S', 3, 'S', '2023-06-30 12:49:26', '2023-01-19 10:41:29', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('IV', '-', '-', 17, 'S', 3, 'S', '2023-06-30 12:49:26', '2021-06-10 20:11:25', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('PV', '-', '-', 25, 'S', 3, 'S', '2023-06-30 12:49:26', '2021-06-10 18:47:22', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('RE', '-', '-', 12, 'S', 3, 'S', '2023-06-30 12:49:26', '2023-01-29 08:33:28', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('XX', '-', '-', 1, 'S', 1, 'S', '2023-06-30 12:49:26', '2023-01-19 10:51:28', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('XY', '-', '-', 4, 'S', 1, 'S', '2023-06-30 12:49:26', '2023-01-19 10:51:44', 'Administrador', 'Administrador');
+INSERT INTO `fza_contadores` VALUES ('ZZ', '-', '-', 2, 'S', 3, 'S', '2023-06-30 12:49:26', '2023-01-19 10:52:21', 'Administrador', 'Administrador');
 
 -- ----------------------------
 -- Table structure for fza_empresas
@@ -265,7 +268,7 @@ CREATE TABLE `fza_empresas`  (
 INSERT INTO `fza_empresas` VALUES ('007', 3, 'S', 'AGENTE SECRETO', NULL, '658965235', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'S', 'N', NULL, NULL, '2023-01-30 10:38:22', '2023-01-30 10:34:23', 'Administrador', 'Administrador');
 INSERT INTO `fza_empresas` VALUES ('008', 1, 'S', 'ANA MARTIN', '45684135Q', '66533256', 'ana@hotmail.com', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'S', 'N', NULL, NULL, '2023-05-19 15:02:02', '2023-05-19 15:02:02', 'Administrador', 'Administrador');
 INSERT INTO `fza_empresas` VALUES ('009', 2, 'S', 'PEPITO GRILLO', NULL, '66999669', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'S', 'N', NULL, NULL, '2023-05-20 12:39:14', '2023-05-20 12:39:14', 'Administrador', 'Administrador');
-INSERT INTO `fza_empresas` VALUES ('1', 1, 'S', 'AGRICULTOR', 'NIF', 'TFNO', 'EMAIL', 'DIRECCION', NULL, 'CODPOSTAL', 'POBLACION', 'PROVINCIA', NULL, '1', 'S', 'S', NULL, 'Empresario emisor acogido al régimen especial de agricultura ganadería y pesca', '2022-11-02 20:32:00', '2021-05-14 20:07:06', 'Administrador', 'Administrador');
+INSERT INTO `fza_empresas` VALUES ('1', 1, 'S', 'AGRICULTOR', 'NIF', 'TFNO', 'EMAIL', 'DIRECCION', NULL, 'CODPOSTAL', 'POBLACION', 'PROVINCIA', NULL, '2', 'S', 'S', NULL, 'Empresario emisor acogido al régimen especial de agricultura ganadería y pesca', '2022-11-02 20:32:00', '2021-05-14 20:07:06', 'Administrador', 'Administrador');
 
 -- ----------------------------
 -- Table structure for fza_empresas_retenciones
@@ -414,8 +417,7 @@ CREATE TABLE `fza_facturas`  (
 -- ----------------------------
 INSERT INTO `fza_facturas` VALUES ('00000021', 'A1', '2023-05-12', '1', 'AGRICULTOR', 'NIF', 'TFNO', 'EMAIL', 'DIRECCION', '', 'POBLACION', 'PROVINCIA', '', 'CODPOSTAL', 'S', '2', 'S', 'PUBLICO', 'PUBLICO', 'NIF', 'TFNO', 'EMAIL', 'DIRECCION', '', 'POBLACION', 'PROVINCIA', 'CODPOSTAL', 'España', 'N', 'S', 'N', 'N', '0', 'S', 'N', 'S', 'N', 'S', 'REAGP', '14', 'N', 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 71.000000, 71.000000, 0.000000, 'CONTADO', 0.000000, 0.000000, 71.000000, NULL, NULL, '', 'Empresario emisor acogido al régimen especial de agricultura ganadería y pesca', NULL, '', '050', 'N', 'S', 'S', '2023-05-18 13:55:00', '2023-01-25 10:32:24', 'Administrador', 'Administrador');
 INSERT INTO `fza_facturas` VALUES ('00000022', 'A1', '2023-01-28', '1', 'AGRICULTOR', 'NIF', 'TFNO', 'EMAIL', 'DIRECCION', '', 'POBLACION', 'PROVINCIA', '', 'CODPOSTAL', 'S', '2', 'S', 'PUBLICO', 'PUBLICO', 'NIF', 'TFNO', 'EMAIL', 'DIRECCION', '', 'POBLACION', 'PROVINCIA', 'CODPOSTAL', 'España', 'N', 'S', 'N', 'N', '0', 'S', 'N', 'S', 'N', 'S', 'REAGP', '2', 'N', 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 22.000000, 22.000000, 0.000000, 'CONTADO', 0.000000, 0.000000, 22.000000, NULL, NULL, '', 'Empresario emisor acogido al régimen especial de agricultura ganadería y pesca', NULL, '', '020', 'N', 'N', 'N', '2023-05-12 12:25:06', '2023-01-28 10:24:06', 'Administrador', 'Administrador');
-INSERT INTO `fza_facturas` VALUES ('000001', 'AGRO', '2023-05-29', '1', 'AGRICULTOR', 'NIF', 'TFNO', 'EMAIL', 'DIRECCION', '', 'POBLACION', 'PROVINCIA', '', 'CODPOSTAL', 'S', '1', 'S', '293', 'PEDRO COJOS', '46589963j', '', 'pedro.cojos@gmail.com', 'CALLE CAIDOS ', '', 'VILLAVEZA DEL AGUA', 'ZAMORA', '49760', '', 'N', 'S', 'S', 'S', '1', 'N', 'N', 'N', 'S', 'N', 'IVA', '1', 'N', 0.000000, 0.000000, 5.200000, 0.000000, 0.000000, 0.000000, 0.000000, 1.400000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, '60DIAS', 25.000000, 0.000000, 0.000000, NULL, NULL, '', 'Empresario emisor acogido al régimen especial de agricultura ganadería y pesca', NULL, '', '020', NULL, 'S', NULL, '2023-06-01 13:50:16', '2023-06-01 13:45:24', 'Administrador', 'Administrador');
-INSERT INTO `fza_facturas` VALUES ('000001', 'ATIE', '2023-04-25', '007', 'AGENTE SECRETO', '', '', '', '', '', '', '', '', '', 'S', '1', 'N', 'TIENDA', 'TIENDA', 'NIF', 'TFNO', 'EMAIL', 'DIRECCION', '', 'POBLACION', 'PROVINCIA', 'CODPOSTAL', 'España', 'N', 'N', 'N', 'S', '1', 'N', 'N', 'N', 'S', 'N', 'IVA', '1', 'N', 21.000000, 0.483000, 5.200000, 0.000000, 2.300000, 10.000000, 0.000000, 1.400000, 0.000000, 0.000000, 4.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 2.300000, 0.483000, 'CONTADO', 1.000000, 0.023000, 2.760000, NULL, NULL, '', '', NULL, '', '020', 'N', 'N', 'N', '2023-05-19 13:55:20', '2023-05-17 14:12:45', 'Administrador', 'Administrador');
+INSERT INTO `fza_facturas` VALUES ('000001', 'ATIE', '2023-04-25', '007', 'AGENTE SECRETO', '', '', '', '', '', '', '', '', '', 'S', '1', 'N', 'TIENDA', 'TIENDA', 'NIF', 'TFNO', 'EMAIL', 'DIRECCION', '', 'POBLACION', 'PROVINCIA', 'CODPOSTAL', 'España', 'N', 'N', 'N', 'S', '1', 'N', 'N', 'N', 'S', 'N', 'IVA', '1', 'N', 21.000000, 0.000000, 5.200000, 0.000000, 0.000000, 10.000000, 0.000000, 1.400000, 0.000000, 0.000000, 4.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 'CONTADO', 1.000000, 0.000000, 0.000000, NULL, NULL, '', '', NULL, '', '020', 'N', 'N', 'N', '2023-07-04 12:59:58', '2023-05-17 14:12:45', 'Administrador', 'Administrador');
 
 -- ----------------------------
 -- Table structure for fza_facturas_lineas
@@ -454,7 +456,6 @@ INSERT INTO `fza_facturas_lineas` VALUES ('00000021', 'A1', '040', 'PETARDOS', N
 INSERT INTO `fza_facturas_lineas` VALUES ('00000022', 'A1', '010', 'CEBADA', NULL, NULL, '2023-05-12 14:11:39', NULL, 'S', 'E', 'Cebada', NULL, 1.000000, 22.000000, 0.000000, 22.000000, 22.000000, '2023-05-09 14:11:46', '2023-01-28 10:24:06', 'Administrador', 'Administrador');
 INSERT INTO `fza_facturas_lineas` VALUES ('00000024', 'A1', '010', 'ALFALFA', NULL, NULL, NULL, 'Kgs', 'S', 'N', 'Alfalfa', NULL, 1.000000, 16.528926, 21.000000, 20.000000, 20.000000, '2023-05-16 14:26:53', '2023-05-15 14:31:53', 'Administrador', 'Administrador');
 INSERT INTO `fza_facturas_lineas` VALUES ('000001', 'AGRO', '010', 'CACHO', NULL, NULL, NULL, 'Uds.', NULL, 'N', 'CACHOS DE PAN PARA PERROS', NULL, 1.000000, 20.000000, NULL, 20.000000, 20.000000, '2023-06-01 13:50:16', '2023-06-01 13:50:16', 'Administrador', 'Administrador');
-INSERT INTO `fza_facturas_lineas` VALUES ('000001', 'ATIE', '010', 'CALABAZAS', NULL, NULL, NULL, 'Kgs', 'N', 'N', 'Calabazas para todos', NULL, 1.000000, 2.300000, 21.000000, 2.783000, 2.783000, '2023-05-17 14:28:15', '2023-05-17 14:28:07', 'Administrador', 'Administrador');
 
 -- ----------------------------
 -- Table structure for fza_formapago
@@ -536,7 +537,6 @@ CREATE TABLE `fza_ivas`  (
 -- ----------------------------
 -- Records of fza_ivas
 -- ----------------------------
-INSERT INTO `fza_ivas` VALUES ('014', '2', 'COMPENSACIÓN AGRARIA 2000', 0.000000, 0.000000, 13.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, '2001-01-21', NULL, '2023-05-12 13:58:56', '2023-04-24 13:44:13', 'Administrador', 'Administrador');
 INSERT INTO `fza_ivas` VALUES ('1', '1', 'ESPAÑA PENINSULA', 0.000000, 0.000000, 21.000000, 5.200000, 10.000000, 1.400000, 4.000000, 0.000000, '1999-04-28', '2024-12-31', '2023-04-28 12:43:22', '2021-04-28 21:03:03', 'Administrador', 'Administrador');
 INSERT INTO `fza_ivas` VALUES ('2', '2', 'COMPENSACIÓN AGRARIA', 0.000000, 0.000000, 12.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, '1999-08-01', '2001-01-01', '2023-04-28 12:43:22', '2022-05-27 20:04:13', 'Administrador', 'Administrador');
 INSERT INTO `fza_ivas` VALUES ('3', '3', 'IGIC CANARIAS', 0.000000, 0.000000, 5.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, '1999-08-01', NULL, '2023-04-28 12:43:22', '2022-05-27 20:05:09', 'Administrador', 'Administrador');
@@ -567,7 +567,6 @@ CREATE TABLE `fza_ivas_grupos`  (
 INSERT INTO `fza_ivas_grupos` VALUES ('1', 'ESPAÑA PENINSULA', 'N', 'N', 'S', 'S', 'IVA', '2023-01-29 10:01:39', '2022-08-31 15:18:11', 'Administrador', 'Administrador');
 INSERT INTO `fza_ivas_grupos` VALUES ('2', 'COMPENSACIÓN AGRARIA Y FORESTAL', 'S', 'S', 'N', 'N', 'REAGP', '2023-04-24 13:07:34', '2022-08-31 15:18:41', 'Administrador', 'Administrador');
 INSERT INTO `fza_ivas_grupos` VALUES ('3', 'IGIC CANARIAS', 'N', 'N', 'S', 'N', 'IGIC', '2022-10-26 15:03:54', '2022-08-31 15:19:52', 'Administrador', 'Administrador');
-INSERT INTO `fza_ivas_grupos` VALUES ('4', 'COMPENSACION GANADERA Y PESQUERA', 'S', 'S', 'N', 'N', 'REAGP', '2023-01-29 10:01:51', '2022-10-26 14:50:49', 'Administrador', 'Administrador');
 INSERT INTO `fza_ivas_grupos` VALUES ('5', 'CEUTA Y MELILLA', 'N', 'N', 'S', 'N', 'IPSI', '2023-01-27 10:05:22', '2023-01-19 10:24:36', 'Administrador', 'Administrador');
 
 -- ----------------------------
@@ -631,7 +630,7 @@ CREATE TABLE `fza_metadatos`  (
   `NOMBRE_METADATO` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `PARENT_METADATO` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   PRIMARY KEY (`CODIGO_METADATO`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 97 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_spanish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 85 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_spanish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fza_metadatos
@@ -684,39 +683,36 @@ INSERT INTO `fza_metadatos` VALUES (50, 'vi_facturas_lineas', '2');
 INSERT INTO `fza_metadatos` VALUES (51, 'vi_fac_busquedas', '2');
 INSERT INTO `fza_metadatos` VALUES (52, 'vi_fac_lin_busquedas', '2');
 INSERT INTO `fza_metadatos` VALUES (53, 'vi_formapago', '2');
-INSERT INTO `fza_metadatos` VALUES (54, 'vi_fza_articulos', '2');
-INSERT INTO `fza_metadatos` VALUES (55, 'vi_ivas', '2');
-INSERT INTO `fza_metadatos` VALUES (56, 'vi_ivas_empresa', '2');
-INSERT INTO `fza_metadatos` VALUES (57, 'vi_ivas_grupos', '2');
-INSERT INTO `fza_metadatos` VALUES (58, 'vi_ivas_zonas', '2');
-INSERT INTO `fza_metadatos` VALUES (59, 'vi_proveedores', '2');
-INSERT INTO `fza_metadatos` VALUES (60, 'vi_proveedores_articulos', '2');
-INSERT INTO `fza_metadatos` VALUES (61, 'vi_recibos', '2');
-INSERT INTO `fza_metadatos` VALUES (62, 'vi_tarifas', '2');
-INSERT INTO `fza_metadatos` VALUES (63, 'vi_usuarios', '2');
-INSERT INTO `fza_metadatos` VALUES (64, 'vi_usuarios_grupos', '2');
-INSERT INTO `fza_metadatos` VALUES (65, 'vi_usuarios_perfiles', '2');
-INSERT INTO `fza_metadatos` VALUES (66, 'GET_NEXT_CONT', '3');
-INSERT INTO `fza_metadatos` VALUES (67, 'PRC_CALCULAR_FACTURA_NETOS', '3');
-INSERT INTO `fza_metadatos` VALUES (68, 'PRC_CREAR_ACTUALIZAR_CLIENTE', '3');
-INSERT INTO `fza_metadatos` VALUES (69, 'PRC_CREAR_ACTUALIZAR_EMPRESA', '3');
-INSERT INTO `fza_metadatos` VALUES (70, 'PRC_CREAR_ACTUALIZAR_KEY', '3');
-INSERT INTO `fza_metadatos` VALUES (71, 'PRC_CREAR_FACTURA_ABONO', '3');
-INSERT INTO `fza_metadatos` VALUES (72, 'PRC_CREAR_FACTURA_DUPLICADA', '3');
-INSERT INTO `fza_metadatos` VALUES (73, 'PRC_CREAR_METADATOS', '3');
-INSERT INTO `fza_metadatos` VALUES (74, 'PRC_CREAR_RECIBOS_FACTURA', '3');
-INSERT INTO `fza_metadatos` VALUES (75, 'PRC_FNC_GET_NEXT_LINEA_FACTURA', '3');
-INSERT INTO `fza_metadatos` VALUES (76, 'PRC_FNC_GET_NEXT_LINEA_PRESUPUESTO', '3');
-INSERT INTO `fza_metadatos` VALUES (77, 'PRC_FNC_GET_NEXT_NRO_DOC', '3');
-INSERT INTO `fza_metadatos` VALUES (78, 'PRC_FNC_GET_SERIE_TIPODOC', '3');
-INSERT INTO `fza_metadatos` VALUES (79, 'PRC_GET_DATA_ARTICULO', '3');
-INSERT INTO `fza_metadatos` VALUES (80, 'PRC_GET_DATA_CLIENTE', '3');
-INSERT INTO `fza_metadatos` VALUES (81, 'PRC_GET_IVA_ZONA_FECHA', '3');
-INSERT INTO `fza_metadatos` VALUES (82, 'PRC_GET_NEXT_CONT', '3');
-INSERT INTO `fza_metadatos` VALUES (83, 'PRC_GET_NEXT_CONT_FACT_SERIE', '3');
-INSERT INTO `fza_metadatos` VALUES (84, 'PRC_GET_NEXT_CONT_SERIE', '3');
-INSERT INTO `fza_metadatos` VALUES (85, 'PRC_GET_NUMEROS_A_LETRAS', '3');
-INSERT INTO `fza_metadatos` VALUES (86, 'PRC_GET_NUMERO_MENOR_MIL', '3');
+INSERT INTO `fza_metadatos` VALUES (54, 'vi_ivas', '2');
+INSERT INTO `fza_metadatos` VALUES (55, 'vi_ivas_empresa', '2');
+INSERT INTO `fza_metadatos` VALUES (56, 'vi_ivas_grupos', '2');
+INSERT INTO `fza_metadatos` VALUES (57, 'vi_ivas_zonas', '2');
+INSERT INTO `fza_metadatos` VALUES (58, 'vi_proveedores', '2');
+INSERT INTO `fza_metadatos` VALUES (59, 'vi_proveedores_articulos', '2');
+INSERT INTO `fza_metadatos` VALUES (60, 'vi_recibos', '2');
+INSERT INTO `fza_metadatos` VALUES (61, 'vi_tarifas', '2');
+INSERT INTO `fza_metadatos` VALUES (62, 'vi_usuarios', '2');
+INSERT INTO `fza_metadatos` VALUES (63, 'vi_usuarios_grupos', '2');
+INSERT INTO `fza_metadatos` VALUES (64, 'vi_usuarios_perfiles', '2');
+INSERT INTO `fza_metadatos` VALUES (66, 'PRC_CALCULAR_FACTURA_NETOS', '3');
+INSERT INTO `fza_metadatos` VALUES (67, 'PRC_CREAR_ACTUALIZAR_CLIENTE', '3');
+INSERT INTO `fza_metadatos` VALUES (68, 'PRC_CREAR_ACTUALIZAR_EMPRESA', '3');
+INSERT INTO `fza_metadatos` VALUES (69, 'PRC_CREAR_ACTUALIZAR_KEY', '3');
+INSERT INTO `fza_metadatos` VALUES (70, 'PRC_CREAR_FACTURA_ABONO', '3');
+INSERT INTO `fza_metadatos` VALUES (71, 'PRC_CREAR_FACTURA_DUPLICADA', '3');
+INSERT INTO `fza_metadatos` VALUES (72, 'PRC_CREAR_METADATOS', '3');
+INSERT INTO `fza_metadatos` VALUES (73, 'PRC_CREAR_RECIBOS_FACTURA', '3');
+INSERT INTO `fza_metadatos` VALUES (74, 'PRC_FNC_GET_NEXT_LINEA_FACTURA', '3');
+INSERT INTO `fza_metadatos` VALUES (75, 'PRC_FNC_GET_NEXT_LINEA_PRESUPUESTO', '3');
+INSERT INTO `fza_metadatos` VALUES (76, 'PRC_FNC_GET_NEXT_NRO_DOC', '3');
+INSERT INTO `fza_metadatos` VALUES (77, 'PRC_FNC_GET_SERIE_TIPODOC', '3');
+INSERT INTO `fza_metadatos` VALUES (78, 'PRC_GET_DATA_ARTICULO', '3');
+INSERT INTO `fza_metadatos` VALUES (79, 'PRC_GET_DATA_CLIENTE', '3');
+INSERT INTO `fza_metadatos` VALUES (80, 'PRC_GET_IVA_ZONA_FECHA', '3');
+INSERT INTO `fza_metadatos` VALUES (81, 'PRC_GET_NEXT_CONT', '3');
+INSERT INTO `fza_metadatos` VALUES (82, 'PRC_GET_NEXT_CONT_FACT_SERIE', '3');
+INSERT INTO `fza_metadatos` VALUES (83, 'PRC_GET_NUMEROS_A_LETRAS', '3');
+INSERT INTO `fza_metadatos` VALUES (84, 'PRC_GET_NUMERO_MENOR_MIL', '3');
 
 -- ----------------------------
 -- Table structure for fza_proveedores
@@ -882,7 +878,7 @@ CREATE TABLE `fza_usuarios`  (
 -- ----------------------------
 -- Records of fza_usuarios
 -- ----------------------------
-INSERT INTO `fza_usuarios` VALUES ('Administrador', '4F8239A5B05A0E22D3DD4D7853808AF3', 'Administradores', '1', '2023-06-02 13:35:14', '2023-06-02 13:35:14', '2021-05-14 19:54:29', 'Administrador', 'Administrador');
+INSERT INTO `fza_usuarios` VALUES ('Administrador', '4F8239A5B05A0E22D3DD4D7853808AF3', 'Administradores', '1', '2023-07-07 13:50:33', '2023-07-07 13:50:33', '2021-05-14 19:54:29', 'Administrador', 'Administrador');
 
 -- ----------------------------
 -- Table structure for fza_usuarios_grupos
@@ -5151,12 +5147,6 @@ FROM
 	`fza_formapago` ;
 
 -- ----------------------------
--- View structure for vi_fza_articulos
--- ----------------------------
-DROP VIEW IF EXISTS `vi_fza_articulos`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vi_fza_articulos` AS select `a`.`CODIGO_ARTICULO` AS `CODIGO_ARTICULO`,`a`.`ACTIVO_ARTICULO` AS `ACTIVO_ARTICULO`,`a`.`DESCRIPCION_ARTICULO` AS `DESCRIPCION_ARTICULO`,`f`.`DESCRIPCION_FAMILIA` AS `DESCRIPCION_FAMILIA`,`a`.`CODIGO_FAMILIA_ARTICULO` AS `CODIGO_FAMILIA_ARTICULO`,`a`.`TIPOIVA_ARTICULO` AS `TIPOIVA_ARTICULO`,`a`.`TIPO_CANTIDAD_ARTICULO` AS `TIPO_CANTIDAD_ARTICULO`,`a`.`ESACTIVO_FIJO_ARTICULO` AS `ESACTIVO_FIJO_ARTICULO`,`a`.`USUARIOMODIF` AS `USUARIOMODIF`,`a`.`INSTANTEALTA` AS `INSTANTEALTA`,`a`.`INSTANTEMODIF` AS `INSTANTEMODIF`,`a`.`USUARIOALTA` AS `USUARIOALTA` from (`fza_articulos` `a` left join `fza_articulos_familias` `f` on(`a`.`CODIGO_FAMILIA_ARTICULO` = `f`.`CODIGO_FAMILIA`)) ;
-
--- ----------------------------
 -- View structure for vi_ivas
 -- ----------------------------
 DROP VIEW IF EXISTS `vi_ivas`;
@@ -5280,64 +5270,6 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vi_usuarios_grupos` AS s
 -- ----------------------------
 DROP VIEW IF EXISTS `vi_usuarios_perfiles`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vi_usuarios_perfiles` AS select `fza_usuarios_perfiles`.`USUARIO_GRUPO_PERFILES` AS `USUARIO_GRUPO_PERFILES`,`fza_usuarios_perfiles`.`KEY_PERFILES` AS `KEY_PERFILES`,`fza_usuarios_perfiles`.`SUBKEY_PERFILES` AS `SUBKEY_PERFILES`,`fza_usuarios_perfiles`.`VALUE_PERFILES` AS `VALUE_PERFILES`,`fza_usuarios_perfiles`.`VALUE_TEXT_PERFILES` AS `VALUE_TEXT_PERFILES`,`fza_usuarios_perfiles`.`TYPE_BLOB_PERFILES` AS `TYPE_BLOB_PERFILES`,`fza_usuarios_perfiles`.`VALUE_BLOB_PERFILES` AS `VALUE_BLOB_PERFILES`,`fza_usuarios_perfiles`.`INSTANTEMODIF` AS `INSTANTEMODIF`,`fza_usuarios_perfiles`.`INSTANTEALTA` AS `INSTANTEALTA`,`fza_usuarios_perfiles`.`USUARIOALTA` AS `USUARIOALTA`,`fza_usuarios_perfiles`.`USUARIOMODIF` AS `USUARIOMODIF` from `fza_usuarios_perfiles` ;
-
--- ----------------------------
--- Procedure structure for GET_NEXT_CONT
--- ----------------------------
-DROP PROCEDURE IF EXISTS `GET_NEXT_CONT`;
-delimiter ;;
-CREATE PROCEDURE `GET_NEXT_CONT`(IN pTipoDoc varchar(2), 
-                                                            IN pUSUARIO_MODIF varchar(100),
-                                                            OUT pcont varchar(20))
-BEGIN
-DECLARE pPADD bigint;
-
-START TRANSACTION;
-  
-
-  IF( NOT( EXISTS(
-             SELECT *
-             FROM fza_contadores
-             WHERE `TIPODOC_CONTADOR` =  pTipoDoc) ) ) THEN
-	BEGIN
-	  INSERT INTO fza_contadores (TIPODOC_CONTADOR, 
-		                            SERIE_CONTADOR, 
-																CONTADOR_CONTADOR, 
-																DEFAULT_CONTADOR,
-																NUMDIGIT_CONTADOR,
-																INSTANTEALTA, 
-																USUARIOALTA,
-																USUARIOMODIF) 
-												VALUES
-																(pTipoDoc, 
-																 '-', 
-																 1, 
-																 'S', 
-																 3,
-																 CURRENT_TIMESTAMP,
-																 pUSUARIO_MODIF, 
-																 pUSUARIO_MODIF);
-	END;
-	END IF;
-	SET pPADD = (SELECT NUMDIGIT_CONTADOR 
-										FROM fza_contadores 
-									 WHERE TIPODOC_CONTADOR = pTipoDoc 
-									   AND DEFAULT_CONTADOR = 'S' 
-										 LIMIT 1);
-	 
-	 UPDATE fza_contadores 
-	    SET CONTADOR_CONTADOR = CONTADOR_CONTADOR + 1,
-				 USUARIOMODIF = pUSUARIO_MODIF
-      WHERE TIPODOC_CONTADOR = pTipoDoc;
-			
-	  SELECT LPAD( (SELECT CONTADOR_CONTADOR - 1 
-                                FROM fza_contadores 		
-                               WHERE TIPODOC_CONTADOR = pTipoDoc 
-															 LIMIT 1) , pPADD, '0') INTO pcont;
-COMMIT;
-END
-;;
-delimiter ;
 
 -- ----------------------------
 -- Procedure structure for PRC_CALCULAR_FACTURA_NETOS
@@ -6983,17 +6915,21 @@ CREATE PROCEDURE `PRC_GET_NEXT_CONT`(IN  pTipoDoc varchar(2),
                                          OUT pcont varchar(20))
 BEGIN
 DECLARE pPADD bigint;
-
+DECLARE pEMPRESA_CONTADOR varchar(10);
 START TRANSACTION;
-  
+  IF ( pEMPRESA_CONTADOR = '' OR pEMPRESA_CONTADOR IS NULL ) THEN 
+	  SET pEMPRESA_CONTADOR = '-'; 
+	END IF;
 
   IF( NOT( EXISTS(
              SELECT *
              FROM fza_contadores
-             WHERE `TIPODOC_CONTADOR` =  pTipoDoc) ) ) THEN
+             WHERE `TIPODOC_CONTADOR` =  pTipoDoc
+						   AND EMPRESA_CONTADOR = pEMPRESA_CONTADOR) ) ) THEN
     BEGIN
       INSERT INTO fza_contadores (TIPODOC_CONTADOR, 
-                                  SERIE_CONTADOR, 
+                                  SERIE_CONTADOR,
+																  EMPRESA_CONTADOR,	
                                   CONTADOR_CONTADOR, 
                                   DEFAULT_CONTADOR,
                                   NUMDIGIT_CONTADOR,
@@ -7003,6 +6939,7 @@ START TRANSACTION;
                           VALUES
                                  (pTipoDoc, 
                                   '-', 
+																	pEMPRESA_CONTADOR,
                                    1, 
                                   'S', 
                                    3,
@@ -7014,16 +6951,19 @@ START TRANSACTION;
     SET pPADD = (SELECT NUMDIGIT_CONTADOR 
                    FROM fza_contadores 
                   WHERE TIPODOC_CONTADOR = pTipoDoc 
+									  AND EMPRESA_CONTADOR = pEMPRESA_CONTADOR
                     AND DEFAULT_CONTADOR = 'S' 
                   LIMIT 1);
      
      UPDATE fza_contadores 
         SET CONTADOR_CONTADOR = CONTADOR_CONTADOR + 1,
             USUARIOMODIF = pUSUARIO_MODIF
-      WHERE TIPODOC_CONTADOR = pTipoDoc;            
+      WHERE TIPODOC_CONTADOR = pTipoDoc
+			  AND EMPRESA_CONTADOR = pEMPRESA_CONTADOR;            
       SELECT LPAD( (SELECT CONTADOR_CONTADOR - 1 
                       FROM fza_contadores         
                      WHERE TIPODOC_CONTADOR = pTipoDoc 
+										   AND EMPRESA_CONTADOR = pEMPRESA_CONTADOR
                      LIMIT 1) , pPADD, '0') INTO pcont;
 COMMIT;
 END
@@ -7035,23 +6975,28 @@ delimiter ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `PRC_GET_NEXT_CONT_FACT_SERIE`;
 delimiter ;;
-CREATE PROCEDURE `PRC_GET_NEXT_CONT_FACT_SERIE`(IN `pserie` VARCHAR(10), 
-                                                                           IN `pTipoDoc` VARCHAR(2), 
-																																					 IN `pUSUARIOMODIF` varchar(100),
+CREATE PROCEDURE `PRC_GET_NEXT_CONT_FACT_SERIE`(IN  `pserie` VARCHAR(10), 
+                                                                           IN  `pTipoDoc` VARCHAR(2), 
+																																					 IN  `pEMPRESA_CONTADOR` VARCHAR(10), 
+																																					 IN  `pUSUARIOMODIF` varchar(100),
 																																					 OUT `pcont` varchar(12))
 BEGIN
 DECLARE pNUMDIGIT varchar(12);
 START TRANSACTION;
-
+  IF ( pEMPRESA_CONTADOR = ''  OR pEMPRESA_CONTADOR IS NULL) THEN 
+	  SET pEMPRESA_CONTADOR = '-'; 
+	END IF;
   IF( NOT( EXISTS(
              SELECT *
              FROM fza_contadores
              WHERE `TIPODOC_CONTADOR` =  pTipoDoc
+						   AND EMPRESA_CONTADOR = pEMPRESA_CONTADOR
 						   AND `SERIE_CONTADOR` = pserie) ) ) THEN
 	BEGIN
 	   INSERT INTO fza_contadores (TIPODOC_CONTADOR, 
 		                            SERIE_CONTADOR, 
 																CONTADOR_CONTADOR, 
+																EMPRESA_CONTADOR,
 																DEFAULT_CONTADOR,
 																NUMDIGIT_CONTADOR,
 																INSTANTEALTA, 
@@ -7061,6 +7006,7 @@ START TRANSACTION;
 																(pTipoDoc, 
 																 pserie, 
 																 1, 
+																 pEMPRESA_CONTADOR,
 																 'N', 
 																 6,
 																 CURRENT_TIMESTAMP,
@@ -7072,6 +7018,7 @@ START TRANSACTION;
 UPDATE fza_contadores
     SET CONTADOR_CONTADOR = CONTADOR_CONTADOR + 1
   WHERE SERIE_CONTADOR = pserie
+		  AND EMPRESA_CONTADOR = pEMPRESA_CONTADOR
       AND TIPODOC_CONTADOR = pTipoDoc;
   
 	SELECT CONTADOR_CONTADOR - 1 , 
@@ -7080,43 +7027,13 @@ UPDATE fza_contadores
 				 pNUMDIGIT
 	  from fza_contadores
 	 where SERIE_CONTADOR = pserie
-		 and TIPODOC_CONTADOR = pTipoDoc LIMIT 1;
+		 and TIPODOC_CONTADOR = pTipoDoc
+		 AND EMPRESA_CONTADOR = pEMPRESA_CONTADOR 
+		 LIMIT 1;
 		 
  IF (NOT(pNUMDIGIT IS NULL) AND (pNUMDIGIT <> 0)) THEN
    SET pcont = LPAD(pcont, pNUMDIGIT, '0');
  END IF;								 
-
-COMMIT;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for PRC_GET_NEXT_CONT_SERIE
--- ----------------------------
-DROP PROCEDURE IF EXISTS `PRC_GET_NEXT_CONT_SERIE`;
-delimiter ;;
-CREATE PROCEDURE `PRC_GET_NEXT_CONT_SERIE`(IN `pserie`   VARCHAR(10), 
-                                                   IN `pTipoDoc` VARCHAR(2), 
-                                                  OUT `pcont`    VARCHAR(12))
-BEGIN
-DECLARE `pNUMDIGIT` VARCHAR(12);
-START TRANSACTION;
- UPDATE `fza_contadores`
-    SET `CONTADOR_CONTADOR` = `CONTADOR_CONTADOR` + 1
-  WHERE `SERIE_CONTADOR` = `pserie`
-    AND `TIPODOC_CONTADOR` = `pTipoDoc`;
-  SELECT `CONTADOR_CONTADOR` - 1 , 
-         `NUMDIGIT_CONTADOR`
-    INTO `pcont`,
-         `pNUMDIGIT`
-    FROM `fza_contadores`
-   WHERE `SERIE_CONTADOR` = `pserie`
-     AND `TIPODOC_CONTADOR` = `pTipoDoc` 
-   LIMIT 1;  
- IF (NOT(`pNUMDIGIT` IS NULL) AND (`pNUMDIGIT` <> 0)) THEN
-   SET `pcont` = LPAD(`pcont`, `pNUMDIGIT`, '0');
- END IF;                 
 
 COMMIT;
 END

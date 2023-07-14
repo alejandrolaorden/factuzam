@@ -38,8 +38,10 @@ uses
 procedure TdmFamilias.unqryTablaGAfterInsert(DataSet: TDataSet);
 begin
   inherited;
-  unqryTablaG.FindField('CODIGO_Familia').AsString := '0';
-  unqryTablaG.FindField('ORDEN_Familia').AsString := '0';
+  unqryTablaG.FindField('CODIGO_FAMILIA').AsString := '0';
+  unqryTablaG.FindField('ORDEN_FAMILIA').AsString := '0';
+  unqryTablaG.FindField('ACTIVO_FAMILIA').AsString := 'S';
+  unqryTablaG.FindField('ESDEFAULT_FAMILIA').AsString := 'N';
 end;
 
 procedure TdmFamilias.DataModuleCreate(Sender: TObject);
@@ -100,7 +102,17 @@ begin
       Abort;
     end
     else
-      GetCodigoAutoFamilia;
+    if (FindField('CODIGO_FAMILIA').AsString =
+        FindField('CODIGO_SUBFAMILIA').AsString) then
+    begin
+      raise ERangeError.CreateFmt('%s no puede ser padre e hijo a la vez. ' +
+                                       'Revise campo Familia Padre',
+               [FindField('CODIGO_SUBFAMILIA').AsString]);
+      Abort;
+    end
+    else
+      if (FindField('CODIGO_FAMILIA').AsString = '0') then
+        GetCodigoAutoFamilia;
   end;
 end;
 

@@ -341,7 +341,6 @@ inherited dmArticulos: TdmArticulos
     MasterSource = frmMtoArticulos.dsTablaG
     MasterFields = 'CODIGO_ARTICULO'
     DetailFields = 'CODIGO_ARTICULO_FACTURA_LINEA'
-    Active = True
     BeforePost = unqryPerfilesBeforePost
     Left = 560
     Top = 16

@@ -6,7 +6,6 @@ inherited dmFacturas: TdmFacturas
     Connection = dmConn.conUni
     SQL.Strings = (
       'select * from vi_facturas')
-    Active = True
     BeforeInsert = nil
     AfterInsert = unqryTablaGAfterInsert
     BeforePost = zqryFacBeforePost
@@ -292,7 +291,6 @@ inherited dmFacturas: TdmFacturas
       'FROM fza_CONTADORES'
       'WHERE TIPODOC_CONTADOR='#39'FC'#39' AND ACTIVO_CONTADOR = '#39'S'#39
       'ORDER BY DEFAULT_CONTADOR DESC')
-    Active = True
     Left = 544
     Top = 144
   end
@@ -486,7 +484,6 @@ inherited dmFacturas: TdmFacturas
     MasterSource = frmMtoFacturas.dsTablaG
     MasterFields = 'SERIE_FACTURA;NRO_FACTURA'
     DetailFields = 'SERIE_FACTURA_LINEA;NRO_FACTURA_LINEA'
-    Active = True
     BeforeInsert = zqryLinFacBeforeInsert
     AfterInsert = unqryLinFacAfterInsert
     BeforeEdit = zqryLinFacBeforeInsert
@@ -1165,7 +1162,6 @@ inherited dmFacturas: TdmFacturas
     MasterSource = frmMtoFacturas.dsTablaG
     MasterFields = 'NRO_FACTURA;SERIE_FACTURA'
     DetailFields = 'NRO_FACTURA_RECIBO;SERIE_FACTURA_RECIBO'
-    Active = True
     Left = 736
     Top = 144
     ParamData = <

@@ -8,10 +8,10 @@ inherited dmIvasGrupos: TdmIvasGrupos
     AfterInsert = unqryTablaGAfterInsert
   end
   object unstrdprcContador: TUniStoredProc
-    StoredProcName = 'GET_NEXT_CONT'
+    StoredProcName = 'PRC_GET_NEXT_CONT'
     SQL.Strings = (
       
-        'CALL GET_NEXT_CONT(:pTipoDoc, @pcont); SELECT CAST(@pcont AS SIG' +
+        'CALL PRC_GET_NEXT_CONT(:pTipoDoc, @pcont); SELECT CAST(@pcont AS SIG' +
         'NED) AS '#39'@pcont'#39)
     Connection = dmConn.conUni
     Left = 8
@@ -30,6 +30,6 @@ inherited dmIvasGrupos: TdmIvasGrupos
         ParamType = ptOutput
         Value = nil
       end>
-    CommandStoredProcName = 'GET_NEXT_CONT'
+    CommandStoredProcName = 'PRC_GET_NEXT_CONT'
   end
 end

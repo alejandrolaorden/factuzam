@@ -30,9 +30,6 @@ inherited frmMtoGrupos: TfrmMtoGrupos
         end
       end
       inherited tsFicha: TcxTabSheet
-        ExplicitTop = 30
-        ExplicitWidth = 933
-        ExplicitHeight = 447
         object Panel1: TPanel
           Left = 0
           Top = 0
@@ -155,17 +152,10 @@ inherited frmMtoGrupos: TfrmMtoGrupos
         end
       end
       inherited tsPerfil: TcxTabSheet
-        inherited pnl4: TPanel
+        inherited pnlPerfilTop: TPanel
           inherited edtPerfilBusq: TcxTextEdit
-            ExplicitHeight = 24
+            ExplicitHeight = 21
           end
-        end
-      end
-    end
-    inherited pnlTopPage: TPanel
-      inherited pnlTopGrid: TPanel
-        inherited edtBusqGlobal: TcxTextEdit
-          ExplicitHeight = 27
         end
       end
     end

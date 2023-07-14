@@ -39,9 +39,6 @@ inherited frmMtoGen: TfrmMtoGen
       object tsLista: TcxTabSheet
         Caption = '&Lista'
         ImageIndex = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object cxGrdPrincipal: TcxGrid
           Left = 0
           Top = 0
@@ -113,14 +110,11 @@ inherited frmMtoGen: TfrmMtoGen
       object tsFicha: TcxTabSheet
         Caption = '&Ficha'
         ImageIndex = 1
-        ExplicitTop = 0
-        ExplicitWidth = 866
-        ExplicitHeight = 0
       end
       object tsPerfil: TcxTabSheet
         Caption = 'Perfil'
         ImageIndex = 2
-        object pnl4: TPanel
+        object pnlPerfilTop: TPanel
           Left = 0
           Top = 0
           Width = 933
@@ -168,13 +162,13 @@ inherited frmMtoGen: TfrmMtoGen
             OnClick = btnCargarVblesGlobClick
           end
         end
-        object pnl5: TPanel
+        object pnlPerfilDetail: TPanel
           Left = 0
           Top = 57
           Width = 933
           Height = 390
           Align = alClient
-          Caption = 'pnl5'
+          Caption = 'pnlPerfilDetail'
           TabOrder = 1
           object cxgrdPerfil: TcxGrid
             Left = 1
@@ -296,7 +290,7 @@ inherited frmMtoGen: TfrmMtoGen
         ParentBackground = False
         ParentCtl3D = False
         TabOrder = 0
-        object dxbvl1: TdxBevel
+        object bvTop: TdxBevel
           Left = 6
           Top = 2
           Width = 835
@@ -400,14 +394,6 @@ inherited frmMtoGen: TfrmMtoGen
           OnClick = rbBBDDClick
           Transparent = True
         end
-        object cxRadioButton2: TcxRadioButton
-          Left = 432
-          Top = 16
-          Width = 25
-          Height = 1
-          Caption = 'cxRadioButton2'
-          TabOrder = 4
-        end
         object rbGrid: TcxRadioButton
           Left = 345
           Top = 17
@@ -422,7 +408,7 @@ inherited frmMtoGen: TfrmMtoGen
           Font.Style = []
           Font.Quality = fqClearType
           ParentFont = False
-          TabOrder = 5
+          TabOrder = 4
           OnClick = rbGridClick
           Transparent = True
         end
